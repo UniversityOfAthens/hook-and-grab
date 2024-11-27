@@ -71,7 +71,7 @@ npm start
     ```
 ![Frontend screenshot](screenshots/front.png)
 
-Ο frontend development server θα τρέχει στο http://localhost:5173/signup.
+Ο frontend development server θα τρέχει στο http://localhost:5173/.
 Προκειμένου να δείτε την εφαρμογή θα πρέπει να μπείτε στο παραπάνω link. Κάθε φορά που αλλάζετε κάτι και πατάτε save, θα κάνει αυτόματα reload (ωστόσο κάποιες φορές μπορεί να κολλάει και να πρέπει να πατήσετε στο terminal Ctrl+C και ξανά npm run dev).
 
 Θα πρέπει να φαίνεται κάπως έτσι:
