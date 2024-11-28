@@ -14,6 +14,7 @@ function Signup() {
         axios.post('http://localhost:5000/api/users/register', { name, email, password })
             .then(res => {
                 console.log(res.data);
+                localStorage.setItem('user', JSON.stringify({ email, name })); // Store user info in localStorage
                 navigate('/home');
             })
             .catch(err => console.log(err));

@@ -1,22 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import './styles/custom.css';
 
-
 function Home() {
     const navigate = useNavigate();
     const [isPopupVisible, setIsPopupVisible] = useState(true); // State for popup visibility
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login status
+    const [username, setUsername] = useState(''); // State for username
 
     const handleLogout = () => {
         // Perform any logout logic here (e.g., clearing user data)
+        localStorage.removeItem('user'); // Clear user info from localStorage
+        setIsLoggedIn(false);
         navigate('/login');
     };
 
     const closePopup = () => {
         setIsPopupVisible(false); // Set popup visibility to false
     };
+
+    useEffect(() => {
+        // Check if the user is logged in (this is a simple example, you might want to check a token or session)
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            setIsLoggedIn(true);
+            setUsername(user.name); // Set the username
+        }
+    }, []);
 
     return (
         <div>
@@ -25,18 +37,25 @@ function Home() {
                 <Navbar.Brand href="#home" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', fontSize: '2rem' }}>🌊Bluecopedia</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mx-auto">
-        <Nav.Link href="#Learn" className="text-light mx-3">
-          Learn
-        </Nav.Link>
-        <Nav.Link href="#about" className="text-light mx-3">
-          About Us
-        </Nav.Link>
-      </Nav>
-      <Nav className="text-light ms-auto">
-        <Nav.Link onClick={handleLogout}>Log In / Register</Nav.Link>
-      </Nav>
-    </Navbar.Collapse>
+                    <Nav className="mx-auto">
+                        <Nav.Link href="#Learn" className="text-light mx-3">
+                            Learn
+                        </Nav.Link>
+                        <Nav.Link href="#about" className="text-light mx-3">
+                            About Us
+                        </Nav.Link>
+                    </Nav>
+                    <Nav className="text-light ms-auto">
+                        {isLoggedIn ? (
+                            <>
+                                <Nav.Link href="#profile">{username}</Nav.Link>
+                                <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
+                            </>
+                        ) : (
+                            <Nav.Link onClick={handleLogout}>Log In / Register</Nav.Link>
+                        )}
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
 
             {/* Popup */}
