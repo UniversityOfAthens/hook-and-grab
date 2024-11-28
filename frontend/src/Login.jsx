@@ -13,6 +13,7 @@ function Login() {
         axios.post('http://localhost:5000/api/users/login', { email, password })
             .then(res => {
                 console.log(res.data);
+                localStorage.setItem('user', JSON.stringify({ email, name: res.data.name })); // Store user info in localStorage
                 navigate('/home');
             })
             .catch(err => console.log(err));
