@@ -27,6 +27,7 @@ function Home() {
         if (user) {
             setIsLoggedIn(true);
             setUsername(user.name); // Set the username
+            setIsPopupVisible(false);
         }
     }, []);
 
@@ -34,12 +35,12 @@ function Home() {
         <div>
             {/* Navbar */}
             <Navbar className="custom-navbar" variant="dark" expand="lg">
-                <Navbar.Brand href="#home" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', fontSize: '2rem' }}>🌊Bluecopedia</Navbar.Brand>
+                <Navbar.Brand href="#home" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', fontSize: '2rem' }}>🌊(Placeholder)</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto">
-                        <Nav.Link href="#Learn" className="text-light mx-3">
-                            Learn
+                        <Nav.Link href="#Market" className="text-light mx-3">
+                            Market
                         </Nav.Link>
                         <Nav.Link href="#about" className="text-light mx-3">
                             About Us
@@ -75,15 +76,14 @@ function Home() {
                             X
                         </button>
                         {/* Popup Content */}
-                        <h3>Welcome to 🌊 Bluecopedia, where everyone can learn!</h3>
+                        <h3>Welcome to 🌊 (Placeholder)!</h3>
                         <p>Nice to 'sea' you fellow user, here are some activities for you:</p>
                         <ul>
                             <li>
-                                Head over to the <a href="#Learn">Learn</a> page and drown yourself with knowledge! 📖
-                                (Switch to Interactive Mode and start an adventure! 🗺️)
+                                Head over to the <a href="#Market">Market</a> and view or create Listings! 🏷️
                             </li>
                             <li>
-                            Not yet a member? <a href="/Signup">Register</a> to become a part of our team!
+                            Not yet a member? <a href="/Signup">Register</a> to become a part of our team! 🐬
                             </li>
                             <li>
                             Learn about our mission at the <a href="#about">about</a> section. 🎯
