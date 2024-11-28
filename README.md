@@ -15,7 +15,7 @@
 
 ### Προαπαιτούμενα
 Πριν ξεκινήσετε, βεβαιωθείτε ότι έχετε εγκαταστήσει τα εξής:
-- Node.js (https://nodejs.org/)
+- [Node.js](https://nodejs.org/)
 - npm (Node Package Manager, περιλαμβάνεται με το Node.js)
 
 ### Εγκατάσταση
@@ -49,26 +49,33 @@ npm install
 npm start
 ```
 
-Ο backend server θα τρέχει στο http://localhost:5000. (Δεν έχει κάτι να δείτε εκεί)
+Ο backend server θα τρέχει στο `http://localhost:5000`. (Δεν έχει κάτι να δείτε εκεί)
+
+<center>
 
 ![Backend screenshot](screenshots/back.png)
+
+</center>
 
 ### Εκτέλεση του Frontend
 
 1. **Μεταβείτε στον κατάλογο του frontend:**
-    ```bash
-    cd frontend
-    ```
+```bash
+cd frontend
+```
 
 2. **Εγκατάσταση εξαρτήσεων του frontend:**
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
 
 3. **Εκκίνηση του frontend development server:**
-    ```bash
-    npm run dev
-    ```
+```bash
+npm run dev
+```
+
+<center>
+
 ![Frontend screenshot](screenshots/front.png)
 
 Ο frontend development server θα τρέχει στο http://localhost:5173/.
@@ -82,30 +89,34 @@ npm start
 
 ## Συμμετοχή
 
-### Δημιουργία Brach
+### Δημιουργία Branch
 1. **Δημιουργήστε ένα νέο branch για να προσθέσετε/διορθώσετε οτιδήποτε:**
-    ```bash
-    git checkout -b <όνομα-κλάδου>
-    ```
-    Καλό θα ήταν το όνομα του branch να είναι σχετικό με αυτό που κάνετε, προς διευκόλυνση όλων. 
+```bash
+git checkout -b <όνομα-κλάδου>
+```
+Παράδειγμα:
+```bash
+git checkout -b fix-bug-login
+```
+Καλό θα ήταν το όνομα του branch να είναι σχετικό με αυτό που κάνετε, προς διευκόλυνση όλων. 
 
 ### Κάνοντας Αλλαγές
 1. **Κάντε τις αλλαγές σας στον κώδικα.**
-2. **Add your changes:**
-    ```
-    git add .
-    ```
+2. **Προσθέστε τις αλλαγές σας:**
+```bash
+git add .
+```
 
 3. **Commit των αλλαγών σας:**
-    ```bash
-    git commit -m "Περιγραφή των αλλαγών"
-    ```
+```bash
+git commit -m "Περιγραφή των αλλαγών"
+```
 
 ### Δημιουργία Pull Request
 1. **Σπρώξτε το branch σας στο forked repo:**
-    ```bash
-    git push origin <όνομα-κλάδου>
-    ```
+```bash
+git push origin <όνομα-κλάδου>
+```
 
 2. **Δημιουργήστε ένα pull request από το branch σας προς τον κλάδο main του αρχικού repo.**
 
