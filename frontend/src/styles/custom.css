@@ -1,0 +1,7 @@
+.custom-navbar {
+    background-image: url('./foxphoria-beautiful.gif');
+    background-size: cover; /* Ensures the GIF covers the entire area */
+    background-repeat: no-repeat; /* Prevents the GIF from repeating */
+    background-position: center ; /* Centers the GIF */
+  }
+  
