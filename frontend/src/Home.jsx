@@ -34,12 +34,14 @@ function Home() {
             <div className="content-container">
                 <Navbar className="custom-navbar" variant="dark" expand="lg" fixed="top">
                     <Container>
-                        <Navbar.Brand href="#home">🌊(Placeholder)</Navbar.Brand>
+                        <Navbar.Brand href="#home">🌊OceanBay</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="#Market">Market</Nav.Link>
-                                <Nav.Link href="#about">About Us</Nav.Link>
+                                <Nav.Link href="#Forum">Forum</Nav.Link>
+                                <Nav.Link href="#FAQ">FAQ</Nav.Link>
+                                <Nav.Link href="#about">About</Nav.Link>
                             </Nav>
                             <Nav>
                                 {isLoggedIn ? (
@@ -56,7 +58,7 @@ function Home() {
                 </Navbar>
 
                 <main className="main-content">
-                    <h1 className="text-center mt-5 pt-5">Welcome to 🌊(Placeholder)</h1>
+                    <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span style={{transform:'scaleX(-1)'}}>🌊</span></h1>
                     <p className="text-center">Explore our underwater world!</p>
                 </main>
 
@@ -70,11 +72,17 @@ function Home() {
                             >
                                 X
                             </button>
-                            <h3> <center>Welcome to 🌊 (Placeholder)! </center></h3>
+                            <h3> <center>Welcome to 🌊 OceanBay! </center></h3>
                             <p> <center>Explore our underwater world!</center> </p>
                             <ul>
                                 <li>
                                     Head over to the <a href="#Market">Market</a> and view or create Listings! 🏷️
+                                </li>
+                                <li>
+                                    Visit the <a href="/Forum">Forum</a> and discuss with like-minded people! 🗣️
+                                </li>
+                                <li>
+                                    You have any questions about the Blue and Circular economy? Travel to the <a href="/FAQ">FAQ</a> page! 📖
                                 </li>
                                 <li>
                                     Not yet a member? <a href="/Signup">Register</a> to become a part of our team! 🐬
