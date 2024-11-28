@@ -26,8 +26,8 @@ function Home() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mx-auto">
-        <Nav.Link href="#articles" className="text-light mx-3">
-          Articles
+        <Nav.Link href="#Learn" className="text-light mx-3">
+          Learn
         </Nav.Link>
         <Nav.Link href="#about" className="text-light mx-3">
           About Us
@@ -60,8 +60,8 @@ function Home() {
                         <p>Nice to 'sea' you fellow user, here are some activities for you:</p>
                         <ul>
                             <li>
-                                Head over to the <a href="#articles">articles</a> page and drown yourself with knowledge! 📖
-                                (Switch to the Interactive Mode and start an adventure! 🗺️)
+                                Head over to the <a href="#Learn">Learn</a> page and drown yourself with knowledge! 📖
+                                (Switch to Interactive Mode and start an adventure! 🗺️)
                             </li>
                             <li>
                             Not yet a member? <a href="/Signup">Register</a> to become a part of our team!
