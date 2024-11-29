@@ -132,13 +132,13 @@ function Home() {
                         <p className="text-center">Explore our underwater world!</p>
                     </div>
                 </div>
-                {/* <div class="d-flex box1">
+                <div class="d-flex box1">
                     <img src={boat} class="left"/>
                     <div class="d-flex flex-column">
                         <h1> Buy, sell and trade!</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, molestias. Dicta expedita laudantium quia rem commodi. Ratione minus eveniet numquam nihil, natus magni doloribus temporibus dignissimos? Voluptates officiis quam pariatur.</p>
                     </div>
-                </div> */}
+                </div>
                 
                 </main>
 
