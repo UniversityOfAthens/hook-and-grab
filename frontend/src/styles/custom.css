@@ -114,6 +114,7 @@
 .drawer-content {
   width: 250px;
   background-color: rgb(10, 18, 33);
+
   color: white;
   height: 100%;
   display: flex;

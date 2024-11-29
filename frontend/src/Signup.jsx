@@ -4,20 +4,30 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Signup() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/api/users/register', { name, email, password })
+
+        // Validation logic
+        if (!username || !password) {
+            setError('Please complete the form.');
+            return;
+        }
+
+        axios.post('http://localhost:3482/auth/register', { username, password })
             .then(res => {
                 console.log(res.data);
-                localStorage.setItem('user', JSON.stringify({ email, name })); // Store user info in localStorage
+                localStorage.setItem('user', JSON.stringify({ username: res.data.user.username })); // Store user info in localStorage
                 navigate('/home');
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                setError(err.response?.data?.message || 'Registration failed. Please try again.');
+            });
     }
 
     return (
@@ -26,27 +36,16 @@ function Signup() {
                 <h2>Register</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="name">
-                            <strong>Name</strong>
+                        <label htmlFor="username">
+                            <strong>Username</strong>
                         </label>
                         <input type="text"
-                            placeholder="Enter Name"
+                            placeholder="Enter Username"
                             autoComplete="off"
-                            name="name"
+                            name="username"
                             className="form-control rounded-0"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="email">
-                            <strong>Email</strong>
-                        </label>
-                        <input type="email"
-                            placeholder="Enter Email"
-                            autoComplete="off"
-                            name="email"
-                            className="form-control rounded-0"
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
@@ -58,10 +57,12 @@ function Signup() {
                             autoComplete="off"
                             name="password"
                             className="form-control rounded-0"
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <button type="submit" className="btn btn-primary w-100">Signup</button>
+                    {error && <p className="text-danger mt-2">{error}</p>}
                 </form>
                 <p>Already have an account?</p>
                 <Link to="/login" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
