@@ -33,17 +33,6 @@ class User {
       return callback(null, user);
     });
   }
-
-  static deleteById(id, callback) {
-    const db = getDatabaseConnection();
-    db.run('DELETE FROM users WHERE id = ?', [id], function (err) {
-      db.close();
-      if (err) {
-        return callback(err);
-      }
-      return callback(null);
-    });
-  }
 }
 
 module.exports = User;

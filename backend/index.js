@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
+const cors = require('cors'); // Import cors
 const { initializeDatabase } = require('./config/database');
 require('./config/passport');
 
@@ -12,6 +13,12 @@ initializeDatabase();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// CORS Middleware
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow requests from this origin
+  credentials: true // Allow cookies to be sent
+}));
+
 // Session Middleware
 app.use(
   session({
@@ -19,7 +26,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 604800000, // 1 weeek in milliseconds
+      maxAge: 604800000, // 1 week in milliseconds
     },
   })
 );

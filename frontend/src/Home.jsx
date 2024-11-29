@@ -24,7 +24,7 @@ function Home() {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             setIsLoggedIn(true);
-            setUsername(user.name);
+            setUsername(user.username); // Ensure the correct key is used
             setIsPopupVisible(false);
         }
     }, []);
