@@ -87,7 +87,7 @@ function Home() {
                             <Nav>
                                 {isLoggedIn ? (
                                     <>
-                                        <Nav.Link href="#profile">{username}</Nav.Link> 
+                                        <Nav.Link onClick={() => navigate('/profile')}>{username}</Nav.Link>
                                         <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
                                     </>
                                 ) : (
