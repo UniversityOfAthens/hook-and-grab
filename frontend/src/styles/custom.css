@@ -193,8 +193,25 @@
   margin: 20px;
   width: 50%;
   position: absolute;
-  top: 350px;
+  /* top: 350px; */
   left: 30px;
+  height: auto;
+}
+
+.graciasArtemis{
+  color: white;
+  z-index: 2;
+  text-align: right;
+  display: block;
+  justify-content: auto;
+  align-items: auto;
+  margin: 20px;
+  height: auto;
+  width: 50%;
+  position: absolute;
+  /* top: 350px; */
+  right: 20px;
+
 }
 
 .textInside{
@@ -207,7 +224,7 @@
   margin: 20px;
   width: 50%;
   position: absolute;
-  top: 350px;
+  /* top: 350px; */
   right: 20px;
 }
 
@@ -216,12 +233,12 @@
   width: auto;
   height: 300px;
   z-index: -1;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
-  opacity: 0.5;
-  height: 1000px;
+  height: auto;
   position: relative;
   margin: 10px;
+  /* height: 100vh; */
   border-radius: 50px;
   bottom: 0;
 }
@@ -234,6 +251,9 @@
 
   .navbar-collapse {
       background-color: rgba(0, 0, 0, 0.8);
+  }
+  .left{
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
 

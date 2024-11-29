@@ -46,6 +46,7 @@ function Home() {
             <div className="drawer-header"></div>
             <Nav className="flex-column"> 
                 <Nav.Link className="nav-link" href="#Market">Market</Nav.Link>
+                <Nav.Link className="nav-link" href="#RentABoat">Rent a Boat</Nav.Link>
                 <Nav.Link className="nav-link" href="#Forum">Forum</Nav.Link>
                 <Nav.Link className="nav-link" href="#FAQ">FAQ</Nav.Link>
                 <Nav.Link className="nav-link" href="#about">About</Nav.Link>
@@ -80,6 +81,7 @@ function Home() {
                         <div className="d-none d-lg-flex">
                             <Nav className="me-auto">
                                 <Nav.Link href="#Market">Market</Nav.Link>
+                                <Nav.Link href="#RentABoat">Rent a Boat</Nav.Link>
                                 <Nav.Link href="#Forum">Forum</Nav.Link>
                                 <Nav.Link href="#FAQ">FAQ</Nav.Link>
                                 <Nav.Link href="#about">About</Nav.Link>
@@ -109,9 +111,14 @@ function Home() {
                         <p className="text-center">Explore our underwater world!</p>
                     </div>
                 </div>
-                <div class="box box1"></div>
-                <img src={boat} class="left" />
-                <h1 class="textInside"> Buy, sell and trade!</h1>
+                {/* <div class="d-flex box1">
+                    <img src={boat} class="left"/>
+                    <div class="d-flex flex-column">
+                        <h1> Buy, sell and trade!</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, molestias. Dicta expedita laudantium quia rem commodi. Ratione minus eveniet numquam nihil, natus magni doloribus temporibus dignissimos? Voluptates officiis quam pariatur.</p>
+                    </div>
+                </div> */}
+                
                 </main>
 
                 {isPopupVisible && (
