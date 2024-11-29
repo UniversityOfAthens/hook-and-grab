@@ -18,10 +18,14 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-    background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   opacity: 50;
   --bs-bg-opacity: .5;
-  padding-bottom: 20px;
+  padding: 10px;
+}
+
+.custom-navbar .container {
+  align-items: center;
 }
 
 .navbar-nav .nav-link {
@@ -74,20 +78,105 @@
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 5px;
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
   color: #000;
+  opacity: 0.5;
 }
 
+.close-button:hover {
+  color: #ff0000;
+  opacity: 1;
+  transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Drawer Button */
+#burger{
+  color: white;
+}
+
+/* Drawer Styles */
+.drawer-close {
+  cursor: pointer;
+}
+
+.drawer-content {
+  width: 250px;
+  background-color: rgb(10, 18, 33);
+
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.drawer-content a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  position: relative; /* Required for the pseudo-element */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.drawer-content a::after {
+  content: '';
+  display: block;
+  width: 80%; /* Border bottom width */
+  height: 1px; /* Border thickness */
+  background-color: rgba(255, 255, 255, 0.2); /* Border color */
+  margin: 0 auto; /* Center the border */
+  position: absolute;
+  bottom: 0;
+  left: 10%; /* Centering the 80% width */
+}
+
+.drawer-content a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.drawer-content a:hover::after {
+  background-color: rgba(255, 255, 255, 0.5); /* Brighter border on hover */
+}
+
+.drawer-content .nav-link {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Not sure if this is needed. */
+/* .drawer-content .nav-link:hover {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.15);
+} */
+
+.drawer-content .drawer-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.drawer-content .logout-link {
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: red;
+}
+
+/* Media Queries */
 @media (max-width: 991.98px) {
   .custom-navbar {
-      padding-bottom: 0;
-      background-color: white;
-      --bs-bg-opacity: .5;
+      --bs-bg-opacity: 0.5;
   }
 
   .navbar-collapse {
@@ -95,3 +184,9 @@
   }
 }
 
+@media (max-width: 576px) {
+  .popup-content {
+      max-width: 90%;
+      max-height: 90%;
+  }
+}
