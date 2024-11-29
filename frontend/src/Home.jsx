@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardTab from '@mui/icons-material/KeyboardTab';
 import './styles/custom.css';
-import boat from "./styles/boat.gif";
+//import boat from "./styles/boat.gif";
 
 function Home() {
     const navigate = useNavigate();
@@ -20,6 +20,10 @@ function Home() {
         localStorage.removeItem('user');
         setIsLoggedIn(false);
         navigate('/');
+    };
+
+    const goToMarket = () => {
+        navigate('/market');
     };
 
     const closePopup = () => {
@@ -45,7 +49,7 @@ function Home() {
             <KeyboardTab className="drawer-close" onClick={toggleDrawer(false)} />
             <div className="drawer-header"></div>
             <Nav className="flex-column"> 
-                <Nav.Link className="nav-link" href="#Market">Market</Nav.Link>
+                <Nav.Link className="nav-link" onClick={goToMarket} >Market</Nav.Link>
                 <Nav.Link className="nav-link" href="#RentABoat">Rent a Boat</Nav.Link>
                 <Nav.Link className="nav-link" href="#Forum">Forum</Nav.Link>
                 <Nav.Link className="nav-link" href="#FAQ">FAQ</Nav.Link>
@@ -80,7 +84,7 @@ function Home() {
                         </div>
                         <div className="d-none d-lg-flex">
                             <Nav className="me-auto">
-                                <Nav.Link href="#Market">Market</Nav.Link>
+                                <Nav.Link onClick={goToMarket}>Market</Nav.Link>
                                 <Nav.Link href="#RentABoat">Rent a Boat</Nav.Link>
                                 <Nav.Link href="#Forum">Forum</Nav.Link>
                                 <Nav.Link href="#FAQ">FAQ</Nav.Link>
@@ -106,7 +110,7 @@ function Home() {
                     
                 <main>
                 <div style={{ marginTop: "0px" }} id="home">
-                    <div class="header">
+                    <div className="header">
                         <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span>🌊</span></h1>
                         <p className="text-center">Explore our underwater world!</p>
                     </div>
@@ -156,7 +160,7 @@ function Home() {
                     </div>
                 )}
                 <div style={{ marginTop: "1000px" }} id="about">
-                    <div class="header">
+                    <div className="header">
                         <h1>About</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium et incidunt molestiae ipsam. Et cumque tenetur est non odio provident? Tenetur quasi voluptatem eum eaque. Fugit minima quae est tempore.</p>
                         </div>

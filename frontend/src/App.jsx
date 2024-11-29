@@ -1,10 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { useState } from 'react';
+//import { useState } from 'react';
 import Signup from './Signup';
 import Login from './Login';
 import Home from './Home';
 import Profile from './Profile'; // Import Profile component
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Market from './Market';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/market" element={<Market />} />
       </Routes>
     </BrowserRouter>
   );
