@@ -23,7 +23,7 @@ function Profile() {
             <Row className="justify-content-center">
                 <Col md={6} className="text-center">
                     <h2>Profile</h2>
-                    <Image src="pfp.jpg" roundedCircle className="mb-3" />
+                    <Image src="/pfp.jpg" roundedCircle className="mb-3" style={{ width: '100px', height: '100px' }}/>
                     <h5>Username: {username}</h5>
                     <Button variant="primary" onClick={handleGoBack} className="mt-3">Go back</Button>
                 </Col>
