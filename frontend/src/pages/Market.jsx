@@ -1,4 +1,4 @@
-import './Market.css';
+import '../styles/Market.css';
 
 const Market = () => {
     return (

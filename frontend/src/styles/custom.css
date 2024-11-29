@@ -1,7 +1,7 @@
 .site-container {
   position: relative;
   min-height: 100vh;
-  background-image: url('./tsouxtres.gif');
+  background-image: url('../assets/gifs/jellyfish.gif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -112,9 +112,8 @@
 }
 
 .drawer-content {
-  width: 250px;
+  width: 275px;
   background-color: rgb(10, 18, 33);
-
   color: white;
   height: 100%;
   display: flex;
@@ -134,17 +133,20 @@
 .drawer-content a::after {
   content: '';
   display: block;
-  width: 80%; /* Border bottom width */
-  height: 1px; /* Border thickness */
-  background-color: rgba(255, 255, 255, 0.2); /* Border color */
-  margin: 0 auto; /* Center the border */
+  width: 80%;
+  height: 1px; 
+  background-color: rgba(255, 255, 255, 0.2); 
+  margin: 0 auto; 
   position: absolute;
   bottom: 0;
-  left: 10%; /* Centering the 80% width */
+  left: 10%; 
+}
+
+.drawer-content a:last-child::after {
+  display: none;
 }
 
 .drawer-content a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -173,10 +175,11 @@
 }
 
 .drawer-content .logout-link {
-  margin-top: 10px;
   padding: 10px;
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.drawer-content .logout-link:hover{
   color: red;
 }
 
