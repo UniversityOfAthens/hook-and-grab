@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardTab from '@mui/icons-material/KeyboardTab';
 import './styles/custom.css';
+import boat from "./styles/boat.gif";
 
 function Home() {
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ function Home() {
     const toggleDrawer = (open) => () => {
         setIsDrawerOpen(open);
     };
+
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -99,10 +101,17 @@ function Home() {
                 <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer(false)}>
                     {drawerContent}
                 </Drawer>
-
-                <main className="main-content">
-                    <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span>🌊</span></h1>
-                    <p className="text-center">Explore our underwater world!</p>
+                    
+                <main>
+                <div style={{ marginTop: "0px" }} id="home">
+                    <div class="header">
+                        <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span>🌊</span></h1>
+                        <p className="text-center">Explore our underwater world!</p>
+                    </div>
+                </div>
+                <div class="box box1"></div>
+                <img src={boat} class="left" />
+                <h1 class="textInside"> Buy, sell and trade!</h1>
                 </main>
 
                 {isPopupVisible && (

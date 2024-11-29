@@ -180,6 +180,52 @@
   color: red;
 }
 
+/* Image format - forgot to change name and left it 'left' */
+.left{ 
+  z-index: 2;
+  filter:hue-rotate(190deg);
+  border-radius: 50px;
+  padding: 20px;
+  text-align: left;
+  display: block;
+  justify-content: left;
+  align-items: left;
+  margin: 20px;
+  width: 50%;
+  position: absolute;
+  top: 350px;
+  left: 30px;
+}
+
+.textInside{
+  color: white;
+  z-index: 2;
+  text-align: right;
+  display: block;
+  justify-content: auto;
+  align-items: auto;
+  margin: 20px;
+  width: 50%;
+  position: absolute;
+  top: 350px;
+  right: 20px;
+}
+
+
+.box1 {
+  width: auto;
+  height: 300px;
+  z-index: -1;
+  background-color: #000;
+  color: #fff;
+  opacity: 0.5;
+  height: 1000px;
+  position: relative;
+  margin: 10px;
+  border-radius: 50px;
+  bottom: 0;
+}
+
 /* Media Queries */
 @media (max-width: 991.98px) {
   .custom-navbar {
