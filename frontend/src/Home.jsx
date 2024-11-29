@@ -20,6 +20,13 @@ function Home() {
         setIsPopupVisible(false);
     };
 
+    const handleScroll = () => {
+        const aboutSection = document.getElementById("about");
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      };
+
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
@@ -41,7 +48,7 @@ function Home() {
                                 <Nav.Link href="#Market">Market</Nav.Link>
                                 <Nav.Link href="#Forum">Forum</Nav.Link>
                                 <Nav.Link href="#FAQ">FAQ</Nav.Link>
-                                <Nav.Link href="#about">About</Nav.Link>
+                                <Nav.Link onClick={handleScroll} href="#about">About</Nav.Link>
                             </Nav>
                             <Nav>
                                 {isLoggedIn ? (
@@ -60,7 +67,11 @@ function Home() {
                 <main className="main-content">
                     <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span style={{transform:'scaleX(-1)'}}>🌊</span></h1>
                     <p className="text-center">Explore our underwater world!</p>
+                    <img src="./styles/boat.gif">
+                    </img>
                 </main>
+
+
 
                 {isPopupVisible && (
                     <div className="popup-overlay">
@@ -94,8 +105,15 @@ function Home() {
                         </div>
                     </div>
                 )}
+                <div style={{ marginTop: "1000px" }} id="about">
+                    <div class="header">
+                        <h1>About</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium et incidunt molestiae ipsam. Et cumque tenetur est non odio provident? Tenetur quasi voluptatem eum eaque. Fugit minima quae est tempore.</p>
+                        </div>
+                </div>
             </div>
         </div>
+        
     );
 }
 

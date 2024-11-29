@@ -13,6 +13,14 @@
   z-index: 1;
 }
 
+.header {
+  padding: 60px;
+  text-align: right;
+  color: white;
+  font-size: 15px;
+}
+
+
 .custom-navbar {
   /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%), url('./foxphoria-beautiful.gif'); */
   background-size: cover;
