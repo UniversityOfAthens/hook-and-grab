@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
+import CloseIcon from '@mui/icons-material/Close';
+import KeyboardTab from '@mui/icons-material/KeyboardTab';
 import './styles/custom.css';
 
 function Home() {
@@ -9,23 +13,21 @@ function Home() {
     const [isPopupVisible, setIsPopupVisible] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem('user');
         setIsLoggedIn(false);
-        navigate('/login');
+        navigate('/');
     };
 
     const closePopup = () => {
         setIsPopupVisible(false);
     };
 
-    const handleScroll = () => {
-        const aboutSection = document.getElementById("about");
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      };
+    const toggleDrawer = (open) => () => {
+        setIsDrawerOpen(open);
+    };
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -36,42 +38,72 @@ function Home() {
         }
     }, []);
 
+    const drawerContent = (
+        <div className="drawer-content">
+            <KeyboardTab className="drawer-close" onClick={toggleDrawer(false)} />
+            <div className="drawer-header"></div>
+            <Nav className="flex-column"> 
+                <Nav.Link className="nav-link" href="#Market">Market</Nav.Link>
+                <Nav.Link className="nav-link" href="#Forum">Forum</Nav.Link>
+                <Nav.Link className="nav-link" href="#FAQ">FAQ</Nav.Link>
+                <Nav.Link className="nav-link" href="#about">About</Nav.Link>
+                {isLoggedIn ? (
+                    <>
+                        <Nav.Link className="nav-link" href="#profile">Fix me D:</Nav.Link> {/*Supposingly here should be user's name*/}
+                        <Nav.Link className="logout-link" onClick={handleLogout}>Log Out</Nav.Link>
+                    </>
+                ) : (
+                    <Nav.Link className="nav-link" onClick={() => navigate('/login')}>Log In / Register</Nav.Link>
+                )}
+            </Nav>
+        </div>
+    );    
+
     return (
         <div className="site-container">
             <div className="content-container">
                 <Navbar className="custom-navbar" variant="dark" expand="lg" fixed="top">
                     <Container>
                         <Navbar.Brand href="#home">🌊OceanBay</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
+                        <div className="d-lg-none">
+                            <IconButton
+                                edge="end"
+                                color="inherit"
+                                aria-label="menu"
+                                onClick={toggleDrawer(true)}
+                            >
+                                <MenuIcon id="burger"/>
+                            </IconButton>
+                        </div>
+                        <div className="d-none d-lg-flex">
                             <Nav className="me-auto">
                                 <Nav.Link href="#Market">Market</Nav.Link>
                                 <Nav.Link href="#Forum">Forum</Nav.Link>
                                 <Nav.Link href="#FAQ">FAQ</Nav.Link>
-                                <Nav.Link onClick={handleScroll} href="#about">About</Nav.Link>
+                                <Nav.Link href="#about">About</Nav.Link>
                             </Nav>
                             <Nav>
                                 {isLoggedIn ? (
                                     <>
-                                        <Nav.Link href="#profile">{username}</Nav.Link>
+                                        <Nav.Link href="#profile">{username}</Nav.Link> {/* Supposingly here should be user's name */}
                                         <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
                                     </>
                                 ) : (
                                     <Nav.Link onClick={() => navigate('/login')}>Log In / Register</Nav.Link>
                                 )}
                             </Nav>
-                        </Navbar.Collapse>
+                        </div>
                     </Container>
                 </Navbar>
 
+                <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+                    {drawerContent}
+                </Drawer>
+
                 <main className="main-content">
-                    <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span style={{transform:'scaleX(-1)'}}>🌊</span></h1>
+                    <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span>🌊</span></h1>
                     <p className="text-center">Explore our underwater world!</p>
-                    <img src="./styles/boat.gif">
-                    </img>
                 </main>
-
-
 
                 {isPopupVisible && (
                     <div className="popup-overlay">
@@ -81,10 +113,12 @@ function Home() {
                                 className="close-button"
                                 onClick={closePopup}
                             >
-                                X
+                                <CloseIcon />
                             </button>
-                            <h3> <center>Welcome to 🌊 OceanBay! </center></h3>
-                            <p> <center>Explore our underwater world!</center> </p>
+                            <center>
+                                <h3> Welcome to 🌊 OceanBay!</h3>
+                                <p>Explore our underwater world!</p>
+                            </center>
                             <ul>
                                 <li>
                                     Head over to the <a href="#Market">Market</a> and view or create Listings! 🏷️
@@ -113,7 +147,6 @@ function Home() {
                 </div>
             </div>
         </div>
-        
     );
 }
 
