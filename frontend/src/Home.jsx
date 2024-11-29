@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardTab from '@mui/icons-material/KeyboardTab';
 import './styles/custom.css';
+import boat from "./styles/boat.gif";
 
 function Home() {
     const navigate = useNavigate();
@@ -29,6 +30,7 @@ function Home() {
         setIsDrawerOpen(open);
     };
 
+
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
@@ -44,6 +46,7 @@ function Home() {
             <div className="drawer-header"></div>
             <Nav className="flex-column"> 
                 <Nav.Link className="nav-link" href="#Market">Market</Nav.Link>
+                <Nav.Link className="nav-link" href="#RentABoat">Rent a Boat</Nav.Link>
                 <Nav.Link className="nav-link" href="#Forum">Forum</Nav.Link>
                 <Nav.Link className="nav-link" href="#FAQ">FAQ</Nav.Link>
                 <Nav.Link className="nav-link" href="#about">About</Nav.Link>
@@ -78,6 +81,7 @@ function Home() {
                         <div className="d-none d-lg-flex">
                             <Nav className="me-auto">
                                 <Nav.Link href="#Market">Market</Nav.Link>
+                                <Nav.Link href="#RentABoat">Rent a Boat</Nav.Link>
                                 <Nav.Link href="#Forum">Forum</Nav.Link>
                                 <Nav.Link href="#FAQ">FAQ</Nav.Link>
                                 <Nav.Link href="#about">About</Nav.Link>
@@ -99,10 +103,22 @@ function Home() {
                 <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer(false)}>
                     {drawerContent}
                 </Drawer>
-
-                <main className="main-content">
-                    <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span>🌊</span></h1>
-                    <p className="text-center">Explore our underwater world!</p>
+                    
+                <main>
+                <div style={{ marginTop: "0px" }} id="home">
+                    <div class="header">
+                        <h1 className="text-center mt-5 pt-5">Welcome to OceanBay<span>🌊</span></h1>
+                        <p className="text-center">Explore our underwater world!</p>
+                    </div>
+                </div>
+                {/* <div class="d-flex box1">
+                    <img src={boat} class="left"/>
+                    <div class="d-flex flex-column">
+                        <h1> Buy, sell and trade!</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, molestias. Dicta expedita laudantium quia rem commodi. Ratione minus eveniet numquam nihil, natus magni doloribus temporibus dignissimos? Voluptates officiis quam pariatur.</p>
+                    </div>
+                </div> */}
+                
                 </main>
 
                 {isPopupVisible && (
@@ -139,6 +155,12 @@ function Home() {
                         </div>
                     </div>
                 )}
+                <div style={{ marginTop: "1000px" }} id="about">
+                    <div class="header">
+                        <h1>About</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium et incidunt molestiae ipsam. Et cumque tenetur est non odio provident? Tenetur quasi voluptatem eum eaque. Fugit minima quae est tempore.</p>
+                        </div>
+                </div>
             </div>
         </div>
     );
