@@ -49,11 +49,17 @@ npm install
 npm start
 ```
 
-Ο backend server θα τρέχει στο `http://localhost:5000`. (Δεν έχει κάτι να δείτε εκεί)
+ή με nodemon:
+
+```bash
+npm start dev
+```
+
+Ο backend server θα τρέχει στο `http://localhost:3482`. (Δεν έχει κάτι να δείτε εκεί)
 
 <center>
 
-![Backend screenshot](screenshots/back.png)
+![Backend screenshot](docs/screenshots/back.png)
 
 </center>
 
@@ -76,16 +82,16 @@ npm run dev
 
 <center>
 
-![Frontend screenshot](screenshots/front.png)
+![Frontend screenshot](docs/screenshots/front.png)
 
 Ο frontend development server θα τρέχει στο http://localhost:5173/.
 Προκειμένου να δείτε την εφαρμογή θα πρέπει να μπείτε στο παραπάνω link. Κάθε φορά που αλλάζετε κάτι και πατάτε save, θα κάνει αυτόματα reload (ωστόσο κάποιες φορές μπορεί να κολλάει και να πρέπει να πατήσετε στο terminal Ctrl+C και ξανά npm run dev).
 
 Θα πρέπει να φαίνεται κάπως έτσι:
 
-![Screenshot 1](screenshots/ss1.png)
-![Screenshot 2](screenshots/ss2.png)
-![Screenshot 3](screenshots/ss3.png)
+![Screenshot 1](docs/screenshots/ss1.png)
+![Screenshot 2](docs/screenshots/ss2.png)
+![Screenshot 3](docs/screenshots/ss3.png)
 
 ## Συμμετοχή
 
