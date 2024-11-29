@@ -49,11 +49,7 @@ function Home() {
                 <Nav.Link className="nav-link" href="#about">About</Nav.Link>
                 {isLoggedIn ? (
                     <>
-<<<<<<< HEAD
-                        <Nav.Link className="nav-link" href="#profile">Fix me D:</Nav.Link> {/*Supposingly here should be user's name*/}
-=======
                         <Nav.Link className="nav-link" href="#profile">{username}</Nav.Link> 
->>>>>>> origin/main
                         <Nav.Link className="logout-link" onClick={handleLogout}>Log Out</Nav.Link>
                     </>
                 ) : (
@@ -89,11 +85,7 @@ function Home() {
                             <Nav>
                                 {isLoggedIn ? (
                                     <>
-<<<<<<< HEAD
-                                        <Nav.Link href="#profile">{username}</Nav.Link> {/* Supposingly here should be user's name */}
-=======
                                         <Nav.Link href="#profile">{username}</Nav.Link> 
->>>>>>> origin/main
                                         <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
                                     </>
                                 ) : (
