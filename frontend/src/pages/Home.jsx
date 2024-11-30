@@ -140,7 +140,7 @@ function Home() {
                     <img src={port} class="left"/>
                     <div class="textContainer">
                     <h1 class="textInside"> Buy, sell and trade!</h1>
-                    <p class="textInside2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, molestias. Dicta expedita laudantium quia rem commodi. Ratione minus eveniet numquam nihil, natus magni doloribus temporibus dignissimos? Voluptates officiis quam pariatur.</p>
+                    <p class="textInside2">At the market, you can buy and sell used nautical products, spare parts and bait! Also try our trading feature, in which you exchange goods with fellow amateurs and professionals alike!</p>
                     </div>
                 </div>
                 
