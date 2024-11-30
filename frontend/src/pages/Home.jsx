@@ -89,7 +89,7 @@ function Home() {
             <div className="content-container">
                 <Navbar className="custom-navbar" variant="dark" expand="lg" fixed="top">
                     <Container>
-                        <Navbar.Brand href="#home">🪝HookGrab</Navbar.Brand>
+                        <Navbar.Brand href="#home">🪝Hook&Grab</Navbar.Brand>
                         <div className="d-lg-none">
                             <IconButton
                                 edge="end"
@@ -132,7 +132,7 @@ function Home() {
                 <main>
                 <div style={{ marginTop: "0px" }} id="home">
                     <div className="header">
-                        <h1 className="text-center mt-5 pt-5">Welcome to HookGrab<span>🪝</span></h1>
+                        <h1 className="text-center mt-5 pt-5">Welcome to Hook&Grab<span>🪝</span></h1>
                         <p className="text-center">Explore our underwater world!</p>
                     </div>
                 </div>
@@ -181,7 +181,7 @@ function Home() {
                                 <CloseIcon />
                             </button>
                             <center>
-                                <h3> Welcome to 🪝 HookGrab!</h3>
+                                <h3> Welcome to 🪝 Hook&Grab!</h3>
                                 <p>Explore our underwater world!</p>
                             </center>
                             <ul>
