@@ -1,11 +1,11 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-//import { useState } from 'react';
-import Signup from './Signup';
-import Login from './Login';
-import Home from './Home';
-import Profile from './Profile'; // Import Profile component
-import Market from './Market';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
+//import { useState } from 'react';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Profile from './pages/Profile'; 
+import Market from './pages/Market';
+
 
 function App() {
   return (

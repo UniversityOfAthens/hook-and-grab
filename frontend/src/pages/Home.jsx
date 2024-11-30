@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardTab from '@mui/icons-material/KeyboardTab';
-import './styles/custom.css';
+import '../styles/custom.css';
 //import boat from "./styles/boat.gif";
 
 function Home() {
