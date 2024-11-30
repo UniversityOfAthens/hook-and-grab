@@ -184,21 +184,17 @@
 }
 
 /* Image format - forgot to change name and left it 'left' */
-.left{ 
-  z-index: 2;
-  filter:hue-rotate(190deg);
-  border-radius: 50px;
-  padding: 20px;
-  text-align: left;
-  display: block;
-  justify-content: left;
-  align-items: left;
-  margin: 20px;
-  width: 50%;
-  position: absolute;
-  /* top: 350px; */
-  left: 30px;
-  height: auto;
+.left {
+  flex: 1;
+  max-width: 50%;
+  border-radius: 25px;
+  margin-right: 20px;
+}
+
+.right {
+  flex: 1;
+  max-width: 50%;
+  border-radius: 25px;
 }
 
 .graciasArtemis{
@@ -217,33 +213,38 @@
 
 }
 
-.textInside{
+.textInside {
+  align-self: start;
+  flex: 1;
   color: white;
-  z-index: 2;
-  text-align: right;
-  display: block;
-  justify-content: auto;
-  align-items: auto;
-  margin: 20px;
-  width: 50%;
-  position: absolute;
-  /* top: 350px; */
-  right: 20px;
+  content: "\A";
+  white-space: pre;
+}
+
+.textInside2 {
+  align-self:safe;
+  margin-top: 0px;
+  color: white;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  margin-left: auto; /* Push the text to the right */
 }
 
 
 .box1 {
-  width: auto;
-  height: 300px;
-  z-index: -1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.3);
-  color: #fff;
-  height: auto;
-  position: relative;
-  margin: 10px;
-  /* height: 100vh; */
-  border-radius: 50px;
-  bottom: 0;
+  border-radius: 25px;
+  margin: 20px;
+  margin-bottom: 0px;
 }
 
 /* Media Queries */
@@ -264,5 +265,25 @@
   .popup-content {
       max-width: 90%;
       max-height: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .box1 {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .left {
+      max-width: 80%;
+      margin: 0 auto;
+  }
+
+  .textInside {
+      text-align: center;
+  }
+
+  .textInside2 {
+      text-align: center;
   }
 }
