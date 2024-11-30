@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 //import { useState } from 'react';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
 import Home from './pages/Home';
 import Profile from './pages/Profile'; 
 import Market from './pages/Market';
-
+import Forum from './pages/Forum';
 
 function App() {
   return (
@@ -15,6 +13,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/market" element={<Market />} />
+        <Route path="/forum" element={<Forum />} />
       </Routes>
     </BrowserRouter>
   );
