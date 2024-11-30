@@ -7,7 +7,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardTab from '@mui/icons-material/KeyboardTab';
 import '../styles/custom.css';
-//import boat from "./styles/boat.gif";
+
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
 
 function Home() {
     const navigate = useNavigate();
@@ -15,6 +17,8 @@ function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem('user');
@@ -66,6 +70,16 @@ function Home() {
         </div>
     );    
 
+    const handleShowSignup = () => {
+        setIsLoginModalOpen(false); // Close Login Modal
+        setIsSignupModalOpen(true); // Open Signup Modal
+    };
+
+    const handleShowLogin = () => {
+        setIsSignupModalOpen(false); // Close Login Modal
+        setIsLoginModalOpen(true); // Open Signup Modal
+    };
+
     return (
         <div className="site-container">
             <div className="content-container">
@@ -97,7 +111,10 @@ function Home() {
                                         <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
                                     </>
                                 ) : (
-                                    <Nav.Link onClick={() => navigate('/login')}>Log In / Register</Nav.Link>
+                                    <>
+                                        <Nav.Link onClick={() => setIsLoginModalOpen(true)}>Log In</Nav.Link>
+                                        <Nav.Link onClick={() => setIsSignupModalOpen(true)}>Sign Up</Nav.Link>
+                                    </>
                                 )}
                             </Nav>
                         </div>
@@ -165,6 +182,20 @@ function Home() {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium et incidunt molestiae ipsam. Et cumque tenetur est non odio provident? Tenetur quasi voluptatem eum eaque. Fugit minima quae est tempore.</p>
                         </div>
                 </div>
+
+                {/* Login Modal */}
+                <LoginModal
+                    show={isLoginModalOpen}
+                    handleClose={() => setIsLoginModalOpen(false)}
+                    handleShowSignup={handleShowSignup}
+                />
+
+                {/* Signup Modal */}
+                <SignupModal
+                    show={isSignupModalOpen}
+                    handleClose={() => setIsSignupModalOpen(false)}
+                    handleShowLogin={handleShowLogin}
+                />
             </div>
         </div>
     );
