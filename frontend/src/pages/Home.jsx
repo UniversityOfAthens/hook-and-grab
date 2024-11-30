@@ -170,40 +170,6 @@ function Home() {
 
                 </main>
 
-                {isPopupVisible && (
-                    <div className="popup-overlay">
-                        <div className="popup-content bg-white p-4 rounded">
-                            <button
-                                type="button"
-                                className="close-button"
-                                onClick={closePopup}
-                            >
-                                <CloseIcon />
-                            </button>
-                            <center>
-                                <h3> Welcome to 🪝 Hook&Grab!</h3>
-                                <p>Explore our underwater world!</p>
-                            </center>
-                            <ul>
-                                <li>
-                                    Head over to the <a href="#Market">Market</a> and view or create Listings! 🏷️
-                                </li>
-                                <li>
-                                    Visit the <a href="/Forum">Forum</a> and discuss with like-minded people! 🗣️
-                                </li>
-                                <li>
-                                    You have any questions about the Blue and Circular economy? Travel to the <a href="/FAQ">FAQ</a> page! 📖
-                                </li>
-                                <li>
-                                    Not yet a member? <a href="/Signup">Register</a> to become a part of our team! 🐬
-                                </li>
-                                <li>
-                                    Learn about our mission at the <a href="#about">about</a> section. 🎯
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                )}
                 <div style={{ marginTop: "3vh" }} id="about">
                     <div class="box1">
                     <div className="header">
