@@ -115,6 +115,13 @@
   margin-bottom: 0px;
 }
 
+/* Hook Icon on Title */
+#icon-title{
+  width: 30px;
+  height: 30px;
+  margin-top: -8px;
+}
+
 /* Media Queries */
 @media (max-width: 576px) {
   .popup-content {

@@ -13,6 +13,13 @@
   align-items: center;
 }
 
+/* Hook Icon */
+#icon-brand{
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+}
+
 /* Navbar Links */
 .navbar-nav .nav-link {
   color: white !important;

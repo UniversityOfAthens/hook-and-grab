@@ -8,6 +8,9 @@ import port from "../assets/gifs/port.gif";
 import fishing from "../assets/gifs/fishing.gif";
 import deutero  from "../assets/gifs/deutero.gif";
 
+import hookIcon from '../assets/icons/hook.svg';
+
+
 function Home() {
     const [isPopupVisible, setIsPopupVisible] = useState(true);
  
@@ -25,7 +28,10 @@ function Home() {
                 <main>
                 <div style={{ marginTop: "0px" }} id="home">
                     <div className="header">
-                        <h1 className="text-center mt-5 pt-5">Welcome to Hook&Grab<span>🪝</span></h1>
+                        <h1 className="text-center mt-5 pt-5">Welcome to Hook&Grab
+                        <span>
+                            <img src={hookIcon} alt="Hook Icon" id="icon-title"/>
+                        </span></h1>
                         <p className="text-center">Explore our underwater world!</p>
                     </div>
                 </div>
