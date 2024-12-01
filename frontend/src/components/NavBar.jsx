@@ -8,6 +8,7 @@ import KeyboardTab from '@mui/icons-material/KeyboardTab';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import './../styles/NavBar.css'
+import hookIcon from './../assets/icons/hook.svg';
 
 // Usage Instructions:
 // 1. Wrap the NavBar component inside a parent container with `position: relative`.
@@ -93,7 +94,10 @@ function NavBar() {
     return (
         <Navbar className="custom-navbar" variant="dark" expand="lg" fixed="top">
             <Container>
-                <Navbar.Brand onClick={navigationLinks.home}>🪝Hook&Grab</Navbar.Brand>
+                <Navbar.Brand onClick={navigationLinks.home}>
+                    Hook&Grab
+                    <img src={hookIcon} alt="Hook&Grab" id="icon-brand"/>
+                </Navbar.Brand>
 
                 {/* Mobile Menu */}
                 <div className="d-lg-none">
