@@ -1,0 +1,138 @@
+/* General Navbar Styles */
+.custom-navbar {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 50;
+  --bs-bg-opacity: 0.5;
+  padding: 10px;
+}
+
+.custom-navbar .container {
+  align-items: center;
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+  color: white !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Navbar Brand */
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+  cursor: pointer; /* Makes the cursor a pointer, indicating it's clickable */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition on hover */
+}
+
+.navbar-brand:hover {
+  color: rgba(255, 255, 255, 0.7); /* Change text color on hover for better visibility */
+  transform: scale(1.05); /* Slightly enlarge the text when hovering for emphasis */
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Drawer Button */
+#burger {
+  color: white;
+}
+
+/* Drawer Styles */
+.drawer-close {
+  cursor: pointer;
+}
+
+.drawer-content {
+  width: 275px;
+  background-color: rgb(10, 18, 33);
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.drawer-content a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  position: relative;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.drawer-content a::after {
+  content: '';
+  display: block;
+  width: 80%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+}
+
+.drawer-content a:last-child::after {
+  display: none;
+}
+
+.drawer-content a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.drawer-content a:hover::after {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.drawer-content .nav-link {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.drawer-content .drawer-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.drawer-content .logout-link {
+  padding: 10px;
+  text-align: center;
+}
+
+.drawer-content .logout-link:hover {
+  color: red;
+}
+
+/* Media Queries */
+@media (max-width: 991.98px) {
+  .custom-navbar {
+    --bs-bg-opacity: 0.5;
+  }
+
+  .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .left {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}

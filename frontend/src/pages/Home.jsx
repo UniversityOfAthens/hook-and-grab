@@ -1,134 +1,27 @@
-import { useState, useEffect } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import KeyboardTab from '@mui/icons-material/KeyboardTab';
-import '../styles/custom.css';
+import '../styles/Home.css';
+import NavBar from './../components/NavBar';
 
-import LoginModal from './LoginModal';
-import SignupModal from './SignupModal';
 import boat from "../assets/gifs/boat.gif";
 import port from "../assets/gifs/port.gif";
 import fishing from "../assets/gifs/fishing.gif";
 import deutero  from "../assets/gifs/deutero.gif";
 
 function Home() {
-    const navigate = useNavigate();
     const [isPopupVisible, setIsPopupVisible] = useState(true);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState('');
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-    const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
-
-    const handleLogout = () => {
-        localStorage.removeItem('user');
-        setIsLoggedIn(false);
-        navigate('/');
-    };
-
-    const goToMarket = () => {
-        navigate('/market');
-    };
-
+ 
     const closePopup = () => {
         setIsPopupVisible(false);
-    };
-
-    const toggleDrawer = (open) => () => {
-        setIsDrawerOpen(open);
-    };
-
-
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-            setIsLoggedIn(true);
-            setUsername(user.username); // Retrieve username from local storage
-            setIsPopupVisible(false);
-        }
-    }, []);
-
-    const drawerContent = (
-        <div className="drawer-content">
-            <KeyboardTab className="drawer-close" onClick={toggleDrawer(false)} />
-            <div className="drawer-header"></div>
-            <Nav className="flex-column"> 
-                <Nav.Link className="nav-link" onClick={goToMarket} >Market</Nav.Link>
-                <Nav.Link className="nav-link" href="#RentABoat">Rent a Boat</Nav.Link>
-                <Nav.Link className="nav-link" href="#Forum">Forum</Nav.Link>
-                <Nav.Link className="nav-link" href="#FAQ">FAQ</Nav.Link>
-                <Nav.Link className="nav-link" href="#about">About</Nav.Link>
-                {isLoggedIn ? (
-                    <>
-                        <Nav.Link className="nav-link" href="#profile">{username}</Nav.Link> 
-                        <Nav.Link className="logout-link" onClick={handleLogout}>Log Out</Nav.Link>
-                    </>
-                ) : (
-                    <Nav.Link className="nav-link" onClick={() => navigate('/login')}>Log In / Register</Nav.Link>
-                )}
-            </Nav>
-        </div>
-    );    
-
-    const handleShowSignup = () => {
-        setIsLoginModalOpen(false); // Close Login Modal
-        setIsSignupModalOpen(true); // Open Signup Modal
-    };
-
-    const handleShowLogin = () => {
-        setIsSignupModalOpen(false); // Close Login Modal
-        setIsLoginModalOpen(true); // Open Signup Modal
     };
 
     return (
         <div className="site-container">
             <div className="content-container">
-                <Navbar className="custom-navbar" variant="dark" expand="lg" fixed="top">
-                    <Container>
-                        <Navbar.Brand href="#home">🪝Hook&Grab</Navbar.Brand>
-                        <div className="d-lg-none">
-                            <IconButton
-                                edge="end"
-                                color="inherit"
-                                aria-label="menu"
-                                onClick={toggleDrawer(true)}
-                            >
-                                <MenuIcon id="burger"/>
-                            </IconButton>
-                        </div>
-                        <div className="d-none d-lg-flex">
-                            <Nav className="me-auto">
-                                <Nav.Link onClick={goToMarket}>Market</Nav.Link>
-                                <Nav.Link href="#RentABoat">Rent a Boat</Nav.Link>
-                                <Nav.Link href="#Forum">Forum</Nav.Link>
-                                <Nav.Link href="#FAQ">FAQ</Nav.Link>
-                                <Nav.Link href="#about">About</Nav.Link>
-                            </Nav>
-                            <Nav>
-                                {isLoggedIn ? (
-                                    <>
-                                        <Nav.Link onClick={() => navigate('/profile')}>{username}</Nav.Link>
-                                        <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Nav.Link onClick={() => setIsLoginModalOpen(true)}>Log In</Nav.Link>
-                                        <Nav.Link onClick={() => setIsSignupModalOpen(true)}>Sign Up</Nav.Link>
-                                    </>
-                                )}
-                            </Nav>
-                        </div>
-                    </Container>
-                </Navbar>
+                {/* Navigation Bar */}
+                <NavBar />
 
-                <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer(false)}>
-                    {drawerContent}
-                </Drawer>
-                    
+                {/* Main Content */}
                 <main>
                 <div style={{ marginTop: "0px" }} id="home">
                     <div className="header">
@@ -170,6 +63,7 @@ function Home() {
 
                 </main>
 
+                {/* About Section */}
                 <div style={{ marginTop: "3vh" }} id="about">
                     <div class="box1">
                     <div className="header">
@@ -177,21 +71,7 @@ function Home() {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium et incidunt molestiae ipsam. Et cumque tenetur est non odio provident? Tenetur quasi voluptatem eum eaque. Fugit minima quae est tempore.</p>
                         </div>
                     </div>
-                </div>
-
-                {/* Login Modal */}
-                <LoginModal
-                    show={isLoginModalOpen}
-                    handleClose={() => setIsLoginModalOpen(false)}
-                    handleShowSignup={handleShowSignup}
-                />
-
-                {/* Signup Modal */}
-                <SignupModal
-                    show={isSignupModalOpen}
-                    handleClose={() => setIsSignupModalOpen(false)}
-                    handleShowLogin={handleShowLogin}
-                />
+                </div>	
             </div>
         </div>
     );
