@@ -79,6 +79,13 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+/* Adjust the grid to show only 4 items per row */
+@media (min-width: 768px) {
+    .market-items.grid-view {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 /* List View */
 .market-items.list-view {
     display: block;
@@ -101,6 +108,13 @@
 
 .market-item:hover {
     transform: translateY(-5px);
+}
+
+/* Product Image */
+.market-item img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
 }
 
 /* Footer */

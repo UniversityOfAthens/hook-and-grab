@@ -14,6 +14,18 @@ function initializeDatabase() {
         password TEXT
       )
     `);
+
+    db.run(`
+      CREATE TABLE IF NOT EXISTS products (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        image TEXT,
+        description TEXT,
+        price REAL,
+        user_id INTEGER,
+        FOREIGN KEY(user_id) REFERENCES users(id)
+      )
+    `);
   });
 
   db.close();

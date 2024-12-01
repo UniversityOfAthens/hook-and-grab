@@ -7,7 +7,7 @@ require('./config/passport');
 
 const app = express();
 
-initializeDatabase();
+initializeDatabase(); // Ensure the database is initialized
 
 // Middleware
 app.use(express.json());
@@ -38,6 +38,7 @@ app.use(passport.session());
 // Routes
 app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/users'));
+app.use('/products', require('./routes/products'));
 
 // Start Server
 const PORT = process.env.PORT || 3482;
