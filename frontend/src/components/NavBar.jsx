@@ -51,7 +51,7 @@ function NavBar() {
 
     // Navigation Shortcuts
     const navigationLinks = {
-        home: () => navigate('/home'),
+        home: () => navigate('/'),
         market: () => navigate('/market'),
         forum: () => navigate('/forum'),
         login: () => setIsLoginModalOpen(true),

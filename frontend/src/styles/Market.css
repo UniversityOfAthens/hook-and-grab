@@ -2,6 +2,7 @@
 .market-container {
     font-family: Arial, sans-serif;
     padding: 20px;
+    margin-top: 60px; /* Add margin-top to create space below the NavBar */
 }
 
 /* Header */
