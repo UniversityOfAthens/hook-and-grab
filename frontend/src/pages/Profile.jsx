@@ -4,6 +4,7 @@ import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import pfp from '../assets/images/pfp.jpg';
 import NavBar from './../components/NavBar';
+import '../styles/Profile.css';
 
 function Profile() {
     const [username, setUsername] = useState('');
@@ -24,16 +25,44 @@ function Profile() {
         <div className="site-container">
             <div className="content-container">
                 <NavBar />
-                <Container className="mt-5">
+                <Container className="mt-0">
                     <Row className="justify-content-center">
                         <Col md={6} className="text-center">
-                            <h2>Profile</h2>
+                        <div style={{ marginTop: "15vh" }}>
+                        <h1 className="text-center color-white mt-3 pt-3">Profile</h1>
+                </div>
                             <Image src={pfp} roundedCircle className="mb-3" style={{ width: '100px', height: '100px' }}/>
-                            <h5>Username: {username}</h5>
-                            <Button variant="primary" onClick={handleGoBack} className="mt-3">Go back</Button>
+                            <h5 className='color-white'>Username: {username}</h5>
+                            <div className='container'>
+                                <div class='box3'>
+                                    <h5 className='text-white'>Bio: </h5>
+                                    <p className='text-white'>(TBA)</p>
+                                    <h5 className='text-white'>Location:</h5>
+                                    <p className='text-white'>(TBA)</p>
+                                </div>
+                                <div class='box3'>
+                                    <h5 className='text-white'>Friends: </h5>
+                                    <p className='text-white'>(TBA)</p>
+                                    <h5 className='text-white'>Posts:</h5>
+                                    <p className='text-white'>(TBA)</p>
+                                </div>
+                                
+                            </div>
+                            <div className='container'>
+                                <div class='box4'>
+                                    <h5 className='text-white'>Purchases: </h5>
+                                    <p className='text-white'>(TBA)</p>
+                                    <h5 className='text-white'>Items Sold:</h5>
+                                    <p className='text-white'>(TBA)</p>
+                                    <h5 className='text-white'>Trades:</h5>
+                                    <p className='text-white'>(TBA)</p>
+                                </div>
+                            </div>
+                            <Button variant="primary" onClick={handleGoBack} className="button-style mt-3">Go back</Button>
                         </Col>
                     </Row>
                 </Container>
+                <p className='removeWhiteLineAtBottom'>_</p>
             </div>
         </div>
     );
