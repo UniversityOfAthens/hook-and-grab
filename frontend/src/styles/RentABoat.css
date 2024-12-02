@@ -1,0 +1,67 @@
+.header {
+    padding: 60px;
+    text-align: right;
+    color: white;
+    font-size: 15px;
+  }
+
+  .renting-search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.renting-search-input {
+    padding: 10px 10px 10px 45px; /* Add padding to make space for the icon and vertical line */
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Magnifying Glass Icon */
+.search-icon {
+    position: absolute;
+    left: 10px; /* Position the magnifying glass */
+    color: #888;
+    pointer-events: none; /* Prevent icon from blocking input interactions */
+}
+
+.renting-search-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px; /* Add spacing between the input and the button */
+    transition: background-color 0.3s ease;
+}
+
+.renting-filter-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #86b3d1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Add spacing between the input and the button */
+    transition: background-color 0.3s ease;
+}
+
+.renting-your-boat-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #4a3a71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px; /* Add spacing between the input and the button */
+    transition: background-color 0.3s ease;
+}
+
+.renting-footer {
+    text-align: center;
+    margin-top: 20px; 
+    color: #777;
+    font-size: 14px;
+}

@@ -6,10 +6,14 @@
 
 /* Header */
 .market-header {
-    display: flex;
+    padding: 60px;
+    text-align: right;
+    color: white;
+    font-size: 15px;
+    /* display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px; */
 }
 
 .market-header h1 {
@@ -56,6 +60,28 @@
     padding: 10px 20px;
     cursor: pointer;
     background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px; /* Add spacing between the input and the button */
+    transition: background-color 0.3s ease;
+}
+
+.market-filter-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #86b3d1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Add spacing between the input and the button */
+    transition: background-color 0.3s ease;
+}
+
+.market-new-product-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #4a3a71;
     color: #fff;
     border: none;
     border-radius: 5px;
