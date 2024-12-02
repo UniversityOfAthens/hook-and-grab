@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+.header {
+    padding: 45px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+  }
+
+.color-white {
+    color: white;
+}
+
+.text-white {
+    align-self: start;
+    flex: 1;
+    color: white;
+    content: "\A";
+    white-space: pre;
+}
+
+.container {
+    display: flex; /* Arrange children side by side */
+    justify-content: center; /* Space between the two boxes */
+    gap: 20px; /* Optional: Adjust spacing between boxes */
+    margin: 20px auto; /* Center the container */
+  }
+
+  .box3 h5, .box1 p {
+    margin: 10px 0;
+  }
+  .box4 h5, .box1 p {
+    margin: 10px 0;
+  }
+  
+  .box3 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(16px) saturate(100%);
+    opacity: 100%;
+    border-radius: 25px;
+    flex-grow: 1; /* Allow flexible resizing if needed */
+    box-sizing: border-box; /* Include padding in width calculations */
+  }
+
+  .box4 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(16px) saturate(100%);
+    opacity: 100%;
+    border-radius: 25px;
+    flex-grow: 1; /* Allow flexible resizing if needed */
+    box-sizing: border-box; /* Include padding in width calculations */
+  }
+
+  .button-style {
+    margin: 0vh;
+    margin-bottom: 0px;
+  }
+
+  .removeWhiteLineAtBottom {
+    margin-bottom: 0px;
+  }
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Stack boxes vertically */
+    }
+    .box3 {
+      width: 100%; /* Full width for each box */
+    }
+    .box4 {
+        width: 100%; /* Full width for each box */
+      }
+  }
