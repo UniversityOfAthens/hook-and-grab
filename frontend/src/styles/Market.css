@@ -6,24 +6,136 @@
 
 /* Header */
 .market-header {
-    padding: 60px;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
     color: white;
     font-size: 15px;
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px; */
+    padding: 0 20px; 
 }
 
+/* Center the title */
 .market-header h1 {
-    margin: 0;
-    margin-top: 60px;
+    margin: 10px;
+    flex-grow: 1; 
+    text-align: center; 
 }
 
+/* Style for the market icons */
+.market-icons {
+    display: flex;
+    align-items: center; 
+}
+
+/* List - Grid Icon */
 .market-icon {
     font-size: 18px;
-    cursor: pointer; /* Makes the icons clickable */
+    cursor: pointer; 
+}
+
+/* Filter Icon */
+#filter-icon{
+    font-size: 18px;
+    margin-bottom: 2px;
+    margin-right: -4px;
+}
+
+.market-filter-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #86b3d1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; 
+    transition: background-color 0.3s ease;
+}
+
+.market-filter-button:hover{
+    background-color: #668faa;
+}
+
+.filter-wrapper {
+    position: relative;
+    display: flex;
+}
+
+.filter-menu {
+    position: absolute;
+    text-align: center;
+    top: 105%;
+    right: -85%;
+    width: 300px; 
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 10px; 
+    border-radius: 8px;
+}
+
+.slider-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.slider-container label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 5px 0;
+    -webkit-appearance: none;
+    background: #ddd;
+    height: 5px; 
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px; 
+    height: 15px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; 
+}
+
+.checkbox-container label {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 20px; 
+    height: 20px; 
+    cursor: pointer; 
+    transform: scale(0.8); 
+}
+
+/* Magnifying Glass Icon */
+.search-icon {
+    position: absolute;
+    left: 10px; 
+    color: #888;
+    pointer-events: none; 
 }
 
 /* Search Bar */
@@ -41,51 +153,23 @@
 }
 
 .market-search-input {
-    padding: 10px 10px 10px 45px; /* Add padding to make space for the icon and vertical line */
+    padding: 10px 10px 10px 45px; 
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-/* Magnifying Glass Icon */
-.search-icon {
-    position: absolute;
-    left: 10px; /* Position the magnifying glass */
-    color: #888;
-    pointer-events: none; /* Prevent icon from blocking input interactions */
-}
-
 /* Search Button */
 .market-search-button {
+    display: flex;
+    align-items: center;
     padding: 10px 20px;
     cursor: pointer;
     background-color: #28a745;
     color: #fff;
     border: none;
     border-radius: 5px;
-    margin-left: 10px; /* Add spacing between the input and the button */
-    transition: background-color 0.3s ease;
-}
-
-.market-filter-button {
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #86b3d1;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px; /* Add spacing between the input and the button */
-    transition: background-color 0.3s ease;
-}
-
-.market-new-product-button {
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #4a3a71;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px; /* Add spacing between the input and the button */
+    margin-left: 10px; 
     transition: background-color 0.3s ease;
 }
 
@@ -93,11 +177,38 @@
     background-color: #218838;
 }
 
+/* New Product */
+.market-new-product-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #6247a7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px; 
+    transition: background-color 0.3s ease;
+}
+
+.market-new-product-button:hover{
+    background-color: #4a3a71;
+}
+
+/* Add Icon */
+#add-icon{
+    font-size: 18px;
+    margin-bottom: 2px;
+    margin-right: -4px;
+}
+
 /* Items Section */
 .market-items {
     display: grid;
-    gap: 20px;
-    justify-content: center;
+    gap: 20px; 
+    justify-content: space-between; 
+    padding: 20px;
+    width: 100%;
 }
 
 /* Grid View */
@@ -118,7 +229,7 @@
 }
 
 .market-items.list-view .market-item {
-    margin-bottom: 20px; /* Add space below each card in List View */
+    margin-bottom: 20px; 
 }
 
 /* Individual Items */

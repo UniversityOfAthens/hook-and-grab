@@ -3,18 +3,31 @@ import '../styles/Market.css';
 import { FaList, FaTh, FaSearch } from 'react-icons/fa';
 import NavBar from './../components/NavBar';
 import axios from 'axios';
-import NewProductModal from './../components/NewProductModal'; // Import the new modal component
-import filterIcon from '../assets/icons/filter.svg';
+import NewProductModal from './../components/NewProductModal';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import AddIcon from '@mui/icons-material/Add';
 
 const Market = () => {
     const [isGridView, setIsGridView] = useState(true);
     const [products, setProducts] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [maxPrice, setMaxPrice] = useState(1000);
+    const [currentMaxPrice, setCurrentMaxPrice] = useState(1000);
+    const [showFilterMenu, setShowFilterMenu] = useState(false);
+    const [includeFree, setIncludeFree] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:3482/products')
             .then(response => {
-                setProducts(response.data);
+                const fetchedProducts = response.data;
+                setProducts(fetchedProducts);
+                setFilteredProducts(fetchedProducts);
+
+                // Dynamically set max price based on the products
+                const maxProductPrice = Math.max(...fetchedProducts.map(product => product.price));
+                setMaxPrice(maxProductPrice);
+                setCurrentMaxPrice(maxProductPrice);
             })
             .catch(error => {
                 console.error('Error fetching products:', error);
@@ -35,6 +48,33 @@ const Market = () => {
 
     const handleAddProduct = (newProduct) => {
         setProducts([...products, newProduct]);
+        setFilteredProducts([...products, newProduct]);
+        const maxProductPrice = Math.max(...products.map(product => product.price), newProduct.price);
+        setMaxPrice(maxProductPrice);
+        setCurrentMaxPrice(maxProductPrice);
+    };
+
+    const handleFilterToggle = () => {
+        setShowFilterMenu(!showFilterMenu);
+    };
+
+    const handlePriceChange = (newMaxPrice) => {
+        setCurrentMaxPrice(newMaxPrice);
+        filterProducts(newMaxPrice, includeFree);
+    };
+
+    const handleFreeChange = (checked) => {
+        setIncludeFree(checked);
+        filterProducts(currentMaxPrice, checked);
+    };
+
+    const filterProducts = (max, free) => {
+        const filtered = products.filter(product => {
+            const inRange = product.price <= max;
+            const isFree = free ? product.price === 0 : true;
+            return inRange && isFree;
+        });
+        setFilteredProducts(filtered);
     };
 
     const user = JSON.parse(localStorage.getItem('user'));
@@ -45,7 +85,7 @@ const Market = () => {
             <div className="content-container">
                 <div className="market-container">
                     <header className="market-header">
-                        <h1 className='text-center mt-5 pt-5'>Market</h1>
+                        <h1 className="text-center mt-5 pt-5">Market</h1>
                         <div className="market-icons">
                             {isGridView ? (
                                 <FaList className="market-icon" onClick={toggleView} />
@@ -55,7 +95,37 @@ const Market = () => {
                         </div>
                     </header>
                     <section className="market-search">
-                    <button className='market-filter-button'> <span><img src={filterIcon} alt="Filter Icon" id="icon-title"/></span>Filters</button>
+                        <div className="filter-wrapper">
+                            <button className="market-filter-button" onClick={handleFilterToggle}>
+                                Filters <FilterAltIcon id="filter-icon" />
+                            </button>
+                            {showFilterMenu && (
+                                <div className="filter-menu">
+                                    <div className="slider-container">
+                                        <label htmlFor="max-price">Price Range: Up to {currentMaxPrice}€</label>
+                                        <input
+                                            id="max-price"
+                                            type="range"
+                                            min="0"
+                                            max={maxPrice}
+                                            value={currentMaxPrice}
+                                            onChange={(e) => handlePriceChange(+e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="checkbox-container">
+                                        <label>                                            
+                                            Include Free Items
+                                            <input
+                                                type="checkbox"
+                                                checked={includeFree}
+                                                onChange={(e) => handleFreeChange(e.target.checked)}
+                                                id="free-checkbox"
+                                            />
+                                        </label>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                         <div className="search-input-wrapper">
                             <FaSearch className="search-icon" />
                             <input
@@ -66,11 +136,13 @@ const Market = () => {
                         </div>
                         <button className="market-search-button">Search</button>
                         {user && (
-                            <button className="market-new-product-button" onClick={handleOpenModal}>New Product</button>
+                            <button className="market-new-product-button" onClick={handleOpenModal}>
+                                New Product <AddIcon id="add-icon" />
+                            </button>
                         )}
                     </section>
                     <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
-                        {products.map((product, index) => (
+                        {filteredProducts.map((product, index) => (
                             <div key={index} className="market-item">
                                 <h2>{product.name}</h2>
                                 <img src={product.image} alt={product.name} />
