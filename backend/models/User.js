@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const fs = require('fs');
 const { getDatabaseConnection } = require('../config/database');
 
 class User {
@@ -10,8 +11,8 @@ class User {
         return callback(err);
       }
       db.run(
-        'INSERT INTO users (username, password) VALUES (?, ?)',
-        [username, hash],
+        'INSERT INTO users (username, password, profileImage) VALUES (?, ?, ?)',
+        [username, hash, fs.readFileSync("../frontend/src/assets/images/pfp.jpg")],
         function (err) {
           db.close();
           if (err) {
