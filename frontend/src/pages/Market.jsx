@@ -4,6 +4,7 @@ import { FaList, FaTh, FaSearch } from 'react-icons/fa';
 import NavBar from './../components/NavBar';
 import axios from 'axios';
 import NewProductModal from './../components/NewProductModal'; // Import the new modal component
+import filterIcon from '../assets/icons/filter.svg';
 
 const Market = () => {
     const [isGridView, setIsGridView] = useState(true);
@@ -44,7 +45,7 @@ const Market = () => {
             <div className="content-container">
                 <div className="market-container">
                     <header className="market-header">
-                        <h1>Market</h1>
+                        <h1 className='text-center mt-5 pt-5'>Market</h1>
                         <div className="market-icons">
                             {isGridView ? (
                                 <FaList className="market-icon" onClick={toggleView} />
@@ -54,6 +55,7 @@ const Market = () => {
                         </div>
                     </header>
                     <section className="market-search">
+                    <button className='market-filter-button'> <span><img src={filterIcon} alt="Filter Icon" id="icon-title"/></span>Filters</button>
                         <div className="search-input-wrapper">
                             <FaSearch className="search-icon" />
                             <input
@@ -64,7 +66,7 @@ const Market = () => {
                         </div>
                         <button className="market-search-button">Search</button>
                         {user && (
-                            <button className="new-product-button" onClick={handleOpenModal}>New Product</button>
+                            <button className="market-new-product-button" onClick={handleOpenModal}>New Product</button>
                         )}
                     </section>
                     <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>

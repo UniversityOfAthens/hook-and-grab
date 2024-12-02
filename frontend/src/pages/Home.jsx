@@ -39,14 +39,14 @@ function Home() {
                     <img src={port} class="left"/>
                     <div class="textContainer">
                     <h1 class="textInside"> Buy, sell and trade!</h1>
-                    <p class="textInside2">At the market, you can buy and sell used nautical products, spare parts and bait! Also try our trading feature, in which you exchange goods with fellow amateurs and professionals alike!</p>
+                    <p class="textInside2">Discover a marketplace where marine resources get a second chance. From used boat parts to pre-loved fishing gear, every transaction helps extend the life of valuable materials, reduces waste, and supports coastal communities. It’s a win for you and the planet.</p>
                     </div>
                 </div>
                 
                 <div class="box1">
                     <div class="textContainer">
                     <h1 class="textInside"> Rent a Boat!</h1>
-                    <p class="textInside2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, molestias. Dicta expedita laudantium quia rem commodi. Ratione minus eveniet numquam nihil, natus magni doloribus temporibus dignissimos? Voluptates officiis quam pariatur.</p>
+                    <p class="textInside2">Join the wave of sustainable marine travel. Whether you're exploring the seas or planning a local project, renting a boat helps reduce environmental impact while empowering coastal communities. Every rental supports a more resourceful, circular approach to marine life.</p>
                     </div>
                     <img src={fishing} class="right"/>
                 </div>
@@ -55,14 +55,14 @@ function Home() {
                     <img src={deutero} class="left"/>
                     <div class="textContainer">
                     <h1 class="textInside"> Discuss in the Forums!</h1>
-                    <p class="textInside2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, molestias. Dicta expedita laudantium quia rem commodi. Ratione minus eveniet numquam nihil, natus magni doloribus temporibus dignissimos? Voluptates officiis quam pariatur.</p>
+                    <p class="textInside2">Join an interactive space where marine enthusiasts and professionals exchange ideas, troubleshoot challenges, and collaborate on solutions. Whether it’s sharing advice, exploring sustainable practices, or discussing industry trends, the forums are a hub for connection and innovation.</p>
                     </div>
                 </div>
 
                 <div class="box1">
                     <div class="textContainer">
                     <h1 class="textInside"> Have any questions?</h1>
-                    <p class="textInside2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, molestias. Dicta expedita laudantium quia rem commodi. Ratione minus eveniet numquam nihil, natus magni doloribus temporibus dignissimos? Voluptates officiis quam pariatur.</p>
+                    <p class="textInside2">Learn more about how we’re building a sustainable future for our oceans and communities. Whether you’re curious about the blue economy, the principles of circularity, or how our platform supports these goals, our FAQ page has the answers.</p>
                     </div>
                     <img src={boat} class="right"/>
                 </div>
@@ -74,7 +74,7 @@ function Home() {
                     <div class="box1">
                     <div className="header">
                         <h1>About</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium et incidunt molestiae ipsam. Et cumque tenetur est non odio provident? Tenetur quasi voluptatem eum eaque. Fugit minima quae est tempore.</p>
+                        <p>At Hook&Grab, we’re reeling in a brighter future for our oceans and coastal communities. Rooted in the principles of the blue and circular economies, our mission is to create a platform where marine resources are reused, shared, and celebrated.</p>
                         </div>
                     </div>
                 </div>	
