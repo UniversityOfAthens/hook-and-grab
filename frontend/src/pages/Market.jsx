@@ -6,6 +6,7 @@ import axios from 'axios';
 import NewProductModal from './../components/NewProductModal';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddIcon from '@mui/icons-material/Add';
+import SortIcon from '@mui/icons-material/Sort';
 
 const Market = () => {
     const [isGridView, setIsGridView] = useState(true);
@@ -16,6 +17,7 @@ const Market = () => {
     const [maxPrice, setMaxPrice] = useState(1000);
     const [currentMaxPrice, setCurrentMaxPrice] = useState(1000);
     const [showFilterMenu, setShowFilterMenu] = useState(false);
+    const [showSortMenu, setShowSortMenu] = useState(false);
     const [includeFree, setIncludeFree] = useState(false);
 
     useEffect(() => {
@@ -34,6 +36,10 @@ const Market = () => {
                 console.error('Error fetching products:', error);
             });
     }, []);
+
+    useEffect(() => {
+        filterProducts(currentMaxPrice, includeFree, searchQuery);
+    }, [searchQuery, currentMaxPrice, includeFree]);
 
     const toggleView = () => {
         setIsGridView(!isGridView);
@@ -59,18 +65,24 @@ const Market = () => {
         setShowFilterMenu(!showFilterMenu);
     };
 
-    const handlePriceChange = (newMaxPrice) => {
-        setCurrentMaxPrice(newMaxPrice);
-        filterProducts(newMaxPrice, includeFree, searchQuery);
+    const handleSortToggle = () => {
+        setShowSortMenu(!showSortMenu);
     };
 
-    const handleSearch = () => {
-        filterProducts(currentMaxPrice, includeFree, searchQuery);
+    const handleSort = (order) => {
+        const sorted = [...filteredProducts].sort((a, b) =>
+            order === 'asc' ? a.price - b.price : b.price - a.price
+        );
+        setFilteredProducts(sorted);
+        setShowSortMenu(false); // Close the sort menu after sorting
+    };
+
+    const handlePriceChange = (newMaxPrice) => {
+        setCurrentMaxPrice(newMaxPrice);
     };
 
     const handleFreeChange = (checked) => {
         setIncludeFree(checked);
-        filterProducts(currentMaxPrice, checked, searchQuery);
     };
 
     const filterProducts = (max, free, query) => {
@@ -102,6 +114,18 @@ const Market = () => {
                         </div>
                     </header>
                     <section className="market-search">
+                        <div className="sort-wrapper">
+                            <button className="market-sort-button" onClick={handleSortToggle}>
+                                Sort <SortIcon id="sort-icon" />
+                            </button>
+                            {showSortMenu && (
+                                <div className="sort-menu">
+                                    {/* Add buttons to sort by date */}
+                                    <button onClick={() => handleSort('asc')}>Price: Low to High</button>
+                                    <button onClick={() => handleSort('desc')}>Price: High to Low</button>
+                                </div>
+                            )}
+                        </div>
                         <div className="filter-wrapper">
                             <button className="market-filter-button" onClick={handleFilterToggle}>
                                 Filters <FilterAltIcon id="filter-icon" />
@@ -143,7 +167,6 @@ const Market = () => {
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
-                        <button className="market-search-button" onClick={handleSearch}>Search</button>
                         {user && (
                             <button className="market-new-product-button" onClick={handleOpenModal}>
                                 New Product <AddIcon id="add-icon" />
