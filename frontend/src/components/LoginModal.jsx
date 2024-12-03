@@ -14,6 +14,12 @@ function LoginModal({ show, handleClose, handleShowSignup }) {
                 console.log(res.data);
                 localStorage.setItem('user', JSON.stringify({ username: res.data.user.username })); // Store user info in localStorage
                 handleClose(); // Close login modal
+                if (window.location.pathname == "/") {
+                    window.location.reload()
+                }
+                else {
+                    navigate('/'); // Redirect to home
+                }
             })
             .catch(err => {
                 console.log(err);
