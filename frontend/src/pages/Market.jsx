@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Market.css';
 import { FaList, FaTh, FaSearch } from 'react-icons/fa';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import NavBar from './../components/NavBar';
 import axios from 'axios';
 import NewProductModal from './../components/NewProductModal';
@@ -180,6 +181,14 @@ const Market = () => {
                                 <img src={product.image} alt={product.name} />
                                 <p>{product.description}</p>
                                 <p>{product.price.toFixed(2)}€</p>
+                                <div className="market-item-buttons">
+                                    <Button variant="primary" className="buy-button">
+                                        {product.price === 0 ? 'Get for Free' : 'Buy Now'}
+                                    </Button>
+                                    <Button variant="secondary" className="trade-button">
+                                        Trade
+                                    </Button>
+                                </div>
                             </div>
                         ))}
                     </section>
