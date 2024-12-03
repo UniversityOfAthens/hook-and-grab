@@ -11,6 +11,7 @@ const Market = () => {
     const [isGridView, setIsGridView] = useState(true);
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [maxPrice, setMaxPrice] = useState(1000);
     const [currentMaxPrice, setCurrentMaxPrice] = useState(1000);
@@ -60,19 +61,25 @@ const Market = () => {
 
     const handlePriceChange = (newMaxPrice) => {
         setCurrentMaxPrice(newMaxPrice);
-        filterProducts(newMaxPrice, includeFree);
+        filterProducts(newMaxPrice, includeFree, searchQuery);
+    };
+
+    const handleSearch = () => {
+        filterProducts(currentMaxPrice, includeFree, searchQuery);
     };
 
     const handleFreeChange = (checked) => {
         setIncludeFree(checked);
-        filterProducts(currentMaxPrice, checked);
+        filterProducts(currentMaxPrice, checked, searchQuery);
     };
 
-    const filterProducts = (max, free) => {
+    const filterProducts = (max, free, query) => {
         const filtered = products.filter(product => {
             const inRange = product.price <= max;
             const isFree = free ? product.price === 0 : true;
-            return inRange && isFree;
+            const matchesQuery = product.name.toLowerCase().includes(query.toLowerCase()) ||
+                                 product.description.toLowerCase().includes(query.toLowerCase());
+            return inRange && isFree && matchesQuery;
         });
         setFilteredProducts(filtered);
     };
@@ -132,9 +139,11 @@ const Market = () => {
                                 type="text"
                                 placeholder="Search for items"
                                 className="market-search-input"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
-                        <button className="market-search-button">Search</button>
+                        <button className="market-search-button" onClick={handleSearch}>Search</button>
                         {user && (
                             <button className="market-new-product-button" onClick={handleOpenModal}>
                                 New Product <AddIcon id="add-icon" />
