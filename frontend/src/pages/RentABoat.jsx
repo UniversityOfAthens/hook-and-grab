@@ -8,6 +8,8 @@ import '../styles/RentABoat.css';
 import axios from 'axios';
 import NewProductModal from './../components/NewProductModal';
 import filterIcon from '../assets/icons/filter.svg';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import AddIcon from '@mui/icons-material/Add';
 
 function RentABoat() {
 
@@ -68,7 +70,9 @@ function RentABoat() {
                 </div>
                 
                 <section className="renting-search">
-                <button className='renting-filter-button'> <span><img src={filterIcon} alt="Filter Icon" id="icon-title"/></span>Filters</button>
+                <button className="rent-filter-button">
+                                Filters <FilterAltIcon id="filter-icon" />
+                            </button>
                         <div className="search-input-wrapper">
                             <FaSearch className="search-icon" />
                             <input

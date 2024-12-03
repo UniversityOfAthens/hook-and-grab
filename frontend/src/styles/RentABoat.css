@@ -65,3 +65,16 @@
     color: #777;
     font-size: 14px;
 }
+
+.rent-filter-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #86b3d1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; 
+    transition: background-color 0.3s ease;
+}
