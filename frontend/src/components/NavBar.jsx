@@ -59,6 +59,7 @@ function NavBar() {
         login: () => setIsLoginModalOpen(true),
         signup: () => setIsSignupModalOpen(true),
         profile: () => navigate('/profile'),
+        faq: () => navigate('/faq'),
     };
 
     // User Authentication Status Check
@@ -78,7 +79,7 @@ function NavBar() {
                 <Nav.Link onClick={navigationLinks.market}>Market</Nav.Link>
                 <Nav.Link onClick={navigationLinks.rentaboat}>Rent a Boat</Nav.Link>
                 <Nav.Link onClick={navigationLinks.forum}>Forum</Nav.Link>
-                <Nav.Link href="#FAQ">FAQ</Nav.Link>
+                <Nav.Link onClick={navigationLinks.faq}>FAQ</Nav.Link>
                 <Nav.Link href="#about">About</Nav.Link>
                 {isLoggedIn ? (
                     <>
@@ -118,7 +119,7 @@ function NavBar() {
                         <Nav.Link onClick={navigationLinks.market}>Market</Nav.Link>
                         <Nav.Link onClick={navigationLinks.rentaboat}>Rent a Boat</Nav.Link>
                         <Nav.Link onClick={navigationLinks.forum}>Forum</Nav.Link>
-                        <Nav.Link href="#FAQ">FAQ</Nav.Link>
+                        <Nav.Link onClick={navigationLinks.faq}>FAQ</Nav.Link>
                         <Nav.Link href="#about">About</Nav.Link>
                     </Nav>
                     <Nav>
