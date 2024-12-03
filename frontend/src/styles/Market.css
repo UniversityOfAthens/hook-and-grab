@@ -1,6 +1,6 @@
 /* General Styles */
 .market-container {
-    padding: 20px;
+    padding: 40px;
 }
 
 /* Header */
@@ -58,6 +58,7 @@
 }
 
 .sort-wrapper {
+    position: relative;
     display: flex;
 }
 
@@ -65,9 +66,10 @@
 .sort-menu {
     position: absolute;
     background: white;
-    top: 29%;
-    right: 71.7%;
     border: 1px solid #ccc;
+    width: 200px;
+    top: 105%;
+    right: -45%;
     padding: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
