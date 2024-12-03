@@ -28,7 +28,12 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                 ); // Store user info in localStorage
                 setError('');
                 handleClose(); // Close the modal after successful signup
-                navigate('/home'); // Redirect to home
+                if (window.location.pathname == "/") {
+                    window.location.reload()
+                }
+                else {
+                    navigate('/'); // Redirect to home
+                }
             })
             .catch((err) => {
                 console.log(err);
