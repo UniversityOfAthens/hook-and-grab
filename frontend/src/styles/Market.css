@@ -1,7 +1,6 @@
 /* General Styles */
 .market-container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+    padding: 40px;
 }
 
 /* Header */
@@ -33,6 +32,65 @@
     cursor: pointer; 
 }
 
+/* Sort Icon */
+#sort-icon {
+    font-size: 18px;
+    margin-left: 2px;
+    margin-right: -4px;
+}
+
+/* Sort Button */
+.market-sort-button{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #86b3d1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; 
+    transition: background-color 0.3s ease;
+}
+
+.market-sort-button:hover{
+    background-color: #668faa;
+}
+
+.sort-wrapper {
+    position: relative;
+    display: flex;
+}
+
+/* Sort Menu */
+.sort-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 200px;
+    top: 105%;
+    right: -45%;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+/* Sort Menu Button */
+.sort-menu button {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sort-menu button:hover {
+    background: #f0f0f0;
+}
+
 /* Filter Icon */
 #filter-icon{
     font-size: 18px;
@@ -40,6 +98,7 @@
     margin-right: -4px;
 }
 
+/* Filter Button */
 .market-filter-button {
     display: flex;
     align-items: center;
@@ -157,24 +216,6 @@ input[type="range"]::-webkit-slider-thumb {
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-/* Search Button */
-.market-search-button {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px; 
-    transition: background-color 0.3s ease;
-}
-
-.market-search-button:hover {
-    background-color: #218838;
 }
 
 /* New Product */

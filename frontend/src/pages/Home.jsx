@@ -75,7 +75,7 @@ function Home() {
                     <div className="header">
                         <h1>About</h1>
                         <p>At Hook&Grab, we’re reeling in a brighter future for our oceans and coastal communities. Rooted in the principles of the blue and circular economies, our mission is to create a platform where marine resources are reused, shared, and celebrated.</p>
-                        </div>
+                    </div>
                     </div>
                 </div>	
             </div>
