@@ -20,6 +20,7 @@
   text-align: right;
   color: white;
   font-size: 15px;
+  text-shadow: 2px 2px #000000;
 }
 
 /* Main Content */
@@ -85,6 +86,7 @@
   align-self: start;
   flex: 1;
   color: white;
+  text-shadow: 2px 2px #000000;
   content: "\A";
   white-space: pre;
 }
