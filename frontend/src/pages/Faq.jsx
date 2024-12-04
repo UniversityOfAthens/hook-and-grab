@@ -9,7 +9,7 @@ function Faq() {
             <div className="content-container">
                 <NavBar />
                 <section className="faq-section">
-                    <article className="faq-article">
+                    <article className="box5">
                         <h2>Frequently Asked Questions</h2>
                         <div className="faq-item">
                             <h3>Γιατί μπλε οικονομία;</h3>
