@@ -34,13 +34,13 @@ function Profile() {
                             <Image src={pfp} roundedCircle className="mb-3" style={{ width: '100px', height: '100px' }}/>
                             <h5 className='color-white'>Username: {username}</h5>
                             <div className='container'>
-                                <div class='box3'>
+                                <div className='box3'>
                                     <h5 className='text-white'>Bio: </h5>
                                     <p className='text-white'>(TBA)</p>
                                     <h5 className='text-white'>Location:</h5>
                                     <p className='text-white'>(TBA)</p>
                                 </div>
-                                <div class='box3'>
+                                <div className='box3'>
                                     <h5 className='text-white'>Friends: </h5>
                                     <p className='text-white'>(TBA)</p>
                                     <h5 className='text-white'>Posts:</h5>
@@ -49,7 +49,7 @@ function Profile() {
                                 
                             </div>
                             <div className='container'>
-                                <div class='box4'>
+                                <div className='box4'>
                                     <h5 className='text-white'>Purchases: </h5>
                                     <p className='text-white'>(TBA)</p>
                                     <h5 className='text-white'>Items Sold:</h5>
