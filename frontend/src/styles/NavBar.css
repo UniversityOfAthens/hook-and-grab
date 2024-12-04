@@ -6,11 +6,11 @@
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 50;
   --bs-bg-opacity: 0.5;
-  padding: 10px;
 }
 
 .custom-navbar .container {
   align-items: center;
+  padding: -10px;
 }
 
 /* Hook Icon */
