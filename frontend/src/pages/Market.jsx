@@ -192,9 +192,6 @@ const Market = () => {
                             </div>
                         ))}
                     </section>
-                    <footer className="market-footer">
-                        <p>&copy; 2024 Hook&Grab Marketplace. All rights reserved.</p>
-                    </footer>
                 </div>
             </div>
             <NewProductModal isOpen={isModalOpen} onClose={handleCloseModal} onAddProduct={handleAddProduct} />

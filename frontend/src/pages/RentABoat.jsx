@@ -97,9 +97,6 @@ function RentABoat() {
                             </div>
                         ))}
                     </section> */}
-                    <footer className="renting-footer">
-                        <p>&copy; 2024 Hook&Grab Rent A Boat. All rights reserved.</p>
-                    </footer>
 
                 
 
