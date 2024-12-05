@@ -1,16 +1,24 @@
 // middlewares/uploadMiddleware.js
+
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs'); // Added fs module
 
 // Storage configuration for Profile Pictures
 const profileStorage = multer.diskStorage({
   // Set the destination folder for profile pictures
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads/profiles'));
+    const dest = path.join(__dirname, '../uploads/profiles');
+    // Ensure the directory exists
+    fs.mkdirSync(dest, { recursive: true });
+    cb(null, dest);
   },
   // Define the filename format for profile pictures
   filename: (req, file, cb) => {
-    cb(null, `${req.user.id}_${Date.now()}${path.extname(file.originalname)}`);
+    cb(
+      null,
+      `${req.user.id}_${Date.now()}${path.extname(file.originalname)}`
+    );
   },
 });
 
@@ -18,18 +26,44 @@ const profileStorage = multer.diskStorage({
 const productStorage = multer.diskStorage({
   // Set the destination folder for product images
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads/products'));
+    const dest = path.join(__dirname, '../uploads/products');
+    // Ensure the directory exists
+    fs.mkdirSync(dest, { recursive: true });
+    cb(null, dest);
   },
   // Define the filename format for product images
   filename: (req, file, cb) => {
-    cb(null, `${req.user.id}_${Date.now()}${path.extname(file.originalname)}`);
+    cb(
+      null,
+      `${req.user.id}_${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
+
+// Storage configuration for Boat Images
+const boatStorage = multer.diskStorage({
+  // Set the destination folder for boat images
+  destination: (req, file, cb) => {
+    const dest = path.join(__dirname, '../uploads/boats');
+    // Ensure the directory exists
+    fs.mkdirSync(dest, { recursive: true });
+    cb(null, dest);
+  },
+  // Define the filename format for boat images
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      `${req.user.id}_${Date.now()}${path.extname(file.originalname)}`
+    );
   },
 });
 
 // File filter to allow only JPEG and PNG images
 function fileFilter(req, file, cb) {
   const allowedTypes = /jpeg|jpg|png/;
-  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  const extname = allowedTypes.test(
+    path.extname(file.originalname).toLowerCase()
+  );
   const mimeType = allowedTypes.test(file.mimetype);
 
   if (extname && mimeType) {
@@ -51,18 +85,6 @@ const uploadProductImages = multer({
   storage: productStorage,
   limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB per image
   fileFilter: fileFilter,
-});
-
-// Storage configuration for Boat Images
-const boatStorage = multer.diskStorage({
-  // Set the destination folder for boat images
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../uploads/boats'));
-  },
-  // Define the filename format for boat images
-  filename: (req, file, cb) => {
-    cb(null, `${req.user.id}_${Date.now()}${path.extname(file.originalname)}`);
-  },
 });
 
 // Middleware for uploading boat images
