@@ -24,7 +24,7 @@ const Market = () => {
     useEffect(() => {
         axios.get('http://localhost:3482/products')
             .then(response => {
-                const fetchedProducts = response.data;
+                const fetchedProducts = response.data.products;
                 setProducts(fetchedProducts);
                 setFilteredProducts(fetchedProducts);
 
@@ -90,7 +90,7 @@ const Market = () => {
         const filtered = products.filter(product => {
             const inRange = product.price <= max;
             const isFree = free ? product.price === 0 : true;
-            const matchesQuery = product.name.toLowerCase().includes(query.toLowerCase()) ||
+            const matchesQuery = product.title.toLowerCase().includes(query.toLowerCase()) ||
                                  product.description.toLowerCase().includes(query.toLowerCase());
             return inRange && isFree && matchesQuery;
         });
@@ -121,7 +121,6 @@ const Market = () => {
                             </button>
                             {showSortMenu && (
                                 <div className="sort-menu">
-                                    {/* Add buttons to sort by date */}
                                     <button onClick={() => handleSort('asc')}>Price: Low to High</button>
                                     <button onClick={() => handleSort('desc')}>Price: High to Low</button>
                                 </div>
@@ -145,7 +144,7 @@ const Market = () => {
                                         />
                                     </div>
                                     <div className="checkbox-container">
-                                        <label>                                            
+                                        <label>
                                             Include Free Items
                                             <input
                                                 type="checkbox"
@@ -177,8 +176,10 @@ const Market = () => {
                     <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
                         {filteredProducts.map((product, index) => (
                             <div key={index} className="market-item">
-                                <h2>{product.name}</h2>
-                                <img src={product.image} alt={product.name} />
+                                <h2>{product.title}</h2>
+                                {product.images && product.images.length > 0 && (
+                                    <img src={`data:${product.images[0].mimeType};base64,${product.images[0].data}`} alt={product.title} />
+                                )}
                                 <p>{product.description}</p>
                                 <p>{product.price.toFixed(2)}€</p>
                                 <div className="market-item-buttons">
