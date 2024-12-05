@@ -70,7 +70,7 @@ function Home() {
                 </main>
 
                 {/* About Section */}
-                <div style={{ marginTop: "3vh" }} id="about">
+                <div style={{ marginTop: "3vh", paddingBottom: "3vh", flex: 1 }} id="about">
                     <div className="box1">
                     <div className="header">
                         <h1>About</h1>
