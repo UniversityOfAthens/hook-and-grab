@@ -2,7 +2,8 @@ import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import '../styles/Home.css';
 import NavBar from './../components/NavBar';
-
+import {Button} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import boat from "../assets/gifs/boat.gif";
 import port from "../assets/gifs/port.gif";
 import fishing from "../assets/gifs/fishing.gif";
@@ -13,9 +14,17 @@ import hookIcon from '../assets/icons/hook.svg';
 
 function Home() {
     const [isPopupVisible, setIsPopupVisible] = useState(true);
- 
+    const navigate = useNavigate();
+
     const closePopup = () => {
         setIsPopupVisible(false);
+    };
+    
+    const navigationButtons = {
+        market: () => navigate('/market'),
+        rentaboat: () => navigate('/rentaboat'),
+        forum: () => navigate('/forum'),
+        faq: () => navigate('/faq'),
     };
 
     return (
@@ -40,6 +49,7 @@ function Home() {
                     <div className="textContainer">
                     <h1 className="textInside"> Buy, sell and trade!</h1>
                     <p className="textInside2">Discover a marketplace where marine resources get a second chance. From used boat parts to pre-loved fishing gear, every transaction helps extend the life of valuable materials, reduces waste, and supports coastal communities. It’s a win for you and the planet.</p>
+                    <Button variant="primary" onClick={navigationButtons.market} className="button-style mt-3">Browse the Market</Button>
                     </div>
                 </div>
                 
@@ -47,6 +57,7 @@ function Home() {
                     <div className="textContainer">
                     <h1 className="textInside"> Rent a Boat!</h1>
                     <p className="textInside2">Join the wave of sustainable marine travel. Whether you're exploring the seas or planning a local project, renting a boat helps reduce environmental impact while empowering coastal communities. Every rental supports a more resourceful, circular approach to marine life.</p>
+                    <Button variant="primary" onClick={navigationButtons.rentaboat} className="button-style mt-3">Rent a Boat Now!</Button> 
                     </div>
                     <img src={fishing} className="right"/>
                 </div>
@@ -56,6 +67,7 @@ function Home() {
                     <div className="textContainer">
                     <h1 className="textInside"> Discuss in the Forums!</h1>
                     <p className="textInside2">Join an interactive space where marine enthusiasts and professionals exchange ideas, troubleshoot challenges, and collaborate on solutions. Whether it’s sharing advice, exploring sustainable practices, or discussing industry trends, the forums are a hub for connection and innovation.</p>
+                    <Button variant="primary" onClick={navigationButtons.forum} className="button-style mt-3">Join the Forums!</Button>
                     </div>
                 </div>
 
@@ -63,6 +75,7 @@ function Home() {
                     <div className="textContainer">
                     <h1 className="textInside"> Have any questions?</h1>
                     <p className="textInside2">Learn more about how we’re building a sustainable future for our oceans and communities. Whether you’re curious about the blue economy, the principles of circularity, or how our platform supports these goals, our FAQ page has the answers.</p>
+                    <Button variant="primary" onClick={navigationButtons.faq} className="button-style mt-3">Take a look at the FAQ page!</Button>
                     </div>
                     <img src={boat} className="right"/>
                 </div>
