@@ -11,8 +11,8 @@ class User {
         return callback(err);
       }
       db.run(
-        'INSERT INTO users (username, password, profileImage) VALUES (?, ?, ?)',
-        [username, hash, fs.readFileSync("../frontend/src/assets/images/pfp.jpg")],
+        'INSERT INTO users (username, password) VALUES (?, ?)',
+        [username, hash],
         function (err) {
           db.close();
           if (err) {
