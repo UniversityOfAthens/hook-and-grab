@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprehensive API Tester</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+    .section h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .response {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      border-radius: 5px;
+    }
+    .image-container img {
+      max-width: 150px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .hidden {
+      display: none;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 2px;
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Comprehensive API Tester</h1>
+  
+  <!-- User Management -->
+  
+  <!-- 1. Register -->
+  <div class="section" id="registration-section">
+    <h2>1. Register</h2>
+    <form id="registration-form">
+      <label>Username:
+        <input type="text" name="username" value="testuser123" required>
+      </label>
+      <label>Password:
+        <input type="password" name="password" value="SecurePass123" required>
+      </label>
+      <label>Email:
+        <input type="email" name="email" value="testuser123@example.com" required>
+      </label>
+      <label>First Name:
+        <input type="text" name="firstName" value="Test" required>
+      </label>
+      <label>Last Name:
+        <input type="text" name="lastName" value="User" required>
+      </label>
+      <label>Date of Birth:
+        <input type="date" name="dateOfBirth" value="1990-01-01" required>
+      </label>
+      <label>Phone:
+        <input type="text" name="phone" value="1234567890" required>
+      </label>
+      <button type="submit">Register</button>
+    </form>
+    <div class="response" id="registration-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 2. Login -->
+  <div class="section" id="login-section">
+    <h2>2. Login</h2>
+    <form id="login-form">
+      <label>Username:
+        <input type="text" name="username" value="testuser123" required>
+      </label>
+      <label>Password:
+        <input type="password" name="password" value="SecurePass123" required>
+      </label>
+      <button type="submit">Login</button>
+    </form>
+    <div class="response" id="login-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 3. Update Profile Picture -->
+  <div class="section" id="profile-picture-section">
+    <h2>3. Update Profile Picture</h2>
+    <form id="profile-picture-form">
+      <label>Select Image:
+        <input type="file" name="profilePicture" accept="image/*" required>
+      </label>
+      <button type="submit">Upload Profile Picture</button>
+    </form>
+    <div class="response" id="profile-picture-response"></div>
+    <div class="image-container" id="profile-picture-display"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 4. Get Current User Profile -->
+  <div class="section" id="get-current-user-section">
+    <h2>4. Get Current User Profile</h2>
+    <button id="get-current-user-button">Fetch Current Profile</button>
+    <div class="response" id="get-current-user-response"></div>
+    <div class="image-container" id="current-user-profile-picture"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 5. Search Users -->
+  <div class="section" id="search-users-section">
+    <h2>5. Search Users</h2>
+    <form id="search-users-form">
+      <label>Keyword:
+        <input type="text" name="keyword" placeholder="Enter username keyword" required>
+      </label>
+      <button type="submit">Search Users</button>
+    </form>
+    <div class="response" id="search-users-response"></div>
+    <div class="image-container" id="search-users-display"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- Product Management -->
+  
+  <!-- 6. Create Product -->
+  <div class="section" id="create-product-section">
+    <h2>6. Create Product</h2>
+    <form id="create-product-form">
+      <label>Title:
+        <input type="text" name="title" value="Test Product" required>
+      </label>
+      <label>Description:<br>
+        <textarea name="description" rows="4" required>This is a test product.</textarea>
+      </label>
+      <label>Price:
+        <input type="number" step="0.01" name="price" value="19.99" required>
+      </label>
+      <label>Is Free:
+        <input type="checkbox" name="isFree">
+      </label>
+      <label>Open to Trade:
+        <input type="checkbox" name="isOpenToTrade" checked>
+      </label>
+      <label>Select Images:
+        <input type="file" name="images" accept="image/*" multiple required>
+      </label>
+      <button type="submit">Create Product</button>
+    </form>
+    <div class="response" id="create-product-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 7. Get All Products -->
+  <div class="section" id="get-products-section">
+    <h2>7. Get All Products</h2>
+    <button id="get-products-button">Fetch All Products</button>
+    <div class="response" id="get-products-response"></div>
+    <div class="image-container" id="products-display"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 8. Get Product by ID -->
+  <div class="section" id="get-product-by-id-section">
+    <h2>8. Get Product by ID</h2>
+    <form id="get-product-by-id-form">
+      <label>Product ID:
+        <input type="number" name="productId" placeholder="Enter Product ID" required>
+      </label>
+      <button type="submit">Get Product</button>
+    </form>
+    <div class="response" id="get-product-by-id-response"></div>
+    <div class="image-container" id="product-by-id-display"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 9. Delete Product -->
+  <div class="section" id="delete-product-section">
+    <h2>9. Delete Product</h2>
+    <form id="delete-product-form">
+      <label>Product ID:
+        <input type="number" name="productId" placeholder="Enter Product ID" required>
+      </label>
+      <button type="submit">Delete Product</button>
+    </form>
+    <div class="response" id="delete-product-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- Search Products -->
+  <div class="section" id="search-products-section">
+    <h2>10. Search Products</h2>
+    <form id="search-products-form">
+      <label>Keyword:
+        <input type="text" name="keyword" placeholder="Enter product title keyword">
+      </label>
+      <label>Min Price:
+        <input type="number" step="0.01" name="minPrice" placeholder="Minimum price">
+      </label>
+      <label>Max Price:
+        <input type="number" step="0.01" name="maxPrice" placeholder="Maximum price">
+      </label>
+      <label>Is Free:
+        <input type="checkbox" name="isFree">
+      </label>
+      <label>Open to Trade:
+        <input type="checkbox" name="isOpenToTrade">
+      </label>
+      <button type="submit">Search Products</button>
+    </form>
+    <div class="response" id="search-products-response"></div>
+    <div class="image-container" id="search-products-display"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- Boat and Booking Management -->
+  
+  <!-- 11. Create Boat -->
+  <div class="section" id="create-boat-section">
+    <h2>11. Create Boat</h2>
+    <form id="create-boat-form">
+      <label>Name:
+        <input type="text" name="name" value="Test Boat" required>
+      </label>
+      <label>Description:<br>
+        <textarea name="description" rows="4" required>This is a test boat.</textarea>
+      </label>
+      <label>Location:
+        <input type="text" name="location" value="Harbor City" required>
+      </label>
+      <label>Price Per Day:
+        <input type="number" step="0.01" name="pricePerDay" value="99.99" required>
+      </label>
+      <label>Select Images:
+        <input type="file" name="images" accept="image/*" multiple required>
+      </label>
+      <button type="submit">Create Boat</button>
+    </form>
+    <div class="response" id="create-boat-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 12. Get All Boats -->
+  <div class="section" id="get-boats-section">
+    <h2>12. Get All Boats</h2>
+    <button id="get-boats-button">Fetch All Boats</button>
+    <div class="response" id="get-boats-response"></div>
+    <div class="image-container" id="boats-display"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 13. Get Boat by ID -->
+  <div class="section" id="get-boat-by-id-section">
+    <h2>13. Get Boat by ID</h2>
+    <form id="get-boat-by-id-form">
+      <label>Boat ID:
+        <input type="number" name="boatId" placeholder="Enter Boat ID" required>
+      </label>
+      <button type="submit">Get Boat</button>
+    </form>
+    <div class="response" id="get-boat-by-id-response"></div>
+    <div class="image-container" id="boat-by-id-display"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 14. Delete Boat -->
+  <div class="section" id="delete-boat-section">
+    <h2>14. Delete Boat</h2>
+    <form id="delete-boat-form">
+      <label>Boat ID:
+        <input type="number" name="boatId" placeholder="Enter Boat ID" required>
+      </label>
+      <button type="submit">Delete Boat</button>
+    </form>
+    <div class="response" id="delete-boat-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 15. Create Booking -->
+  <div class="section" id="create-booking-section">
+    <h2>15. Create Booking</h2>
+    <form id="create-booking-form">
+      <label>Boat ID:
+        <input type="number" name="boatId" placeholder="Enter Boat ID" required>
+      </label>
+      <label>Start Date:
+        <input type="date" name="startDate" required>
+      </label>
+      <label>End Date:
+        <input type="date" name="endDate" required>
+      </label>
+      <button type="submit">Create Booking</button>
+    </form>
+    <div class="response" id="create-booking-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 16. Get Bookings by Boat Owner -->
+  <div class="section" id="get-bookings-section">
+    <h2>16. Get Bookings by Boat Owner</h2>
+    <form id="get-bookings-form">
+      <label>Boat ID:
+        <input type="number" name="boatId" placeholder="Enter Boat ID" required>
+      </label>
+      <button type="submit">Fetch Bookings</button>
+    </form>
+    <div class="response" id="get-bookings-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- 17. Update Booking Status -->
+  <div class="section" id="update-booking-status-section">
+    <h2>17. Update Booking Status</h2>
+    <form id="update-booking-status-form">
+      <label>Boat ID:
+        <input type="number" name="boatId" placeholder="Enter Boat ID" required>
+      </label>
+      <label>Booking ID:
+        <input type="number" name="bookingId" placeholder="Enter Booking ID" required>
+      </label>
+      <label>Status:
+        <select name="status" required>
+          <option value="">Select Status</option>
+          <option value="approved">Approve</option>
+          <option value="rejected">Reject</option>
+        </select>
+      </label>
+      <button type="submit">Update Status</button>
+    </form>
+    <div class="response" id="update-booking-status-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- Logout -->
+  <div class="section" id="logout-section">
+    <h2>18. Logout</h2>
+    <button id="logout-button">Logout</button>
+    <div class="response" id="logout-response"></div>
+  </div>
+  
+  <hr>
+  
+  <!-- Delete Account -->
+  <div class="section" id="delete-account-section">
+    <h2>19. Delete Account</h2>
+	<span style="color:red">This has not been implemented yet.</span><br>
+    <button id="delete-account-button" onclick="confirmDeleteAccount()">Delete My Account</button>
+    <div class="response" id="delete-account-response"></div>
+  </div>
+  
+  <script>
+    const BASE_URL = 'http://localhost:3482'; // Adjust if your API is hosted elsewhere
+    let isLoggedIn = false;
+
+    // Utility function to display JSON responses
+    function displayResponse(elementId, data) {
+      document.getElementById(elementId).textContent = JSON.stringify(data, null, 2);
+    }
+
+    // Utility function to display images
+    function displayImages(containerId, images) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      images.forEach(image => {
+        if (image && image.data) {
+          const img = document.createElement('img');
+          img.src = `data:${image.mimeType};base64,${image.data}`;
+          img.alt = image.filename;
+          container.appendChild(img);
+        }
+      });
+    }
+
+    // 1. Register
+    document.getElementById('registration-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      fetch(`${BASE_URL}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('registration-response', data);
+        if (data.user) {
+          isLoggedIn = true;
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 2. Login
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      fetch(`${BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('login-response', data);
+        if (data.user) {
+          isLoggedIn = true;
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 3. Update Profile Picture
+    document.getElementById('profile-picture-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      fetch(`${BASE_URL}/users/profile-picture`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('profile-picture-response', data);
+        if (data.user && data.user.profilePicture) {
+          displayImages('profile-picture-display', [data.user.profilePicture]);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 4. Get Current User Profile
+    document.getElementById('get-current-user-button').addEventListener('click', function() {
+      fetch(`${BASE_URL}/users/me`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('get-current-user-response', data);
+        if (data.user && data.user.profilePicture) {
+          displayImages('current-user-profile-picture', [data.user.profilePicture]);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 5. Search Users
+    document.getElementById('search-users-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      const query = new URLSearchParams(data).toString();
+      fetch(`${BASE_URL}/users/search?${query}`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('search-users-response', data);
+        if (data.users) {
+          const images = [];
+          data.users.forEach(user => {
+            if (user.profilePicture) {
+              images.push(user.profilePicture);
+            }
+          });
+          displayImages('search-users-display', images);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 6. Create Product
+    document.getElementById('create-product-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      // Convert 'isFree' and 'isOpenToTrade' from checkbox to boolean
+      formData.set('isFree', formData.get('isFree') === 'on');
+      formData.set('isOpenToTrade', formData.get('isOpenToTrade') === 'on');
+      fetch(`${BASE_URL}/products`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('create-product-response', data);
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 7. Get All Products
+    document.getElementById('get-products-button').addEventListener('click', function() {
+      fetch(`${BASE_URL}/products`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('get-products-response', data);
+        if (data.products) {
+          const images = [];
+          data.products.forEach(product => {
+            if (product.images) {
+              images.push(...product.images);
+            }
+          });
+          displayImages('products-display', images);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 8. Get Product by ID
+    document.getElementById('get-product-by-id-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      const productId = data.productId;
+      fetch(`${BASE_URL}/products/${productId}`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('get-product-by-id-response', data);
+        if (data.product && data.product.images) {
+          displayImages('product-by-id-display', data.product.images);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 9. Delete Product
+    document.getElementById('delete-product-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      const productId = data.productId;
+      fetch(`${BASE_URL}/products/${productId}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('delete-product-response', data);
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 10. Search Products
+    document.getElementById('search-products-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      // Convert checkboxes to boolean
+      data.isFree = formData.get('isFree') === 'on';
+      data.isOpenToTrade = formData.get('isOpenToTrade') === 'on';
+      // Remove empty fields
+      Object.keys(data).forEach(key => {
+        if (data[key] === '' || data[key] === false || data[key] === null) {
+          delete data[key];
+        }
+      });
+      const query = new URLSearchParams(data).toString();
+      fetch(`${BASE_URL}/products/search?${query}`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('search-products-response', data);
+        if (data.products) {
+          const images = [];
+          data.products.forEach(product => {
+            if (product.images) {
+              images.push(...product.images);
+            }
+          });
+          displayImages('search-products-display', images);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 11. Create Boat
+    document.getElementById('create-boat-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      fetch(`${BASE_URL}/boats`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('create-boat-response', data);
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 12. Get All Boats
+    document.getElementById('get-boats-button').addEventListener('click', function() {
+      fetch(`${BASE_URL}/boats`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('get-boats-response', data);
+        if (data.boats) {
+          const images = [];
+          data.boats.forEach(boat => {
+            if (boat.images) {
+              images.push(...boat.images);
+            }
+          });
+          displayImages('boats-display', images);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 13. Get Boat by ID
+    document.getElementById('get-boat-by-id-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      const boatId = data.boatId;
+      fetch(`${BASE_URL}/boats/${boatId}`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('get-boat-by-id-response', data);
+        if (data.boat && data.boat.images) {
+          displayImages('boat-by-id-display', data.boat.images);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 14. Delete Boat
+    document.getElementById('delete-boat-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      const boatId = data.boatId;
+      fetch(`${BASE_URL}/boats/${boatId}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('delete-boat-response', data);
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 15. Create Booking
+    document.getElementById('create-booking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      fetch(`${BASE_URL}/boats/${data.boatId}/bookings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          startDate: data.startDate,
+          endDate: data.endDate
+        }),
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('create-booking-response', data);
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 16. Get Bookings by Boat Owner
+    document.getElementById('get-bookings-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      const boatId = data.boatId;
+      fetch(`${BASE_URL}/boats/${boatId}/bookings`, {
+        method: 'GET',
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('get-bookings-response', data);
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 17. Update Booking Status
+    document.getElementById('update-booking-status-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        alert('Please log in first.');
+        return;
+      }
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      const boatId = data.boatId;
+      const bookingId = data.bookingId;
+      const status = data.status;
+      if (!status) {
+        alert('Please select a status.');
+        return;
+      }
+      fetch(`${BASE_URL}/boats/${boatId}/bookings/${bookingId}/status`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status }),
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('update-booking-status-response', data);
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 18. Logout
+    document.getElementById('logout-button').addEventListener('click', function() {
+      fetch(`${BASE_URL}/auth/logout`, {
+        method: 'POST', // Adjust method if your API uses GET
+        credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => {
+        displayResponse('logout-response', data);
+        if (data.message.includes('successfully')) {
+          isLoggedIn = false;
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // 19. Delete Account
+    function confirmDeleteAccount() {
+      const confirmation = confirm('Are you sure you want to delete your account? This action cannot be undone.');
+      if (confirmation) {
+        fetch(`${BASE_URL}/users/me`, {
+          method: 'DELETE',
+          credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(data => {
+          displayResponse('delete-account-response', data);
+          if (data.message.includes('successfully')) {
+            isLoggedIn = false;
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      }
+    }
+  </script>
+</body>
+</html>
