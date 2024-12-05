@@ -73,6 +73,7 @@
   .button-style {
     margin: 0vh;
     margin-bottom: 0px;
+    background-color: rgba(4, 18, 21, 0.9);
   }
 
   .removeWhiteLineAtBottom {
