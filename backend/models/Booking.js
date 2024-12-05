@@ -63,6 +63,18 @@ class Booking {
       }
     );
   }
+
+  // Retrieve all bookings made by a renter
+  static getByRenterId(renterId, callback) {
+    const db = getDatabaseConnection();
+    db.all('SELECT * FROM bookings WHERE renterId = ?', [renterId], (err, bookings) => {
+      db.close();
+      if (err) {
+        return callback(err);
+      }
+      return callback(null, bookings);
+    });
+  }
 }
 
 module.exports = Booking;

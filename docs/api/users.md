@@ -4,7 +4,9 @@
 
 ## Overview
 
-The Users API manages user-related operations like fetching user details, updating profile pictures, and deleting accounts.
+The Users API manages user-related operations like fetching user details, updating profile pictures, searching users, and deleting accounts.
+
+---
 
 ## Endpoints
 
@@ -14,24 +16,42 @@ The Users API manages user-related operations like fetching user details, updati
 **Method:** `GET`  
 **Description:** Retrieves the current authenticated user's information.
 
-**Response:**
+**Authentication Required:** Yes (Must be logged in)
 
-- **200 OK**
+**Successful Response:**
 
-  ```json
-  {
-    "user": {
-      "id": 1,
-      "username": "your_username",
-      "email": "email@example.com",
-      "firstName": "John",
-      "lastName": "Doe",
-      "dateOfBirth": "1990-01-01",
-      "phone": "1234567890",
-      "profilePicture": "/uploads/profiles/1_1616161616161.jpg"
+- **Status Code:** 200 OK
+
+```json
+{
+  "user": {
+    "id": 1,
+    "username": "your_username",
+    "email": "email@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "dateOfBirth": "1990-01-01",
+    "phone": "1234567890",
+    "profilePicture": {
+      "filename": "1_1616161616161.jpg",
+      "data": "/9j/4AAQSkZJRgABAQEASABIAAD...", // Base64 encoded data
+      "mimeType": "image/jpeg"
     }
   }
-  ```
+}
+```
+
+**Error Responses:**
+
+- **Status Code:** 401 Unauthorized
+
+```json
+{
+  "message": "You are not logged in."
+}
+```
+
+---
 
 ### Update Profile Picture
 
@@ -39,36 +59,86 @@ The Users API manages user-related operations like fetching user details, updati
 **Method:** `POST`  
 **Description:** Updates the user's profile picture.
 
+**Authentication Required:** Yes (Must be logged in)
+
+**Request Headers:**
+
+- `Content-Type`: `multipart/form-data`
+
 **Form Data:**
 
 - `profilePicture`: Image file (JPEG, PNG)
 
-**Response:**
+**Successful Response:**
 
-- **200 OK**
+- **Status Code:** 200 OK
 
-  ```json
-  {
-    "message": "Profile picture updated successfully.",
-    "profilePicture": "/uploads/profiles/1_1616161616161.jpg"
+```json
+{
+  "message": "Profile picture updated successfully.",
+  "user": {
+    "id": 1,
+    "profilePicture": {
+      "filename": "1_1616161616161.jpg",
+      "data": "/9j/4AAQSkZJRgABAQEASABIAAD...",
+      "mimeType": "image/jpeg"
+    }
   }
-  ```
+}
+```
+
+**Error Responses:**
+
+- **Status Code:** 400 Bad Request
+
+  - No file uploaded or invalid file type.
+
+```json
+{
+  "message": "Please upload a valid image file (JPEG or PNG)."
+}
+```
+
+- **Status Code:** 401 Unauthorized
+
+```json
+{
+  "message": "You are not logged in."
+}
+```
+
+---
 
 ### Delete Account
 
-**URL:** `/users/delete`  
+<span style="color:red">This has not yet been implemented yet. We're still at `/users/delete`</span><br>
+**URL:** `/users/me`  
 **Method:** `DELETE`  
 **Description:** Deletes the current user's account.
 
-**Response:**
+**Authentication Required:** Yes (Must be logged in)
 
-- **200 OK**
+**Successful Response:**
 
-  ```json
-  {
-    "message": "Account deleted successfully."
-  }
-  ```
+- **Status Code:** 200 OK
+
+```json
+{
+  "message": "Account deleted successfully."
+}
+```
+
+**Error Responses:**
+
+- **Status Code:** 401 Unauthorized
+
+```json
+{
+  "message": "You are not logged in."
+}
+```
+
+---
 
 ### Search Users
 
@@ -76,28 +146,55 @@ The Users API manages user-related operations like fetching user details, updati
 **Method:** `GET`  
 **Description:** Searches for users by keyword.
 
+**Authentication Required:** Yes (Must be logged in)
+
 **Query Parameters:**
 
-- `keyword`: String to search in usernames, first names, and last names.
+- `keyword`: String to search in usernames, first names, and last names. (Required)
 
-**Response:**
+**Successful Response:**
 
-- **200 OK**
+- **Status Code:** 200 OK
 
-  ```json
-  {
-    "users": [
-      {
-        "id": 2,
-        "username": "jane_doe",
-        "firstName": "Jane",
-        "lastName": "Doe",
-        "email": "jane@example.com"
-      },
-      // ... more users
-    ]
-  }
-  ```
+```json
+{
+  "users": [
+    {
+      "id": 2,
+      "username": "jane_doe",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "profilePicture": {
+        "filename": "2_1616161616162.jpg",
+        "data": "/9j/4AAQSkZJRgABAQEASABIAAD...",
+        "mimeType": "image/jpeg"
+      }
+    },
+    // ... more users
+  ]
+}
+```
+
+**Error Responses:**
+
+- **Status Code:** 400 Bad Request
+
+  - Missing keyword parameter.
+
+```json
+{
+  "message": "Keyword parameter is required."
+}
+```
+
+- **Status Code:** 401 Unauthorized
+
+```json
+{
+  "message": "You are not logged in."
+}
+```
 
 ---
 

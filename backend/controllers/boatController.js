@@ -1,5 +1,7 @@
 // controllers/boatController.js
 const Boat = require('../models/Boat');
+const fs = require('fs');
+const path = require('path');
 
 // Handle creating a new boat listing
 exports.createBoat = (req, res) => {
@@ -22,13 +24,37 @@ exports.createBoat = (req, res) => {
   });
 };
 
-// Fetch all boat listings
+// Fetch boat listings with pagination
 exports.getAllBoats = (req, res) => {
-  Boat.getAll((err, boats) => {
+  const limit = parseInt(req.query.limit) || 10; // Number of boats to return
+  const offset = parseInt(req.query.offset) || 0; // Offset for pagination
+
+  Boat.getAll(limit, offset, (err, boats) => {
     if (err) {
       return res.status(500).json({ message: 'Error fetching boats.' });
     }
-    res.json({ boats });
+
+    // Include images as binary data
+    const boatsWithImages = boats.map((boat) => {
+      const images = boat.images ? boat.images.split(';') : [];
+      const imageDataArray = images.map((imagePath) => {
+        const absolutePath = path.join(__dirname, '..', imagePath);
+        try {
+          const imageData = fs.readFileSync(absolutePath);
+          return {
+            filename: path.basename(imagePath),
+            data: imageData.toString('base64'),
+          };
+        } catch (err) {
+          console.error('Error reading image:', err);
+          return null;
+        }
+      });
+
+      return { ...boat, images: imageDataArray };
+    });
+
+    res.json({ boats: boatsWithImages });
   });
 };
 
@@ -39,17 +65,47 @@ exports.getBoatById = (req, res) => {
     if (err || !boat) {
       return res.status(404).json({ message: 'Boat not found.' });
     }
-    res.json({ boat });
+
+    // Include images as binary data
+    const images = boat.images ? boat.images.split(';') : [];
+    const imageDataArray = images.map((imagePath) => {
+      const absolutePath = path.join(__dirname, '..', imagePath);
+      try {
+        const imageData = fs.readFileSync(absolutePath);
+        return {
+          filename: path.basename(imagePath),
+          data: imageData.toString('base64'),
+        };
+      } catch (err) {
+        console.error('Error reading image:', err);
+        return null;
+      }
+    });
+
+    res.json({ boat: { ...boat, images: imageDataArray } });
   });
 };
 
-// Delete a boat listing by its ID
+// Delete a boat listing by its ID (only the owner can delete)
 exports.deleteBoat = (req, res) => {
   const boatId = req.params.id; // ID of the boat to delete
-  Boat.deleteById(boatId, (err) => {
-    if (err) {
-      return res.status(500).json({ message: 'Error deleting boat.' });
+  const userId = req.user.id; // ID of the requesting user
+
+  Boat.getById(boatId, (err, boat) => {
+    if (err || !boat) {
+      return res.status(404).json({ message: 'Boat not found.' });
     }
-    res.json({ message: 'Boat deleted successfully.' });
+
+    // Check if the current user is the owner of the boat
+    if (boat.ownerId !== userId) {
+      return res.status(403).json({ message: 'Forbidden: You cannot delete this boat.' });
+    }
+
+    Boat.deleteById(boatId, (err) => {
+      if (err) {
+        return res.status(500).json({ message: 'Error deleting boat.' });
+      }
+      res.json({ message: 'Boat deleted successfully.' });
+    });
   });
 };

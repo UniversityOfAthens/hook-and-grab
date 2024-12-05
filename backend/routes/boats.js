@@ -1,6 +1,7 @@
 // routes/boats.js
 const express = require('express');
 const boatController = require('../controllers/boatController');
+const bookingController = require('../controllers/bookingController');
 const { ensureAuthenticated } = require('../middlewares/authMiddleware');
 const { uploadBoatImages } = require('../middlewares/uploadMiddleware');
 
@@ -22,5 +23,14 @@ router.post(
 
 // Delete a boat listing by ID (authenticated users only)
 router.delete('/:id', ensureAuthenticated, boatController.deleteBoat);
+
+// Booking routes under /boats/:boatId/bookings
+router.post('/:boatId/bookings', ensureAuthenticated, bookingController.createBooking);
+router.get('/:boatId/bookings', ensureAuthenticated, bookingController.getBookingsByBoatOwner);
+router.put(
+  '/:boatId/bookings/:bookingId/status',
+  ensureAuthenticated,
+  bookingController.updateBookingStatus
+);
 
 module.exports = router;

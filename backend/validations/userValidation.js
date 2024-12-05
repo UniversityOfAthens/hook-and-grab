@@ -17,6 +17,7 @@ function validateRegistration(data) {
   data.firstName = !isEmpty(data.firstName) ? data.firstName : '';
   data.lastName = !isEmpty(data.lastName) ? data.lastName : '';
   data.dateOfBirth = !isEmpty(data.dateOfBirth) ? data.dateOfBirth : '';
+  data.phone = !isEmpty(data.phone) ? data.phone : '';
 
   // Validate username
   if (Validator.isEmpty(data.username)) {
@@ -54,6 +55,13 @@ function validateRegistration(data) {
     errors.dateOfBirth = 'Date of birth is required';
   } else if (!Validator.isDate(data.dateOfBirth)) {
     errors.dateOfBirth = 'Date of birth is invalid';
+  }
+
+  // Validate phone number (must be exactly 10 digits)
+  if (Validator.isEmpty(data.phone)) {
+    errors.phone = 'Phone number is required';
+  } else if (!Validator.matches(data.phone, /^\d{10}$/)) {
+    errors.phone = 'Phone number must be exactly 10 digits';
   }
 
   return {

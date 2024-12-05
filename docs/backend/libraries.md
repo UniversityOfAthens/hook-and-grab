@@ -6,6 +6,8 @@
 
 The backend leverages several libraries and frameworks to enhance development efficiency, security, and performance.
 
+---
+
 ## Key Libraries and Their Roles
 
 ### **Express.js**
@@ -53,6 +55,13 @@ The backend leverages several libraries and frameworks to enhance development ef
 - **Purpose:** Utility that monitors for changes in source code and automatically restarts the server.
 - **Why Used:** Enhances development efficiency by eliminating the need to manually restart the server after code changes.
 
+### **mime-types**
+
+- **Purpose:** Provides a comprehensive list of MIME types.
+- **Why Used:** Determines the MIME type of files when serving or processing them.
+
+---
+
 ## Design Choices and Best Practices
 
 ### **Modular Architecture**
@@ -83,6 +92,11 @@ The backend leverages several libraries and frameworks to enhance development ef
 
 - **Multer:** Manages file uploads securely.
 - **File Type Validation:** Accepts only specific file types (e.g., JPEG, PNG) to prevent malicious files.
+
+### **CORS Configuration**
+
+- **Dynamic Origin Handling:** Allows multiple origins for frontend applications.
+- **Credentials Support:** Enables cookies to be sent with cross-origin requests.
 
 ---
 

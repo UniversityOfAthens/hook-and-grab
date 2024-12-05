@@ -2,17 +2,16 @@
 const passport = require('passport');
 const User = require('../models/User');
 const { validateRegistration } = require('../validations/userValidation');
-const { sanitizeUser } = require('../utils/helpers');
 
 // Handle user registration
 exports.register = (req, res) => {
-  // Validate the incoming registration data
+  // Validate registration data
   const { errors, isValid } = validateRegistration(req.body);
   if (!isValid) {
-    return res.status(400).json({ errors }); // Return validation errors if any
+    return res.status(400).json({ errors });
   }
 
-  // Prepare user data for creation
+  // Prepare user data
   const userData = {
     username: req.body.username,
     password: req.body.password,
@@ -21,10 +20,10 @@ exports.register = (req, res) => {
     lastName: req.body.lastName,
     dateOfBirth: req.body.dateOfBirth,
     phone: req.body.phone,
-    profilePicture: req.body.profilePicture, // Optional: defaults if not provided
+    profilePicture: null, // Will be set to default in the model
   };
 
-  // Create the user in the database
+  // Create the user
   User.create(userData, (err, user) => {
     if (err) {
       if (err.message.includes('UNIQUE constraint failed')) {
@@ -32,7 +31,24 @@ exports.register = (req, res) => {
       }
       return res.status(500).json({ message: 'Error creating user.' });
     }
-    return res.status(201).json({ message: 'User created successfully.', user });
+
+    // Fetch the full user data with profile picture
+    User.findById(user.id, (err, fullUser) => {
+      if (err) {
+        return res.status(500).json({ message: 'Error retrieving user data.' });
+      }
+
+      // Log the user in
+      req.login(fullUser, (err) => {
+        if (err) return res.status(500).json({ message: 'Error logging in after registration.' });
+
+        // Return user data
+        return res.status(201).json({
+          message: 'User created and logged in successfully.',
+          user: fullUser,
+        });
+      });
+    });
   });
 };
 
@@ -41,10 +57,19 @@ exports.login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) return next(err);
     if (!user) return res.status(400).json({ message: 'Invalid credentials.' });
-    req.login(user, (err) => {
-      if (err) return next(err);
-	  const safeUser = sanitizeUser(user);
-      return res.json({ message: 'Logged in successfully.', user: safeUser });
+
+    // Fetch the full user data with profile picture
+    User.findById(user.id, (err, fullUser) => {
+      if (err) {
+        return res.status(500).json({ message: 'Error retrieving user data.' });
+      }
+
+      req.login(fullUser, (err) => {
+        if (err) return next(err);
+
+        // Return user data
+        return res.json({ message: 'Logged in successfully.', user: fullUser });
+      });
     });
   })(req, res, next);
 };

@@ -1,134 +1,142 @@
 # BlueEco-pedia
 
-### Project Submission για τον Διαγωνισμό 2nd Blue & Circular Economy Hackathon
+### Project Submission for the 2nd Blue & Circular Economy Hackathon
 
-## Εισαγωγή
-Το BlueEco-pedia είναι ένα έργο που αναπτύχθηκε για τον 2ο Διαγωνισμό Blue & Circular Economy Hackathon. Σκοπός του είναι να παρέχει πληροφορίες και πόρους σχετικά με τις πρακτικές της μπλε και κυκλικής οικονομίας, μέσα από έναν ευχάριστο, διαδραστικό τρόπο.
+## Introduction
+BlueEco-pedia is a project developed for the 2nd Blue & Circular Economy Hackathon. Its purpose is to provide information and resources related to blue and circular economy practices in an engaging, interactive manner.
 
-## Τεχνολογίες που Χρησιμοποιούνται
+## Technologies Used
 - **Frontend**: React, Vite, Bootstrap, React Router
 - **Backend**: Node.js, Express, CORS, Body-Parser
-- **Βάση Δεδομένων**: Αρχείο JSON για τοπική αποθήκευση
-- **Άλλα Εργαλεία**: Axios για HTTP αιτήσεις, ESLint για έλεγχο κώδικα
+- **Database**: SQLite3 for local storage
+- **Other Tools**: Axios for HTTP requests, ESLint for code linting, Nodemon for development
 
-## Περισσότερες Πληροφορίες
-- Για περισσότερες πληροφορίες σχετικά με το frontend, δείτε το [frontend/README.md](frontend/README.md).
-- Για περισσότερες πληροφορίες σχετικά με το backend, δείτε το [backend/README.md](backend/README.md).
+## More Information
+- For more information about the frontend, see [docs/frontend/frontend.md](docs/frontend/frontend.md).
+- For more information about the backend, see [docs/index.md](docs/index.md).
 
-## Ξεκινώντας
+## Getting Started
 
-### Προαπαιτούμενα
-Πριν ξεκινήσετε, βεβαιωθείτε ότι έχετε εγκαταστήσει τα εξής:
-- [Node.js](https://nodejs.org/)
-- npm (Node Package Manager, περιλαμβάνεται με το Node.js)
+### Prerequisites
+Before you begin, ensure you have met the following requirements:
+- **Node.js**: [Download and install Node.js](https://nodejs.org/)
+- **npm**: Node Package Manager (included with Node.js)
 
-### Εγκατάσταση
-1. **Δημιουργήστε ένα fork του repository στο GitHub.**
-2. **Κλωνοποίηση του forked repository:**
-```bash
-git clone https://github.com/<το-όνομα-χρήστη-σας>/BlueEco-pedia.git
-cd BlueEco-pedia
-```
+### Installation and Running the Project
+To run both the backend and frontend simultaneously, follow these steps:
 
-3. **Προσθήκη του αρχικού αποθετηρίου ως upstream remote:**
-```bash
-git remote add upstream https://github.com/UniversityOfAthens/BlueEco-pedia.git
-```
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/<your-username>/BlueEco-pedia.git
+   cd BlueEco-pedia
+   ```
 
-### Εκτέλεση του Backend
-Προσοχή: Για να εκτελέσετε τοπικά το web app θα πρέπει ταυτόχρονα να τρέχει και το backend μέρος της εφαρμογής αλλά και το frontend. Επομένως, καλό θα ήταν να έχετε ανοιχτό το τερματικό της επιλογής σας με 2 tabs ανοιχτά (ένα για το frontend και ένα για το backend).
+2. **Add the Original Repository as Upstream Remote:**
+   ```bash
+   git remote add upstream https://github.com/UniversityOfAthens/BlueEco-pedia.git
+   ```
 
-1. **Μεταβείτε στον κατάλογο του backend:**
-```bash
-cd backend
-```
+3. **Start the Application:**
+   At the root of the project, run:
+   ```bash
+   npm start
+   ```
+   - This command will:
+     - Automatically install all necessary dependencies for both backend and frontend.
+     - Launch both the backend and frontend servers concurrently.
+   - **Backend Server:** Runs at `http://localhost:3482`
+   - **Frontend Server:** Runs at `http://localhost:5173`
 
-2. **Εγκατάσταση εξαρτήσεων του backend:**
-```bash
-npm install
-```
+### Formatting Code
+To maintain consistent code formatting across the project, use the following commands:
 
-3. **Εκκίνηση του backend server:**
-```bash
-npm start
-```
+- **Format Both Frontend and Backend:**
+  ```bash
+  npm run format
+  ```
 
-ή με nodemon:
+- **Format a Specific Directory:**
+  Navigate to the desired directory (e.g., `frontend` or `backend`) and run:
+  ```bash
+  npm run format
+  ```
 
-```bash
-npm start dev
-```
+## API Tester and Test Suite
 
-Ο backend server θα τρέχει στο `http://localhost:3482`. (Δεν έχει κάτι να δείτε εκεί)
+### API Tester GUI
+A graphical API tester is available to interactively test the API endpoints.
 
-<center>
+- **Location:** `docs/resources/api_tester`
+- **How to Run:**
+  1. Navigate to the API tester directory:
+     ```bash
+     cd docs/resources/api_tester
+     ```
+  2. Start the HTTP server:
+     ```bash
+     npm start
+     ```
+  3. Open your browser and go to `http://localhost:2502/` to access the GUI.
 
-![Backend screenshot](docs/screenshots/back.png)
+### Alternative API Test Suite
+An alternative Python-based API test suite is also available for testing the API.
 
-</center>
+- **Location:** `docs/resources/api_test_suite.py`
+- **How to Use:**
+  1. Ensure you have Python installed.
+  2. Navigate to the test suite directory:
+     ```bash
+     cd docs/resources
+     ```
+  3. Run the test script:
+     ```bash
+     python api_test_suite.py
+     ```
+  - **Note:** This script provides basic API testing functionalities and is less feature-rich compared to the GUI-based tester.
 
-### Εκτέλεση του Frontend
+## Contribution Guidelines
 
-1. **Μεταβείτε στον κατάλογο του frontend:**
-```bash
-cd frontend
-```
+### Creating a Branch
+1. **Create a New Branch:**
+   ```bash
+   git checkout -b <branch-name>
+   ```
+   - **Example:**
+     ```bash
+     git checkout -b fix-login-bug
+     ```
+   - **Tip:** Choose a branch name that clearly describes the purpose of the branch.
 
-2. **Εγκατάσταση εξαρτήσεων του frontend:**
-```bash
-npm install
-```
+### Making Changes
+1. **Make Your Changes in the Codebase.**
+2. **Stage the Changes:**
+   ```bash
+   git add .
+   ```
+3. **Commit the Changes:**
+   ```bash
+   git commit -m "Description of your changes"
+   ```
 
-3. **Εκκίνηση του frontend development server:**
-```bash
-npm run dev
-```
+### Creating a Pull Request
+1. **Push Your Branch to the Forked Repository:**
+   ```bash
+   git push origin <branch-name>
+   ```
+2. **Create a Pull Request:**
+   - Go to the original repository on GitHub.
+   - Click on the "Compare & pull request" button for your branch.
+   - Provide a clear description of your changes and submit the pull request.
+3. **Wait for Review:**
+   - Your pull request will be reviewed by the project maintainers.
+   - Make any necessary revisions based on feedback.
 
-<center>
+---
 
-![Frontend screenshot](docs/screenshots/front.png)
+## Documentation
 
-Ο frontend development server θα τρέχει στο http://localhost:5173/.
-Προκειμένου να δείτε την εφαρμογή θα πρέπει να μπείτε στο παραπάνω link. Κάθε φορά που αλλάζετε κάτι και πατάτε save, θα κάνει αυτόματα reload (ωστόσο κάποιες φορές μπορεί να κολλάει και να πρέπει να πατήσετε στο terminal Ctrl+C και ξανά npm run dev).
+- **Main Documentation:** [docs/index.md](docs/index.md)
+- **Frontend Documentation:** [docs/frontend/frontend.md](docs/frontend/frontend.md)
+- **Backend Documentation:** [docs/backend/README.md](docs/backend/README.md)
 
-Θα πρέπει να φαίνεται κάπως έτσι:
-
-![Screenshot 1](docs/screenshots/ss1.png)
-![Screenshot 2](docs/screenshots/ss2.png)
-![Screenshot 3](docs/screenshots/ss3.png)
-
-## Συμμετοχή
-
-### Δημιουργία Branch
-1. **Δημιουργήστε ένα νέο branch για να προσθέσετε/διορθώσετε οτιδήποτε:**
-```bash
-git checkout -b <όνομα-κλάδου>
-```
-Παράδειγμα:
-```bash
-git checkout -b fix-bug-login
-```
-Καλό θα ήταν το όνομα του branch να είναι σχετικό με αυτό που κάνετε, προς διευκόλυνση όλων. 
-
-### Κάνοντας Αλλαγές
-1. **Κάντε τις αλλαγές σας στον κώδικα.**
-2. **Προσθέστε τις αλλαγές σας:**
-```bash
-git add .
-```
-
-3. **Commit των αλλαγών σας:**
-```bash
-git commit -m "Περιγραφή των αλλαγών"
-```
-
-### Δημιουργία Pull Request
-1. **Σπρώξτε το branch σας στο forked repo:**
-```bash
-git push origin <όνομα-κλάδου>
-```
-
-
-2. **Δημιουργήστε ένα pull request από το branch σας προς τον κλάδο main του αρχικού repo.**
-
-3. **Περιμένετε να το εγκρίνουμε :D**
+---

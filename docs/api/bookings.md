@@ -6,94 +6,153 @@
 
 The Bookings API manages booking operations for boat rentals, including creating booking requests, viewing bookings, and updating booking statuses.
 
+---
+
 ## Endpoints
 
 ### Create a Booking Request
 
-**URL:** `/bookings/`  
+**URL:** `/boats/:boatId/bookings`  
 **Method:** `POST`  
 **Description:** Creates a booking request for a boat.
+
+**Authentication Required:** Yes (Must be logged in)
+
+**Parameters:**
+
+- `:boatId`: The ID of the boat to book.
+
+**Request Headers:**
+
+- `Content-Type`: `application/json`
 
 **Request Body:**
 
 ```json
 {
-  "boatId": 1,
   "startDate": "2023-11-01",
   "endDate": "2023-11-05"
 }
 ```
 
-**Response:**
+**Successful Response:**
 
-- **201 Created**
+- **Status Code:** 201 Created
 
-  ```json
-  {
-    "message": "Booking request submitted.",
-    "booking": {
-      "id": 1
-    }
+```json
+{
+  "message": "Booking request submitted.",
+  "booking": {
+    "id": 1,
+    "boatId": 1,
+    "renterId": 2,
+    "startDate": "2023-11-01",
+    "endDate": "2023-11-05",
+    "status": "pending"
   }
-  ```
+}
+```
 
-### Get Bookings for Boat Owner
+**Error Responses:**
 
-**URL:** `/bookings/owner`  
+- **Status Code:** 400 Bad Request
+
+  - Missing or invalid dates.
+
+```json
+{
+  "message": "Invalid booking dates."
+}
+```
+
+- **Status Code:** 401 Unauthorized
+
+```json
+{
+  "message": "You are not logged in."
+}
+```
+
+- **Status Code:** 404 Not Found
+
+```json
+{
+  "message": "Boat not found."
+}
+```
+
+---
+
+### Get Bookings by Boat Owner
+
+**URL:** `/boats/:boatId/bookings`  
 **Method:** `GET`  
-**Description:** Retrieves all booking requests for boats owned by the current user.
+**Description:** Retrieves all booking requests for a boat owned by the current user.
 
-**Response:**
+**Authentication Required:** Yes (Must be logged in)
 
-- **200 OK**
+**Parameters:**
 
-  ```json
-  {
-    "bookings": [
-      {
-        "id": 1,
-        "boatId": 1,
-        "renterId": 2,
-        "startDate": "2023-11-01",
-        "endDate": "2023-11-05",
-        "status": "pending"
-      },
-      // ... more bookings
-    ]
-  }
-  ```
+- `:boatId`: The ID of the boat.
 
-### Get Bookings for Renter
+**Successful Response:**
 
-**URL:** `/bookings/renter`  
-**Method:** `GET`  
-**Description:** Retrieves all booking requests made by the current user.
+- **Status Code:** 200 OK
 
-**Response:**
+```json
+{
+  "bookings": [
+    {
+      "id": 1,
+      "boatId": 1,
+      "renterId": 2,
+      "startDate": "2023-11-01",
+      "endDate": "2023-11-05",
+      "status": "pending"
+    },
+    // ... more bookings
+  ]
+}
+```
 
-- **200 OK**
+**Error Responses:**
 
-  ```json
-  {
-    "bookings": [
-      {
-        "id": 1,
-        "boatId": 1,
-        "renterId": 2,
-        "startDate": "2023-11-01",
-        "endDate": "2023-11-05",
-        "status": "pending"
-      },
-      // ... more bookings
-    ]
-  }
-  ```
+- **Status Code:** 403 Forbidden
+
+  - User is not the owner of the boat.
+
+```json
+{
+  "message": "You are not authorized to view these bookings."
+}
+```
+
+- **Status Code:** 401 Unauthorized
+
+```json
+{
+  "message": "You are not logged in."
+}
+```
+
+---
 
 ### Update Booking Status
 
-**URL:** `/bookings/:id/status`  
+**URL:** `/boats/:boatId/bookings/:bookingId/status`  
 **Method:** `PUT`  
 **Description:** Updates the status of a booking request.
+
+**Authentication Required:** Yes (Must be logged in)
+
+**Parameters:**
+
+- `:boatId`: The ID of the boat.
+- `:bookingId`: The ID of the booking.
+
+**Request Headers:**
+
+- `Content-Type`: `application/json`
 
 **Request Body:**
 
@@ -103,15 +162,57 @@ The Bookings API manages booking operations for boat rentals, including creating
 }
 ```
 
-**Response:**
+**Successful Response:**
 
-- **200 OK**
+- **Status Code:** 200 OK
 
-  ```json
-  {
-    "message": "Booking status updated."
+```json
+{
+  "message": "Booking status updated.",
+  "booking": {
+    "id": 1,
+    "status": "approved"
   }
-  ```
+}
+```
+
+**Error Responses:**
+
+- **Status Code:** 400 Bad Request
+
+  - Invalid status.
+
+```json
+{
+  "message": "Invalid booking status."
+}
+```
+
+- **Status Code:** 403 Forbidden
+
+  - User is not the owner of the boat.
+
+```json
+{
+  "message": "You are not authorized to update this booking."
+}
+```
+
+- **Status Code:** 404 Not Found
+
+```json
+{
+  "message": "Booking not found."
+}
+```
+
+- **Status Code:** 401 Unauthorized
+
+```json
+{
+  "message": "You are not logged in."
+}
+```
 
 ---
 

@@ -34,4 +34,3 @@ Explanation of the backend architecture and design choices.
 - [Libraries and Frameworks](./backend/libraries.md)
 
 ---
-

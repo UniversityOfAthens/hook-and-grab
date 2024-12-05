@@ -42,57 +42,59 @@ class Product {
     );
   }
 
-  // Retrieve all products
-  static getAll(callback) {
+  // Retrieve products with pagination
+  static getAll(limit, offset, callback) {
     const db = getDatabaseConnection();
-    db.all('SELECT * FROM products', [], (err, products) => {
-      db.close();
-      if (err) {
-        return callback(err);
+    db.all(
+      'SELECT * FROM products ORDER BY datePosted DESC LIMIT ? OFFSET ?',
+      [limit, offset],
+      (err, products) => {
+        db.close();
+        if (err) {
+          return callback(err);
+        }
+        return callback(null, products);
       }
-      return callback(null, products);
-    });
+    );
   }
 
   // Search for products based on filters
   static search(filters, callback) {
     const db = getDatabaseConnection();
-  
+
     let query = 'SELECT * FROM products WHERE 1=1';
     const params = [];
-  
-    // Search by keyword in title or description
+
+    // Search by keyword in title
     if (filters.keyword) {
-      query += ' AND (title LIKE ? OR description LIKE ?)';
+      query += ' AND title LIKE ?';
       const keyword = `%${filters.keyword}%`;
-      params.push(keyword, keyword);
+      params.push(keyword);
     }
-  
+
     // Filter by price range
     if (filters.minPrice) {
       query += ' AND price >= ?';
       params.push(filters.minPrice);
     }
-  
+
     if (filters.maxPrice) {
       query += ' AND price <= ?';
       params.push(filters.maxPrice);
     }
-  
+
     // Filter by isFree
     if (filters.isFree !== undefined) {
       query += ' AND isFree = ?';
       params.push(filters.isFree ? 1 : 0);
     }
-  
+
     // Filter by isOpenToTrade
     if (filters.isOpenToTrade !== undefined) {
       query += ' AND isOpenToTrade = ?';
       params.push(filters.isOpenToTrade ? 1 : 0);
     }
-  
-    // Additional filters can be added here (e.g., datePosted)
-  
+
     db.all(query, params, (err, products) => {
       db.close();
       if (err) {

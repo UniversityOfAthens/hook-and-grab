@@ -6,6 +6,8 @@
 
 The backend of **BlueEco-pedia** is organized using a modular structure to enhance maintainability, scalability, and readability. Each component has a specific role, adhering to the separation of concerns principle.
 
+---
+
 ## Directory Layout
 
 ```
@@ -13,41 +15,43 @@ backend/
 ├── index.js
 ├── package.json
 ├── .gitignore
-├── database/
-│   └── db.sqlite
 ├── config/
 │   ├── passport.js
 │   └── database.js
-├── models/
-│   ├── User.js
-│   ├── Product.js
-│   ├── Boat.js
-│   └── Booking.js
 ├── controllers/
 │   ├── authController.js
 │   ├── userController.js
 │   ├── productController.js
 │   ├── boatController.js
 │   └── bookingController.js
+├── middlewares/
+│   ├── authMiddleware.js
+│   ├── corsMiddleware.js
+│   └── uploadMiddleware.js
+├── models/
+│   ├── User.js
+│   ├── Product.js
+│   ├── Boat.js
+│   └── Booking.js
 ├── routes/
 │   ├── auth.js
 │   ├── users.js
 │   ├── products.js
 │   ├── boats.js
 │   └── bookings.js
-├── middlewares/
-│   ├── authMiddleware.js
-│   └── uploadMiddleware.js
-├── utils/
-│   └── helpers.js
 ├── uploads/
 │   ├── profiles/
 │   ├── products/
 │   └── boats/
+├── utils/
+│   └── helpers.js
 └── validations/
     ├── userValidation.js
+    ├── productValidation.js
     └── boatValidation.js
 ```
+
+---
 
 ## Components Breakdown
 
@@ -62,14 +66,6 @@ backend/
 - **passport.js**: Configures authentication strategies.
 - **database.js**: Manages database connections and initialization.
 
-### **models/**
-
-- Defines data models and interacts with the database.
-- **User.js**: User model and database operations.
-- **Product.js**: Product model and operations.
-- **Boat.js**: Boat model for rental listings.
-- **Booking.js**: Booking model for rental reservations.
-
 ### **controllers/**
 
 - Handles the business logic for each route.
@@ -78,6 +74,21 @@ backend/
 - **productController.js**: Product operations.
 - **boatController.js**: Boat listing operations.
 - **bookingController.js**: Booking operations.
+
+### **middlewares/**
+
+- Contains middleware functions.
+- **authMiddleware.js**: Authentication checks.
+- **corsMiddleware.js**: CORS configuration.
+- **uploadMiddleware.js**: File upload handling.
+
+### **models/**
+
+- Defines data models and interacts with the database.
+- **User.js**: User model and database operations.
+- **Product.js**: Product model and operations.
+- **Boat.js**: Boat model for rental listings.
+- **Booking.js**: Booking model for rental reservations.
 
 ### **routes/**
 
@@ -88,17 +99,6 @@ backend/
 - **boats.js**: Boat routes.
 - **bookings.js**: Booking routes.
 
-### **middlewares/**
-
-- Contains middleware functions.
-- **authMiddleware.js**: Authentication checks.
-- **uploadMiddleware.js**: File upload handling.
-
-### **utils/**
-
-- Utility functions and helpers.
-- **helpers.js**: Placeholder for utility functions.
-
 ### **uploads/**
 
 - Stores uploaded files.
@@ -106,10 +106,16 @@ backend/
 - **products/**: Product images.
 - **boats/**: Boat images.
 
+### **utils/**
+
+- Utility functions and helpers.
+- **helpers.js**: Contains utility functions.
+
 ### **validations/**
 
 - Input validation logic.
-- **userValidation.js**: Validates user registration data.
+- **userValidation.js**: Validates user registration and update data.
+- **productValidation.js**: Validates product data.
 - **boatValidation.js**: Validates boat listing data.
 
 ---

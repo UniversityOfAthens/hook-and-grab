@@ -16,13 +16,10 @@ initializeDatabase();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Serve Static Files from Uploads Directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 // CORS Middleware
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: true, // Allows all origins
     credentials: true,
   })
 );
@@ -48,7 +45,7 @@ app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/users'));
 app.use('/products', require('./routes/products'));
 app.use('/boats', require('./routes/boats'));
-app.use('/bookings', require('./routes/bookings'));
+// Note: Bookings routes are now under /boats
 
 // Start Server
 const PORT = process.env.PORT || 3482;

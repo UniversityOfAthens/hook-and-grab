@@ -29,18 +29,24 @@ class Boat {
   }
 
   /**
-   * Retrieves all boat listings from the database.
+   * Retrieves boat listings from the database with pagination.
+   * @param {number} limit - Number of boats to return.
+   * @param {number} offset - Offset for pagination.
    * @param {Function} callback - Callback function to handle the response.
    */
-  static getAll(callback) {
+  static getAll(limit, offset, callback) {
     const db = getDatabaseConnection();
-    db.all('SELECT * FROM boats', [], (err, boats) => {
-      db.close();
-      if (err) {
-        return callback(err);
+    db.all(
+      'SELECT * FROM boats ORDER BY datePosted DESC LIMIT ? OFFSET ?',
+      [limit, offset],
+      (err, boats) => {
+        db.close();
+        if (err) {
+          return callback(err);
+        }
+        return callback(null, boats);
       }
-      return callback(null, boats);
-    });
+    );
   }
 
   /**
