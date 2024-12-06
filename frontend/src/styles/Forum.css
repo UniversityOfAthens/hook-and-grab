@@ -21,7 +21,7 @@
   margin-top: 0; /* Remove any top margin */
 }
 
-.header {
+.headerForum {
     margin: 10px;
     gap: 10px;
     backdrop-filter: blur(16px) saturate(100%);
@@ -29,6 +29,7 @@
     box-sizing: border-box; /* Include padding in width calculations */
     max-width: 800vh;
     display: flex;  
+    height: 15vh;
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(16px) saturate(100%);
@@ -43,7 +44,7 @@
 }
 
   .header-title {
-    margin: 0;
+    margin: 2vh;
     font-size: 24px;
     font-weight: bold;
     color: #ffffff; /* White color for the title */
@@ -51,7 +52,7 @@
   }
   
   .header-description {
-    margin: 0;
+    margin: 2vh;
     font-size: 16px;
     color: #ffffff; /* White color for the description */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6), -1px -1px 3px rgba(0, 0, 0, 0.4); /* Shadow effect for description */
@@ -68,6 +69,7 @@
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), -1px -1px 3px rgba(0, 0, 0, 0.716); /* Text shadow */
     transition: all 0.3s ease; /* Smooth transition */
     cursor: pointer; /* Pointer cursor on hover */
+    margin: 2vh;
   }
   
   .new-discussion-button:hover {
