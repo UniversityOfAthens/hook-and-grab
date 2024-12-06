@@ -1,4 +1,4 @@
-.site-container {
+.forum-container {
   position: relative;
   min-height: 100vh;
   background-image: url('../assets/gifs/waves.gif');
@@ -6,6 +6,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  padding-top: 100px;
 }
 
 .content-container {
@@ -20,11 +21,64 @@
 }
 
 .header {
-  padding: 60px;
-  text-align: right;
-  color: white;
-  font-size: 15px;
+    margin: 10px;
+    gap: 10px;
+    backdrop-filter: blur(16px) saturate(100%);
+    border-radius: 25px;
+    box-sizing: border-box; /* Include padding in width calculations */
+    max-width: 800vh;
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(16px) saturate(100%);
+    opacity: 100%;
+    flex-grow: 1; /* Allow flexible resizing if needed */
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
 }
+
+.header-left{
+    flex-grow: 0;
+    text-align: left;
+}
+
+  .header-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* White color for the title */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6), -1px -1px 3px rgba(0, 0, 0, 0.4); /* Adds a shadow effect */
+  }
+  
+  .header-description {
+    margin: 0;
+    font-size: 16px;
+    color: #ffffff; /* White color for the description */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6), -1px -1px 3px rgba(0, 0, 0, 0.4); /* Shadow effect for description */
+  }
+    
+  .new-discussion-button {
+    font-size: 16px;
+    padding: 12px 24px; /* Slightly larger padding */
+    border-radius: 12px; /* Rounded corners */
+    background-color: transparent !important; /* Force transparent background */
+    border: 2px solid #ffffff !important;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), -1px -1px 3px rgba(0, 0, 0, 0.716); /* Text shadow */
+    transition: all 0.3s ease; /* Smooth transition */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .new-discussion-button:hover {
+    transform: scale(1.1); /* Button grows on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+  }
+  
+  .new-discussion-button:active {
+    transform: scale(0.95); /* Shrinks slightly when clicked */
+    border: 2px solid #ffffff; /* Dark blue border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow when clicked */
+  }
 
 .box7 {
   display: flex;

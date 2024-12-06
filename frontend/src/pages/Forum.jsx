@@ -5,18 +5,19 @@ import {Button} from 'react-bootstrap';
 
 function Forum(){
     return(
-        <div className="site-container">
+        <div className="forum-container">
             <div className="content-container">
                 <NavBar />
                 <main>
-                    <div style={{ marginTop: "0px" }}>
-                            <div className="header">
-                                    <h1 className="text-center mt-0 pt-5">Forum</h1>
-                                    <p className="text-center">Join the Conversation</p>
-                            </div>
+                    <div className="header">
+                        <div className="header-left">
+                            <h2 className="header-title">General Discussions</h2>
+                            <p className="header-description">Post your general discussion topics here.</p>
+                        </div>
+                        <Button className="new-discussion-button">
+                            NEW DISCUSSION
+                        </Button>
                     </div>
-
-                    <Button variant="primary" className="button mt-3 rightButton">New Topic</Button>
 
                     <div className="box7">
                         <div className="textOnTheInsideR">
