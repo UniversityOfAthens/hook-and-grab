@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,14 +12,32 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [phone, setPhone] = useState('');
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const API_URL = 'http://localhost:3482';
 
-        // Validation logic
-        if (!username || !password || !email || !firstName || !lastName || !dateOfBirth || !phone) {
-            setErrors({ form: 'Please complete the form.' });
+    const validateForm = () => {
+        const newErrors = {};
+        if (!username) newErrors.username = 'Username is required.';
+        if (!password || password.length < 6) newErrors.password = 'Password must be at least 6 characters.';
+        if (!email || !/\S+@\S+\.\S+/.test(email)) newErrors.email = 'A valid email is required.';
+        if (!firstName) newErrors.firstName = 'First name is required.';
+        if (!lastName) newErrors.lastName = 'Last name is required.';
+        if (!dateOfBirth) newErrors.dateOfBirth = 'Date of birth is required.';
+        if (!phone || !/^\d{10}$/.test(phone)) newErrors.phone = 'Phone must be a 10-digit number.';
+        return newErrors;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setErrors({});
+        setLoading(true);
+
+        const formErrors = validateForm();
+        if (Object.keys(formErrors).length > 0) {
+            setLoading(false);
+            setErrors(formErrors);
             return;
         }
 
@@ -33,40 +51,27 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
             phone,
         };
 
-        axios
-            .post('http://localhost:3482/auth/register', userData)
-            .then((res) => {
-                console.log(res.data);
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify({ username: res.data.user.username })
-                ); // Store user info in localStorage
-                setErrors({});
-                handleClose(); // Close the modal after successful signup
-                if (window.location.pathname === "/") {
-                    window.location.reload();
-                } else {
-                    navigate('/'); // Redirect to home
-                }
-            })
-            .catch((err) => {
-                console.error('Error during registration:', err);
-                if (err.response) {
-                    console.error('Response data:', err.response.data);
-                    console.error('Response status:', err.response.status);
-                    console.error('Response headers:', err.response.headers);
-                    setErrors(err.response.data.errors || { form: 'Registration failed. Please try again.' });
-                } else if (err.request) {
-                    console.error('Request data:', err.request);
-                    setErrors({ form: 'No response received from the server. Please try again.' });
-                } else {
-                    console.error('Error message:', err.message);
-                    setErrors({ form: 'An error occurred. Please try again.' });
-                }
-            });
+        try {
+            const res = await axios.post(`${API_URL}/auth/register`, userData, { withCredentials: true });
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+            handleClose();
+            if (window.location.pathname === '/') {
+                window.location.reload();
+            } else {
+                navigate('/');
+            }
+        } catch (err) {
+            console.error('Error during registration:', err);
+            if (err.response && err.response.data && err.response.data.errors) {
+                setErrors(err.response.data.errors);
+            } else {
+                setErrors({ form: 'Registration failed. Please try again.' });
+            }
+        } finally {
+            setLoading(false);
+        }
     };
 
-    // Reset the form fields
     const handleReset = () => {
         setUsername('');
         setPassword('');
@@ -76,18 +81,18 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
         setDateOfBirth('');
         setPhone('');
         setErrors({});
+        setLoading(false);
     };
 
-    // This function will be called when the modal is closed (either by clicking the close button or the backdrop)
     const handleCloseModal = () => {
-        handleReset();  // Reset form fields
-        handleClose();  // Close the modal
+        handleReset();
+        handleClose();
     };
 
     const handleShowLoginModal = () => {
-        handleReset();      // Reset form fields
-        handleShowLogin();  // Opens login modal
-    }
+        handleReset();
+        handleShowLogin();
+    };
 
     return (
         <Modal show={show} onHide={handleCloseModal} centered>
@@ -104,6 +109,7 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             isInvalid={!!errors.username}
+                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.username}
@@ -117,6 +123,7 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             isInvalid={!!errors.password}
+                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.password}
@@ -130,6 +137,7 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             isInvalid={!!errors.email}
+                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.email}
@@ -143,6 +151,7 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             isInvalid={!!errors.firstName}
+                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.firstName}
@@ -156,6 +165,7 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
                             isInvalid={!!errors.lastName}
+                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.lastName}
@@ -168,27 +178,29 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             value={dateOfBirth}
                             onChange={(e) => setDateOfBirth(e.target.value)}
                             isInvalid={!!errors.dateOfBirth}
+                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.dateOfBirth}
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group controlId="phone" className="mt-3">
-                        <Form.Label>Phone</Form.Label>
+                        <Form.Label>Phone (10 digits)</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Enter Phone Number"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             isInvalid={!!errors.phone}
+                            required
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.phone}
                         </Form.Control.Feedback>
                     </Form.Group>
                     {errors.form && <p className="text-danger mt-2">{errors.form}</p>}
-                    <Button type="submit" variant="primary" className="mt-3 w-100">
-                        Sign Up
+                    <Button type="submit" variant="primary" className="mt-3 w-100" disabled={loading}>
+                        {loading ? <Spinner animation="border" size="sm" /> : 'Sign Up'}
                     </Button>
                 </Form>
             </Modal.Body>
