@@ -175,7 +175,7 @@ const Market = () => {
                     </section>
                     <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
                         {filteredProducts.map((product, index) => (
-                            <div key={index} className="market-item">
+                            <div key={index} className="market-item font2">
                                 <h2>{product.title}</h2>
                                 {product.images && product.images.length > 0 && (
                                     <img src={`data:${product.images[0].mimeType};base64,${product.images[0].data}`} alt={product.title} />

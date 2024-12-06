@@ -17,6 +17,9 @@ const RentABoat = () => {
     const [filteredBoats, setFilteredBoats] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [maxPrice, setMaxPrice] = useState(1000);
+    const [currentMaxPrice, setCurrentMaxPrice] = useState(1000);
+    const [showFilterMenu, setShowFilterMenu] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:3482/boats')
@@ -25,6 +28,11 @@ const RentABoat = () => {
                 if (Array.isArray(response.data.boats)) {
                     setBoats(response.data.boats);
                     setFilteredBoats(response.data.boats);
+
+                    // Dynamically set max price based on the boats
+                    const maxBoatPrice = Math.max(...response.data.boats.map(boat => boat.pricePerDay));
+                    setMaxPrice(maxBoatPrice);
+                    setCurrentMaxPrice(maxBoatPrice);
                 } else {
                     console.error('Unexpected response format:', response.data);
                 }
@@ -35,13 +43,14 @@ const RentABoat = () => {
     }, []);
 
     useEffect(() => {
-        filterBoats(searchQuery);
-    }, [searchQuery, boats]);
+        filterBoats(searchQuery, currentMaxPrice);
+    }, [searchQuery, currentMaxPrice, boats]);
 
-    const filterBoats = (query) => {
+    const filterBoats = (query, maxPrice) => {
         const filtered = boats.filter(boat => 
-            boat.title.toLowerCase().includes(query.toLowerCase()) ||
-            boat.description.toLowerCase().includes(query.toLowerCase())
+            (boat.title.toLowerCase().includes(query.toLowerCase()) ||
+            boat.description.toLowerCase().includes(query.toLowerCase())) &&
+            boat.pricePerDay <= maxPrice
         );
         setFilteredBoats(filtered);
     };
@@ -60,6 +69,14 @@ const RentABoat = () => {
 
     const handleAddBoat = (newBoat) => {
         setBoats([...boats, newBoat]);
+    };
+
+    const handleFilterToggle = () => {
+        setShowFilterMenu(!showFilterMenu);
+    };
+
+    const handlePriceChange = (newMaxPrice) => {
+        setCurrentMaxPrice(newMaxPrice);
     };
 
     const user = JSON.parse(localStorage.getItem('user'));
@@ -82,9 +99,26 @@ const RentABoat = () => {
                     <p className="text-center">Save Resources, Empower Communities</p>
                 </div>
                 <section className="renting-search">
-                    <button className="rent-filter-button">
-                        Filters <FilterAltIcon id="filter-icon" />
-                    </button>
+                    <div className="filter-wrapper">
+                        <button className="rent-filter-button" onClick={handleFilterToggle}>
+                            Filters <FilterAltIcon id="filter-icon" />
+                        </button>
+                        {showFilterMenu && (
+                            <div className="filter-menu">
+                                <div className="slider-container">
+                                    <label htmlFor="max-price">Price Range: Up to {currentMaxPrice}€</label>
+                                    <input
+                                        id="max-price"
+                                        type="range"
+                                        min="0"
+                                        max={maxPrice}
+                                        value={currentMaxPrice}
+                                        onChange={(e) => handlePriceChange(+e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <div className="search-input-wrapper">
                         <FaSearch className="search-icon" />
                         <input
@@ -95,7 +129,6 @@ const RentABoat = () => {
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
-                    {/* <button className="renting-search-button">Search</button> */}
                     {user && (
                         <button className="renting-your-boat-button" onClick={handleOpenModal}>
                             Rent your Boat
@@ -104,7 +137,7 @@ const RentABoat = () => {
                 </section>
                 <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
                     {filteredBoats.map((boat, index) => (
-                        <div key={index} className="market-item font1">
+                        <div key={index} className="market-item font2">
                             <h2>{boat.title}</h2>
                             {boat.images && boat.images.length > 0 && (
                                 <img src={`data:${boat.images[0].mimeType};base64,${boat.images[0].data}`} alt={boat.title} />
