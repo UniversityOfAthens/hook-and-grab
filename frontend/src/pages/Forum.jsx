@@ -9,7 +9,7 @@ function Forum(){
             <div className="content-container">
                 <NavBar />
                 <main>
-                    <div className="header">
+                    <div className="headerForum">
                         <div className="header-left">
                             <h2 className="header-title">General Discussions</h2>
                             <p className="header-description">Post your general discussion topics here.</p>
