@@ -1,6 +1,6 @@
 # Hook&Grab
 
-![Hook&Grab Logo](presentation/logo.png)
+![Hook&Grab Logo](/presentation/logo.png)
 
 ### Project Submission for Odyssea's 2nd Blue & Circular Economy Hackathon
 
