@@ -47,6 +47,19 @@ app.use('/products', require('./routes/products'));
 app.use('/boats', require('./routes/boats'));
 // Note: Bookings routes are now under /boats
 
+// Global Error Handling Middleware
+app.use((err, req, res, next) => {
+  // Check if the error is a Multer error
+  if (err.name === 'MulterError') {
+    return res.status(400).json({ message: err.message });
+  }
+
+  // For other errors, return a generic 500 error with a JSON response
+  return res.status(500).json({
+    message: err.message || 'Internal Server Error',
+  });
+});
+
 // Start Server
 const PORT = process.env.PORT || 3482;
 app.listen(PORT, () => {
