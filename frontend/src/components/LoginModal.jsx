@@ -1,52 +1,57 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 
 function LoginModal({ show, handleClose, handleShowSignup }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const API_URL = 'http://localhost:3482';
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3482/auth/login', { username, password })
-            .then(res => {
-                console.log(res.data);
-                localStorage.setItem('user', JSON.stringify({ username: res.data.user.username })); // Store user info in localStorage
-                handleClose(); // Close login modal
-                if (window.location.pathname == "/") {
-                    window.location.reload()
-                }
-                else {
-                    navigate('/'); // Redirect to home
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                setError(err.response?.data?.message || 'Login failed. Please try again.');
-            });
+        setLoading(true);
+        setError('');
+
+        if (!username || !password) {
+            setError('Please enter both username and password.');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const res = await axios.post(`${API_URL}/auth/login`, { username, password }, { withCredentials: true });
+            // Assuming response: { message: '...', user: {...} }
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+            handleClose();
+            if (window.location.pathname === '/') {
+                window.location.reload();
+            } else {
+                navigate('/');
+            }
+        } catch (err) {
+            console.error(err);
+            setError(err.response?.data?.message || 'Login failed. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
-    // Reset the form fields
-    const handleReset = () => {
+    const handleCloseModal = () => {
         setUsername('');
         setPassword('');
         setError('');
+        setLoading(false);
+        handleClose();
     };
-    
-    // This function will be called when the modal is closed (either by clicking the close button or the backdrop)
-    const handleCloseModal = () => {
-        handleReset();  // Reset form fields
-        handleClose();  // Close the modal
-    };
-    
+
     const handleShowSignupModal = () => {
-        handleReset();      // Reset form fields
-        handleShowSignup();  // Opens login modal
+        handleCloseModal();
+        handleShowSignup();
     }
 
     return (
@@ -63,6 +68,7 @@ function LoginModal({ show, handleClose, handleShowSignup }) {
                             placeholder="Enter Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            required
                         />
                     </Form.Group>
                     <Form.Group controlId="password" className="mt-3">
@@ -72,11 +78,12 @@ function LoginModal({ show, handleClose, handleShowSignup }) {
                             placeholder="Enter Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </Form.Group>
                     {error && <p className="text-danger mt-2">{error}</p>}
-                    <Button type="submit" variant="primary" className="mt-3 w-100">
-                        Log In
+                    <Button type="submit" variant="primary" className="mt-3 w-100" disabled={loading}>
+                        {loading ? <Spinner animation="border" size="sm" /> : 'Log In'}
                     </Button>
                 </Form>
             </Modal.Body>

@@ -1,40 +1,36 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardTab from '@mui/icons-material/KeyboardTab';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
-import './../styles/NavBar.css'
+import './../styles/NavBar.css';
 import hookIcon from './../assets/icons/hook.svg';
-
-// Usage Instructions:
-// 1. Wrap the NavBar component inside a parent container with `position: relative`.
-//    This ensures that the NavBar is positioned correctly in the layout and any 
-//    absolute/relative positioning inside the NavBar works as intended.
-// 
-// Example:
-// <div className="site-container" style={{ position: 'relative' }}>
-//   <NavBar />
-//   {/* Additional content here */}
-// </div>
 
 function NavBar() {
     const navigate = useNavigate();
 
-    // State Management
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState('');
+    const [user, setUser] = useState(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
-    // Handlers
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser) {
+            setIsLoggedIn(true);
+            setUser(storedUser);
+        }
+    }, []);
+
     const handleLogout = () => {
         localStorage.removeItem('user');
         setIsLoggedIn(false);
+        setUser(null);
         navigate('/');
     };
 
@@ -50,28 +46,15 @@ function NavBar() {
         setIsLoginModalOpen(true);
     };
 
-    // Navigation Shortcuts
     const navigationLinks = {
         home: () => navigate('/'),
         market: () => navigate('/market'),
         rentaboat: () => navigate('/rentaboat'),
         forum: () => navigate('/forum'),
-        login: () => setIsLoginModalOpen(true),
-        signup: () => setIsSignupModalOpen(true),
-        profile: () => navigate('/profile'),
         faq: () => navigate('/faq'),
+        profile: () => navigate('/profile'),
     };
 
-    // User Authentication Status Check
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-            setIsLoggedIn(true);
-            setUsername(user.username);
-        }
-    }, []);
-
-    // Drawer Content
     const drawerContent = (
         <div className="drawer-content">
             <KeyboardTab className="drawer-close" onClick={toggleDrawer(false)} />
@@ -83,11 +66,11 @@ function NavBar() {
                 <Nav.Link href="#about">About</Nav.Link>
                 {isLoggedIn ? (
                     <>
-                        <Nav.Link href="#profile">{username}</Nav.Link>
+                        <Nav.Link onClick={navigationLinks.profile}>{user?.username || 'Profile'}</Nav.Link>
                         <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
                     </>
                 ) : (
-                    <Nav.Link onClick={navigationLinks.login}>Log In / Register</Nav.Link>
+                    <Nav.Link onClick={() => setIsLoginModalOpen(true)}>Account</Nav.Link>
                 )}
             </Nav>
         </div>
@@ -96,9 +79,9 @@ function NavBar() {
     return (
         <Navbar className="custom-navbar" variant="dark" expand="lg" fixed="top">
             <Container>
-                <Navbar.Brand onClick={navigationLinks.home}>
+                <Navbar.Brand onClick={navigationLinks.home} style={{ cursor: 'pointer' }}>
                     Hook&Grab
-                    <img src={hookIcon} alt="Hook&Grab" id="icon-brand"/>
+                    <img src={hookIcon} alt="Hook&Grab" id="icon-brand" />
                 </Navbar.Brand>
 
                 {/* Mobile Menu */}
@@ -114,7 +97,7 @@ function NavBar() {
                 </div>
 
                 {/* Desktop Menu */}
-                <div className="d-none d-lg-flex">
+                <div className="d-none d-lg-flex w-100 justify-content-end">
                     <Nav className="me-auto">
                         <Nav.Link onClick={navigationLinks.market}>Market</Nav.Link>
                         <Nav.Link onClick={navigationLinks.rentaboat}>Rent a Boat</Nav.Link>
@@ -123,17 +106,20 @@ function NavBar() {
                         <Nav.Link href="#about">About</Nav.Link>
                     </Nav>
                     <Nav>
-                        {isLoggedIn ? (
-                            <>
-                                <Nav.Link onClick={navigationLinks.profile}>{username}</Nav.Link>
-                                <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
-                            </>
-                        ) : (
-                            <>
-                                <Nav.Link onClick={navigationLinks.login}>Log In</Nav.Link>
-                                <Nav.Link onClick={navigationLinks.signup}>Sign Up</Nav.Link>
-                            </>
-                        )}
+                        <NavDropdown title={isLoggedIn ? (user?.username || 'Account') : 'Account'} id="account-dropdown" align="end">
+                            {isLoggedIn ? (
+                                <>
+                                    <NavDropdown.Item onClick={navigationLinks.profile}>Profile</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={handleLogout}>Log Out</NavDropdown.Item>
+                                </>
+                            ) : (
+                                <>
+                                    <NavDropdown.Item onClick={handleShowLogin}>Log In</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleShowSignup}>Sign Up</NavDropdown.Item>
+                                </>
+                            )}
+                        </NavDropdown>
                     </Nav>
                 </div>
             </Container>
