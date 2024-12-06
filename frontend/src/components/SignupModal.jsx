@@ -6,38 +6,63 @@ import { useNavigate } from 'react-router-dom';
 function SignupModal({ show, handleClose, handleShowLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [phone, setPhone] = useState('');
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Validation logic
-        if (!username || !password) {
-            setError('Please complete the form.');
+        if (!username || !password || !email || !firstName || !lastName || !dateOfBirth || !phone) {
+            setErrors({ form: 'Please complete the form.' });
             return;
         }
 
+        const userData = {
+            username,
+            password,
+            email,
+            firstName,
+            lastName,
+            dateOfBirth,
+            phone,
+        };
+
         axios
-            .post('http://localhost:3482/auth/register', { username, password })
+            .post('http://localhost:3482/auth/register', userData)
             .then((res) => {
                 console.log(res.data);
                 localStorage.setItem(
                     'user',
                     JSON.stringify({ username: res.data.user.username })
                 ); // Store user info in localStorage
-                setError('');
+                setErrors({});
                 handleClose(); // Close the modal after successful signup
-                if (window.location.pathname == "/") {
-                    window.location.reload()
-                }
-                else {
+                if (window.location.pathname === "/") {
+                    window.location.reload();
+                } else {
                     navigate('/'); // Redirect to home
                 }
             })
             .catch((err) => {
-                console.log(err);
-                setError(err.response?.data?.message || 'Registration failed. Please try again.');
+                console.error('Error during registration:', err);
+                if (err.response) {
+                    console.error('Response data:', err.response.data);
+                    console.error('Response status:', err.response.status);
+                    console.error('Response headers:', err.response.headers);
+                    setErrors(err.response.data.errors || { form: 'Registration failed. Please try again.' });
+                } else if (err.request) {
+                    console.error('Request data:', err.request);
+                    setErrors({ form: 'No response received from the server. Please try again.' });
+                } else {
+                    console.error('Error message:', err.message);
+                    setErrors({ form: 'An error occurred. Please try again.' });
+                }
             });
     };
 
@@ -45,9 +70,14 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
     const handleReset = () => {
         setUsername('');
         setPassword('');
-        setError('');
+        setEmail('');
+        setFirstName('');
+        setLastName('');
+        setDateOfBirth('');
+        setPhone('');
+        setErrors({});
     };
-    
+
     // This function will be called when the modal is closed (either by clicking the close button or the backdrop)
     const handleCloseModal = () => {
         handleReset();  // Reset form fields
@@ -73,7 +103,11 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             placeholder="Enter Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            isInvalid={!!errors.username}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.username}
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group controlId="password" className="mt-3">
                         <Form.Label>Password</Form.Label>
@@ -82,9 +116,77 @@ function SignupModal({ show, handleClose, handleShowLogin }) {
                             placeholder="Enter Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            isInvalid={!!errors.password}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.password}
+                        </Form.Control.Feedback>
                     </Form.Group>
-                    {error && <p className="text-danger mt-2">{error}</p>}
+                    <Form.Group controlId="email" className="mt-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            isInvalid={!!errors.email}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.email}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group controlId="firstName" className="mt-3">
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter First Name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            isInvalid={!!errors.firstName}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.firstName}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group controlId="lastName" className="mt-3">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Last Name"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            isInvalid={!!errors.lastName}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.lastName}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group controlId="dateOfBirth" className="mt-3">
+                        <Form.Label>Date of Birth</Form.Label>
+                        <Form.Control
+                            type="date"
+                            value={dateOfBirth}
+                            onChange={(e) => setDateOfBirth(e.target.value)}
+                            isInvalid={!!errors.dateOfBirth}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.dateOfBirth}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group controlId="phone" className="mt-3">
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Phone Number"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            isInvalid={!!errors.phone}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.phone}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    {errors.form && <p className="text-danger mt-2">{errors.form}</p>}
                     <Button type="submit" variant="primary" className="mt-3 w-100">
                         Sign Up
                     </Button>
