@@ -2,7 +2,7 @@
 
 # Hook&Grab
 
-<img src="presentation/logo.png" alt="Hook&Grab Logo" width="200" />
+<img src="presentation/logo.png" alt="Hook&Grab Logo" width="250" />
 </div>
 
 ### Project Submission for Odyssea's 2nd Blue & Circular Economy Hackathon
