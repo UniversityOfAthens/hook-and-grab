@@ -86,15 +86,7 @@ const RentABoat = () => {
             <NavBar />
             <div className="content-container">
                 <div className="header">
-                    <div className="market-icons">
-                        <div className="right-grid mt-5">
-                            {isGridView ? (
-                                <FaList className="market-icon" onClick={toggleView} />
-                            ) : (
-                                <FaTh className="market-icon" onClick={toggleView} />
-                            )}
-                        </div>
-                    </div>
+                    
                     <h1 className="text-center mt-5 pt-5">Rent A Boat</h1>
                     <p className="text-center">Save Resources, Empower Communities</p>
                 </div>
@@ -134,6 +126,15 @@ const RentABoat = () => {
                             Rent your Boat
                         </button>
                     )}
+                    <div className="market-icons">
+                        <div className="right-grid mt-5">
+                            {isGridView ? (
+                                <FaList className="market-icon" onClick={toggleView} />
+                            ) : (
+                                <FaTh className="market-icon" onClick={toggleView} />
+                            )}
+                        </div>
+                    </div>
                 </section>
                 <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
                     {filteredBoats.map((boat, index) => (

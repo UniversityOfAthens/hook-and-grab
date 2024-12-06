@@ -106,13 +106,7 @@ const Market = () => {
                 <div className="market-container">
                     <header className="market-header">
                         <h1 className="text-center mt-5 pt-5">Market</h1>
-                        <div className="market-icons">
-                            {isGridView ? (
-                                <FaList className="market-icon" onClick={toggleView} />
-                            ) : (
-                                <FaTh className="market-icon" onClick={toggleView} />
-                            )}
-                        </div>
+                        
                     </header>
                     <section className="market-search">
                         <div className="sort-wrapper">
@@ -172,10 +166,17 @@ const Market = () => {
                                 New Product <AddIcon id="add-icon" />
                             </button>
                         )}
+                        <div className="market-icons">
+                            {isGridView ? (
+                                <FaList className="market-icon" onClick={toggleView} />
+                            ) : (
+                                <FaTh className="market-icon" onClick={toggleView} />
+                            )}
+                        </div>
                     </section>
                     <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
                         {filteredProducts.map((product, index) => (
-                            <div key={index} className="market-item font2">
+                            <div key={index} className="market-item">
                                 <h2>{product.title}</h2>
                                 {product.images && product.images.length > 0 && (
                                     <img src={`data:${product.images[0].mimeType};base64,${product.images[0].data}`} alt={product.title} />

@@ -3,12 +3,13 @@
     text-align: right;
     color: white;
     font-size: 15px;
-  }
+}
 
-  .renting-search {
+.renting-search {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 20px; /* Add margin-top to create space below the header */
 }
 
 .right-grid {
@@ -21,9 +22,15 @@
 
 .renting-search-input {
     padding: 10px 10px 10px 45px; /* Add padding to make space for the icon and vertical line */
-    width: 100%;
+    width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.market-icon {
+    font-size: 18px;
+    cursor: pointer; 
+    margin-left: 20px;
 }
 
 .font2 {
@@ -48,6 +55,10 @@
     border-radius: 5px;
     margin-left: 10px; /* Add spacing between the input and the button */
     transition: background-color 0.3s ease;
+}
+
+.renting-search-button:hover {
+    background-color: #218838;
 }
 
 .renting-filter-button {
@@ -90,6 +101,10 @@
     border-radius: 5px;
     margin-right: 10px; 
     transition: background-color 0.3s ease;
+}
+
+.rent-filter-button:hover {
+    background-color: #668faa;
 }
 
 .font1 {

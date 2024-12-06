@@ -1,6 +1,7 @@
 /* General Styles */
 .market-container {
     padding: 40px;
+    padding-top: 80px; /* Add padding-top to create space below the navbar */
 }
 
 /* Header */
@@ -12,6 +13,8 @@
     font-size: 15px;
     padding: 0 20px; 
     text-shadow: 2px 2px #000000;
+    padding: 60px;
+    text-align: right;
 }
 
 /* Center the title */
@@ -31,6 +34,7 @@
 .market-icon {
     font-size: 18px;
     cursor: pointer; 
+    margin-left: 20px;
 }
 
 /* Sort Icon */
@@ -203,6 +207,7 @@ input[type="range"]::-webkit-slider-thumb {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 20px; /* Add margin-top to create space below the header */
 }
 
 .search-input-wrapper {
