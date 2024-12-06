@@ -3,6 +3,7 @@
 # Hook&Grab
 
 ![Hook&Grab Logo](presentation/logo.png)
+</div>
 
 ### Project Submission for Odyssea's 2nd Blue & Circular Economy Hackathon
 
@@ -97,4 +98,3 @@ An alternative Python-based API test suite is also available for testing the API
 - **Main Documentation:** [docs/index.md](docs/index.md)
 
 ---
-</div>
