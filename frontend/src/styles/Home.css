@@ -111,10 +111,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 25px;
   margin: 20px;
   margin-bottom: 0px;
+}
+
+.button-style{
+  margin-top: 10px;
+  align-self: center;
 }
 
 /* Hook Icon on Title */

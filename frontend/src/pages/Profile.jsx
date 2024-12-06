@@ -35,15 +35,15 @@ function Profile() {
                             <h5 className='color-white'>Username: {username}</h5>
                             <div className='container'>
                                 <div className='box3'>
-                                    <h5 className='text-white'>Bio: </h5>
+                                    <h5 className='text-white'>Email: </h5>
                                     <p className='text-white'>(TBA)</p>
-                                    <h5 className='text-white'>Location:</h5>
+                                    <h5 className='text-white'>Posts:</h5>
                                     <p className='text-white'>(TBA)</p>
                                 </div>
                                 <div className='box3'>
-                                    <h5 className='text-white'>Friends: </h5>
+                                    <h5 className='text-white'>Date of Birth: </h5>
                                     <p className='text-white'>(TBA)</p>
-                                    <h5 className='text-white'>Posts:</h5>
+                                    <h5 className='text-white'>Location:</h5>
                                     <p className='text-white'>(TBA)</p>
                                 </div>
                                 
