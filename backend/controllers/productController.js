@@ -14,7 +14,7 @@ exports.createProduct = (req, res) => {
     isOpenToTrade: req.body.isOpenToTrade,
     images: req.files ? req.files.map((file) => `/uploads/products/${file.filename}`) : [],
     datePosted: new Date().toISOString(),
-    sellerId: req.user.id,
+    sellerId: req.body.sellerId || req.user.id, // Use sellerId from request body or fallback to req.user.id
   };
 
   // Save the product to the database

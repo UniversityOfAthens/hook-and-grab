@@ -11,6 +11,14 @@
     margin-bottom: 20px;
 }
 
+.right-grid {
+    display: flex;
+    margin-right: 10vh;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
 .renting-search-input {
     padding: 10px 10px 10px 45px; /* Add padding to make space for the icon and vertical line */
     width: 100%;
