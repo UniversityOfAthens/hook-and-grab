@@ -17,7 +17,7 @@ function Profile() {
         if (user) {
             setUsername(user.username);
             setEmail(user.email);
-            setBirth(user.birth);
+            setBirth(user.dateOfBirth);
         }
     }, []);
 
