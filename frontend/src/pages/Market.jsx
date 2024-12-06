@@ -181,7 +181,7 @@ const Market = () => {
                                     <img src={`data:${product.images[0].mimeType};base64,${product.images[0].data}`} alt={product.title} />
                                 )}
                                 <p>{product.description}</p>
-                                <p>{product.price.toFixed(2)}€</p>
+                                <p>{(product.price || 0).toFixed(2)}€</p>
                                 <div className="market-item-buttons">
                                     <Button variant="primary" className="buy-button">
                                         {product.price === 0 ? 'Get for Free' : 'Buy Now'}

@@ -14,13 +14,17 @@ const RentABoat = () => {
     const navigate = useNavigate();
     const [isGridView, setIsGridView] = useState(true);
     const [boats, setBoats] = useState([]); // Initialize as an empty array
+    const [filteredBoats, setFilteredBoats] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:3482/boats')
             .then(response => {
+                console.log('Response:', response);
                 if (Array.isArray(response.data.boats)) {
                     setBoats(response.data.boats);
+                    setFilteredBoats(response.data.boats);
                 } else {
                     console.error('Unexpected response format:', response.data);
                 }
@@ -29,6 +33,18 @@ const RentABoat = () => {
                 console.error('Error fetching boats:', error);
             });
     }, []);
+
+    useEffect(() => {
+        filterBoats(searchQuery);
+    }, [searchQuery, boats]);
+
+    const filterBoats = (query) => {
+        const filtered = boats.filter(boat => 
+            boat.title.toLowerCase().includes(query.toLowerCase()) ||
+            boat.description.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredBoats(filtered);
+    };
 
     const toggleView = () => {
         setIsGridView(!isGridView);
@@ -75,9 +91,11 @@ const RentABoat = () => {
                             type="text"
                             placeholder="Search for boats"
                             className="renting-search-input"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
-                    <button className="renting-search-button">Search</button>
+                    {/* <button className="renting-search-button">Search</button> */}
                     {user && (
                         <button className="renting-your-boat-button" onClick={handleOpenModal}>
                             Rent your Boat
@@ -85,14 +103,14 @@ const RentABoat = () => {
                     )}
                 </section>
                 <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
-                    {boats.map((boat, index) => (
+                    {filteredBoats.map((boat, index) => (
                         <div key={index} className="market-item">
                             <h2>{boat.title}</h2>
                             {boat.images && boat.images.length > 0 && (
                                 <img src={`data:${boat.images[0].mimeType};base64,${boat.images[0].data}`} alt={boat.title} />
                             )}
                             <p>{boat.description}</p>
-                            <p>{boat.pricePerDay.toFixed(2)}€ per day</p>
+                            <p>{(boat.pricePerDay || 0).toFixed(2)}€ per day</p>
                             <div className="market-item-buttons">
                                 <Button variant="primary" className="rent-button">
                                     Rent Now

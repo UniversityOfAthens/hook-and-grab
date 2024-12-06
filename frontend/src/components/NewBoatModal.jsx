@@ -27,6 +27,7 @@ function NewBoatModal({ isOpen, onClose, onAddBoat }) {
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i]);
         }
+
         axios.post('http://localhost:3482/boats', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
