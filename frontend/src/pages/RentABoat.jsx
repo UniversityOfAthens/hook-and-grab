@@ -6,26 +6,27 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from './../components/NavBar';
 import '../styles/RentABoat.css';
 import axios from 'axios';
-import NewProductModal from './../components/NewProductModal';
-import filterIcon from '../assets/icons/filter.svg';
+import NewBoatModal from './../components/NewBoatModal';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddIcon from '@mui/icons-material/Add';
 
-function RentABoat() {
-
-    const handleGoBack = () => {
-        navigate('/');
-    };
+const RentABoat = () => {
+    const navigate = useNavigate();
     const [isGridView, setIsGridView] = useState(true);
-    const [products, setProducts] = useState([]);
+    const [boats, setBoats] = useState([]); // Initialize as an empty array
     const [isModalOpen, setIsModalOpen] = useState(false);
+
     useEffect(() => {
-        axios.get('http://localhost:3482/products')
+        axios.get('http://localhost:3482/boats')
             .then(response => {
-                setProducts(response.data);
+                if (Array.isArray(response.data.boats)) {
+                    setBoats(response.data.boats);
+                } else {
+                    console.error('Unexpected response format:', response.data);
+                }
             })
             .catch(error => {
-                console.error('Error fetching products:', error);
+                console.error('Error fetching boats:', error);
             });
     }, []);
 
@@ -41,22 +42,17 @@ function RentABoat() {
         setIsModalOpen(false);
     };
 
-    const handleAddProduct = (newProduct) => {
-        setProducts([...products, newProduct]);
+    const handleAddBoat = (newBoat) => {
+        setBoats([...boats, newBoat]);
     };
 
     const user = JSON.parse(localStorage.getItem('user'));
 
-    return(
+    return (
         <div className="site-container">
+            <NavBar />
             <div className="content-container">
-                {/* Navigation Bar */}
-                <NavBar />
-
-                {/* Main Content */}
-                <main>
-                <div style={{ marginTop: "0px" }} >
-                    <div className="header">
+                <div className="header">
                     <div className="market-icons">
                         <div className="right-grid mt-5">
                             {isGridView ? (
@@ -65,51 +61,50 @@ function RentABoat() {
                                 <FaTh className="market-icon" onClick={toggleView} />
                             )}
                         </div>
-                        </div>
-                        <h1 className="text-center mt-5 pt-5">Rent A Boat</h1>
-                        <p className="text-center">Save Resources, Empower Communities</p>
-                        
                     </div>
+                    <h1 className="text-center mt-5 pt-5">Rent A Boat</h1>
+                    <p className="text-center">Save Resources, Empower Communities</p>
                 </div>
-                
                 <section className="renting-search">
-                <button className="rent-filter-button">
-                                Filters <FilterAltIcon id="filter-icon" />
-                            </button>
-                        <div className="search-input-wrapper">
-                            <FaSearch className="search-icon" />
-                            <input
-                                type="text"
-                                placeholder="Search for boats"
-                                className="renting-search-input"
-                            />
-                        </div>
-                        <button className="renting-search-button">Search</button>
-                        {user && (
-                            /* IMPORTANT!! THE CODE BELOW NEEDS TO CHANGE!! RIGHT NOW IT OPENS THE NEW PRODUCT POPUP. A NEW DATABASE NEEDS TO BE CREATED FOR THE NEW BOAT LISTINGS */
-                            <button className="renting-your-boat-button" onClick={handleOpenModal}>Rent your Boat</button>
-                        )}
-                    </section>
-                    {/* <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
-                        {products.map((product, index) => (
-                            <div key={index} className="market-item">
-                                <h2>{product.name}</h2>
-                                <img src={product.image} alt={product.name} />
-                                <p>{product.description}</p>
-                                <p>{product.price.toFixed(2)}€</p>
+                    <button className="rent-filter-button">
+                        Filters <FilterAltIcon id="filter-icon" />
+                    </button>
+                    <div className="search-input-wrapper">
+                        <FaSearch className="search-icon" />
+                        <input
+                            type="text"
+                            placeholder="Search for boats"
+                            className="renting-search-input"
+                        />
+                    </div>
+                    <button className="renting-search-button">Search</button>
+                    {user && (
+                        <button className="renting-your-boat-button" onClick={handleOpenModal}>
+                            Rent your Boat
+                        </button>
+                    )}
+                </section>
+                <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
+                    {boats.map((boat, index) => (
+                        <div key={index} className="market-item">
+                            <h2>{boat.title}</h2>
+                            {boat.images && boat.images.length > 0 && (
+                                <img src={`data:${boat.images[0].mimeType};base64,${boat.images[0].data}`} alt={boat.title} />
+                            )}
+                            <p>{boat.description}</p>
+                            <p>{boat.pricePerDay.toFixed(2)}€ per day</p>
+                            <div className="market-item-buttons">
+                                <Button variant="primary" className="rent-button">
+                                    Rent Now
+                                </Button>
                             </div>
-                        ))}
-                    </section> */}
-
-                
-
-                </main>
-
+                        </div>
+                    ))}
+                </section>
             </div>
-            <NewProductModal isOpen={isModalOpen} onClose={handleCloseModal} onAddProduct={handleAddProduct} />
+            <NewBoatModal isOpen={isModalOpen} onClose={handleCloseModal} onAddBoat={handleAddBoat} />
         </div>
-    )
-
-}
+    );
+};
 
 export default RentABoat;

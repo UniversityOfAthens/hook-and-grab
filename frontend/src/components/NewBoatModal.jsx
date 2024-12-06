@@ -27,7 +27,6 @@ function NewBoatModal({ isOpen, onClose, onAddBoat }) {
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i]);
         }
-
         axios.post('http://localhost:3482/boats', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -71,6 +70,7 @@ function NewBoatModal({ isOpen, onClose, onAddBoat }) {
                         <Form.Label>Description</Form.Label>
                         <Form.Control
                             as="textarea"
+                            rows={3}
                             placeholder="Enter Description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
