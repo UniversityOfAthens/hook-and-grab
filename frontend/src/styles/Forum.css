@@ -12,6 +12,7 @@
   position: relative;
   z-index: 1;
   color: white;
+  text-shadow: 2px 2px #000000;
   padding-top: 0; /* Ensure no extra padding */
 }
 
@@ -24,6 +25,7 @@
   text-align: right;
   color: white;
   font-size: 15px;
+  text-shadow: 2px 2px #000000;
 }
 
 .box7 {

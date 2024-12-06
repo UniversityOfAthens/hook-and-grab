@@ -57,15 +57,18 @@ function RentABoat() {
                 <main>
                 <div style={{ marginTop: "0px" }} >
                     <div className="header">
-                        <h1 className="text-center mt-5 pt-5">Rent A Boat</h1>
-                        <p className="text-center">Save Resources, Empower Communities</p>
-                        <div className="market-icons">
+                    <div className="market-icons">
+                        <div className="right-grid mt-5">
                             {isGridView ? (
                                 <FaList className="market-icon" onClick={toggleView} />
                             ) : (
                                 <FaTh className="market-icon" onClick={toggleView} />
                             )}
                         </div>
+                        </div>
+                        <h1 className="text-center mt-5 pt-5">Rent A Boat</h1>
+                        <p className="text-center">Save Resources, Empower Communities</p>
+                        
                     </div>
                 </div>
                 

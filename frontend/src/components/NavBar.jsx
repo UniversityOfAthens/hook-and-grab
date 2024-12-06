@@ -109,14 +109,14 @@ function NavBar() {
                         <NavDropdown title={isLoggedIn ? (user?.username || 'Account') : 'Account'} id="account-dropdown" align="end">
                             {isLoggedIn ? (
                                 <>
-                                    <NavDropdown.Item onClick={navigationLinks.profile}>Profile</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={navigationLinks.profile} className="no-text-shadow">Profile</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item onClick={handleLogout}>Log Out</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleLogout} className="no-text-shadow">Log Out</NavDropdown.Item>
                                 </>
                             ) : (
                                 <>
-                                    <NavDropdown.Item onClick={handleShowLogin}>Log In</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={handleShowSignup}>Sign Up</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleShowLogin} className="no-text-shadow">Log In</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleShowSignup} className="no-text-shadow">Sign Up</NavDropdown.Item>
                                 </>
                             )}
                         </NavDropdown>
