@@ -11,7 +11,7 @@ import About from './pages/About';
 function App() {
   return (
     <BrowserRouter>
-    <div classname="app-c">
+    <div className="app-c">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

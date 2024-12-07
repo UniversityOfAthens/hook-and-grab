@@ -22,6 +22,7 @@
 }
 
 .headerForum {
+    background-color: rgba(0, 0, 0, 0.5);
     margin: 10px;
     gap: 10px;
     backdrop-filter: blur(16px) saturate(100%);
@@ -84,6 +85,7 @@
   }
 
 .box7 {
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -96,6 +98,7 @@
   box-sizing: border-box; /* Include padding in width calculations */
   max-width: 800vh;
   margin: 10px;
+  margin-top: 20px;
 }
 
 
@@ -145,10 +148,10 @@
 }
 
 .box6 {
+  background-color: rgba(0, 0, 0, 0.5);
   margin: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: center;
   padding: 20px;
   backdrop-filter: blur(16px) saturate(100%);
