@@ -148,7 +148,6 @@
   margin: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   justify-content: center;
   padding: 20px;
   backdrop-filter: blur(16px) saturate(100%);
