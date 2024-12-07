@@ -87,13 +87,21 @@
   flex: 1;
   color: white;
   text-shadow: 2px 2px #000000;
+  margin: 2px;
   content: "\A";
   white-space: pre;
 }
 
 .textInside2 {
   align-self:safe;
+  margin: 2px;
   margin-top: 0px;
+  color: white;
+}
+
+.textInside3 {
+  flex-direction: column;
+  margin-top: 10px;
   color: white;
 }
 

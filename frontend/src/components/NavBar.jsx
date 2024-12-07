@@ -49,7 +49,6 @@ function NavBar() {
     const navigationLinks = {
         home: () => navigate('/'),
         market: () => navigate('/market'),
-        rentaboat: () => navigate('/rentaboat'),
         forum: () => navigate('/forum'),
         faq: () => navigate('/faq'),
         profile: () => navigate('/profile'),
@@ -61,7 +60,6 @@ function NavBar() {
             <KeyboardTab className="drawer-close" onClick={toggleDrawer(false)} />
             <Nav className="flex-column">
                 <Nav.Link onClick={navigationLinks.market}>Market</Nav.Link>
-                <Nav.Link onClick={navigationLinks.rentaboat}>Rent a Boat</Nav.Link>
                 <Nav.Link onClick={navigationLinks.forum}>Forum</Nav.Link>
                 <Nav.Link onClick={navigationLinks.faq}>FAQ</Nav.Link>
                 <Nav.Link onClick={navigationLinks.about}>About</Nav.Link>
@@ -101,7 +99,6 @@ function NavBar() {
                 <div className="d-none d-lg-flex w-100 justify-content-end">
                     <Nav className="me-auto">
                         <Nav.Link onClick={navigationLinks.market}>Market</Nav.Link>
-                        <Nav.Link onClick={navigationLinks.rentaboat}>Rent a Boat</Nav.Link>
                         <Nav.Link onClick={navigationLinks.forum}>Forum</Nav.Link>
                         <Nav.Link onClick={navigationLinks.faq}>FAQ</Nav.Link>
                         <Nav.Link onClick={navigationLinks.about}>About</Nav.Link>
