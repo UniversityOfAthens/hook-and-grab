@@ -177,20 +177,27 @@ const Market = () => {
                     <section className={`market-items ${isGridView ? 'grid-view' : 'list-view'}`}>
                         {filteredProducts.map((product, index) => (
                             <div key={index} className="market-item font2">
+                                {user && user.id === product.sellerId && (
+                                    <button className="delete-button" onClick={() => handleDeleteProduct(product.id)}>
+                                        Delete
+                                    </button>
+                                )}
                                 <h2>{product.title}</h2>
                                 {product.images && product.images.length > 0 && (
                                     <img src={`data:${product.images[0].mimeType};base64,${product.images[0].data}`} alt={product.title} />
                                 )}
                                 <p>{product.description}</p>
                                 <p>{(product.price || 0).toFixed(2)}€</p>
+                                {user && user.id !== product.sellerId && (
                                 <div className="market-item-buttons">
                                     <Button variant="primary" className="buy-button">
                                         {product.price === 0 ? 'Get for Free' : 'Buy Now'}
                                     </Button>
                                     <Button variant="secondary" className="trade-button">
                                         Trade
-                                    </Button>
+                                    </Button>    
                                 </div>
+                                )}
                             </div>
                         ))}
                     </section>

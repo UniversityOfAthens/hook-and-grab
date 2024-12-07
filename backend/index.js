@@ -5,6 +5,7 @@ const passport = require('passport');
 const cors = require('cors');
 const path = require('path');
 const { initializeDatabase } = require('./config/database');
+require('dotenv').config(); // Load environment variables
 require('./config/passport');
 
 const app = express();
@@ -23,6 +24,9 @@ app.use(
     credentials: true,
   })
 );
+
+const chatRoutes = require('./routes/chat');
+app.use('/chat', chatRoutes);
 
 // Session Middleware
 app.use(
@@ -45,7 +49,6 @@ app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/users'));
 app.use('/products', require('./routes/products'));
 app.use('/boats', require('./routes/boats'));
-// Note: Bookings routes are now under /boats
 
 // Global Error Handling Middleware
 app.use((err, req, res, next) => {

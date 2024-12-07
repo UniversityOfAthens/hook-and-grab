@@ -1,16 +1,20 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
-//import { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NavBar from './components/NavBar';
 import Home from './pages/Home';
-import Profile from './pages/Profile'; 
+import About from './pages/About';
 import Market from './pages/Market';
 import Forum from './pages/Forum';
-import Faq from './pages/Faq';
+import Chatbot from './components/Chatbot';
 import Footer from './components/Footer';
-import About from './pages/About';
+import Profile from './pages/Profile';
+import Faq from './pages/Faq';
+
 function App() {
   return (
-    <BrowserRouter>
-    <div className="app-c">
+    <Router>
+      <div className="App">
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -18,11 +22,12 @@ function App() {
           <Route path="/market" element={<Market />} />
           <Route path="/forum" element={<Forum />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/about" element={<About />}/>
+          <Route path="/about" element={<About />} />
         </Routes>
+        <Chatbot />
         <Footer />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
