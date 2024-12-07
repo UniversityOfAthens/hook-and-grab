@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import '../styles/Chatbot.css';
 
 const Chatbot = () => {
@@ -27,7 +28,8 @@ const Chatbot = () => {
           {
             model: 'gpt-4o-mini',
             messages: [
-              { role: 'user', content: input },
+              ...messages,
+              newMessage,
             ],
             max_tokens: 150,
           },
@@ -40,10 +42,9 @@ const Chatbot = () => {
         );
 
         const reply = { role: 'assistant', content: response.data.choices[0].message.content };
-        setMessages((prevMessages) => [...prevMessages, newMessage, reply]);
+        setMessages((prevMessages) => [...prevMessages, reply]);
       } catch (error) {
         if (error.response && error.response.status === 429 && retryCount < 5) {
-          // Exponential backoff
           const waitTime = Math.pow(2, retryCount) * 1000;
           console.warn(`Retrying in ${waitTime / 1000} seconds... (Attempt ${retryCount + 1})`);
           setTimeout(() => sendMessage(retryCount + 1), waitTime);
@@ -57,6 +58,12 @@ const Chatbot = () => {
     setInput('');
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSend();
+    }
+  };
+
   return (
     <div className="chatbot-container">
       <button className="chatbot-toggle" onClick={toggleChat}>
@@ -67,7 +74,7 @@ const Chatbot = () => {
           <div className="chatbot-messages">
             {messages.map((msg, index) => (
               <div key={index} className={`chatbot-message ${msg.role}`}>
-                {msg.content}
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             ))}
           </div>
@@ -76,6 +83,7 @@ const Chatbot = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyPress={handleKeyPress}
               placeholder="Type a message..."
             />
             <button onClick={handleSend}>Send</button>

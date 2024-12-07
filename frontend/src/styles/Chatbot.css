@@ -20,8 +20,8 @@
   position: fixed;
   bottom: 80px;
   right: 20px;
-  width: 300px;
-  max-height: 400px;
+  width: 350px; /* Increased width */
+  max-height: 500px; /* Increased height */
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -38,14 +38,21 @@
 
 .chatbot-message {
   margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
 }
 
 .chatbot-message.user {
-  text-align: right;
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
 }
 
 .chatbot-message.assistant {
-  text-align: left;
+  background-color: #f1f1f1;
+  color: black;
+  align-self: flex-start;
 }
 
 .chatbot-input {
