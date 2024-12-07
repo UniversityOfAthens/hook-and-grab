@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import '../styles/NewProductModal.css';
+import '../styles/NewProductModal.css'; // Use the same CSS file as LoginModal
 
 const NewProductModal = ({ isOpen, onClose, onAddProduct }) => {
     const [title, setTitle] = useState('');
@@ -13,7 +14,6 @@ const NewProductModal = ({ isOpen, onClose, onAddProduct }) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        // Check if the user is authenticated by fetching the current user's profile
         axios.get('http://localhost:3482/users/me', { withCredentials: true })
             .then(response => {
                 console.log('User is authenticated:', response.data);
@@ -37,7 +37,7 @@ const NewProductModal = ({ isOpen, onClose, onAddProduct }) => {
         formData.append('price', parseFloat(price));
         formData.append('isFree', isFree);
         formData.append('isOpenToTrade', isOpenToTrade);
-        formData.append('sellerId', user.id); // Include sellerId
+        formData.append('sellerId', user.id);
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i]);
         }
@@ -46,7 +46,7 @@ const NewProductModal = ({ isOpen, onClose, onAddProduct }) => {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
-            withCredentials: true // Include credentials in the request
+            withCredentials: true
         })
         .then(response => {
             onAddProduct(response.data.product);
@@ -54,7 +54,7 @@ const NewProductModal = ({ isOpen, onClose, onAddProduct }) => {
             setTimeout(() => {
                 setSuccessMessage('');
                 onClose();
-            }, 2000); // Close the modal after 2 seconds
+            }, 2000);
         })
         .catch(error => {
             console.error('Error creating product:', error);
@@ -65,58 +65,78 @@ const NewProductModal = ({ isOpen, onClose, onAddProduct }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <h2>New Product</h2>
-                {successMessage && <p className="success-message">{successMessage}</p>}
-                {errorMessage && <p className="error-message">{errorMessage}</p>}
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Product Title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-                    <textarea
-                        placeholder="Description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="number"
-                        placeholder="Price"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        required
-                    />
-                    <label>
-                        <input
+        <Modal show={isOpen} onHide={onClose} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>New Product</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="title">
+                        <Form.Label>Product Title</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter Product Title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="description" className="mt-3">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            placeholder="Enter Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="price" className="mt-3">
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            type="number"
+                            placeholder="Enter Price"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="isFree" className="mt-3">
+                        <Form.Check
                             type="checkbox"
+                            label="Free"
                             checked={isFree}
                             onChange={(e) => setIsFree(e.target.checked)}
                         />
-                        Free
-                    </label>
-                    <label>
-                        <input
+                    </Form.Group>
+                    <Form.Group controlId="isOpenToTrade" className="mt-3">
+                        <Form.Check
                             type="checkbox"
+                            label="Open to Trade"
                             checked={isOpenToTrade}
                             onChange={(e) => setIsOpenToTrade(e.target.checked)}
                         />
-                        Open to Trade
-                    </label>
-                    <input
-                        type="file"
-                        multiple
-                        onChange={handleImageChange}
-                    />
-                    <button type="submit">Add Product</button>
-                    <button type="button" onClick={onClose}>Cancel</button>
-                </form>
-            </div>
-        </div>
+                    </Form.Group>
+                    <Form.Group controlId="images" className="mt-3">
+                        <Form.Label>Images</Form.Label>
+                        <Form.Control
+                            type="file"
+                            multiple
+                            onChange={handleImageChange}
+                        />
+                    </Form.Group>
+                    {successMessage && <p className="text-success mt-2">{successMessage}</p>}
+                    {errorMessage && <p className="text-danger mt-2">{errorMessage}</p>}
+                    <Button type="submit" variant="primary" className="mt-3 w-100">
+                        Add Product
+                    </Button>
+                    <Button variant="secondary" onClick={onClose} className="mt-3 w-100">
+                        Cancel
+                    </Button>
+                </Form>
+            </Modal.Body>
+        </Modal>
     );
 };
 

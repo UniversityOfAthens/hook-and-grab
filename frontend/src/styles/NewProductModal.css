@@ -14,14 +14,15 @@
 .modal-content {
     background-color: white;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Adjusted width to make it more narrow */
     max-width: 90%;
 }
 
 .modal-content h2 {
     margin-top: 0;
+    text-align: center; /* Center the title */
 }
 
 .modal-content form {
@@ -29,15 +30,19 @@
     flex-direction: column;
 }
 
-.modal-content input,
-.modal-content textarea {
+.modal-content .modal-input,
+.modal-content .modal-textarea {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.modal-content button {
+.modal-content .modal-checkbox {
+    margin-bottom: 10px;
+}
+
+.modal-content .modal-button {
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -45,17 +50,22 @@
     margin-top: 10px;
 }
 
-.modal-content button[type="submit"] {
+.modal-content .modal-button[type="submit"] {
     background-color: #28a745;
     color: white;
 }
 
-.modal-content button[type="button"] {
+.modal-content .modal-button[type="button"] {
     background-color: #ccc;
     color: black;
 }
 
-.success-message {
+.modal-content .success-message {
     color: green;
+    margin-bottom: 10px;
+}
+
+.modal-content .error-message {
+    color: red;
     margin-bottom: 10px;
 }
