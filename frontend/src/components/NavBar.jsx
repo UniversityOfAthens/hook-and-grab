@@ -53,6 +53,7 @@ function NavBar() {
         forum: () => navigate('/forum'),
         faq: () => navigate('/faq'),
         profile: () => navigate('/profile'),
+        about: () => navigate('/about')
     };
 
     const drawerContent = (
@@ -63,7 +64,7 @@ function NavBar() {
                 <Nav.Link onClick={navigationLinks.rentaboat}>Rent a Boat</Nav.Link>
                 <Nav.Link onClick={navigationLinks.forum}>Forum</Nav.Link>
                 <Nav.Link onClick={navigationLinks.faq}>FAQ</Nav.Link>
-                <Nav.Link href="#about">About</Nav.Link>
+                <Nav.Link onClick={navigationLinks.about}>About</Nav.Link>
                 {isLoggedIn ? (
                     <>
                         <Nav.Link onClick={navigationLinks.profile}>{user?.username || 'Profile'}</Nav.Link>
@@ -103,7 +104,7 @@ function NavBar() {
                         <Nav.Link onClick={navigationLinks.rentaboat}>Rent a Boat</Nav.Link>
                         <Nav.Link onClick={navigationLinks.forum}>Forum</Nav.Link>
                         <Nav.Link onClick={navigationLinks.faq}>FAQ</Nav.Link>
-                        <Nav.Link href="#about">About</Nav.Link>
+                        <Nav.Link onClick={navigationLinks.about}>About</Nav.Link>
                     </Nav>
                     <Nav>
                         <NavDropdown title={isLoggedIn ? (user?.username || 'Account') : 'Account'} id="account-dropdown" align="end">

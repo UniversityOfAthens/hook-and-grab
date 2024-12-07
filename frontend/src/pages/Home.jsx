@@ -25,6 +25,7 @@ function Home() {
         rentaboat: () => navigate('/rentaboat'),
         forum: () => navigate('/forum'),
         faq: () => navigate('/faq'),
+        about: () => navigate('/about')
     };
 
     return (
@@ -79,18 +80,16 @@ function Home() {
                     </div>
                     <img src={boat} className="right"/>
                 </div>
-
-                </main>
-
-                {/* About Section */}
                 <div style={{ marginTop: "3vh", paddingBottom: "3vh", flex: 1 }} id="about">
-                    <div className="box1">
-                    <div className="header">
-                        <h1>About</h1>
-                        <p>At Hook&Grab, we’re reeling in a brighter future for our oceans and coastal communities. Rooted in the principles of the blue and circular economies, our mission is to create a platform where marine resources are reused, shared, and celebrated.</p>
-                    </div>
-                    </div>
-                </div>	
+                <div className="box1">
+                <div className="header">
+                    <h1>About</h1>
+                    <p>At Hook&Grab, we’re reeling in a brighter future for our oceans and coastal communities. Rooted in the principles of the blue and circular economies, our mission is to create a platform 
+                    where marine resources are reused, shared, and celebrated.</p>
+                </div>
+                </div>
+                </div>
+                </main>	
             </div>
         </div>
     );

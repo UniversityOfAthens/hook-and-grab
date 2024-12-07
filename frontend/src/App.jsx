@@ -7,7 +7,7 @@ import Forum from './pages/Forum';
 import RentABoat from './pages/RentABoat';
 import Faq from './pages/Faq';
 import Footer from './components/Footer';
-
+import About from './pages/About';
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +20,7 @@ function App() {
           <Route path="/forum" element={<Forum />} />
           <Route path="/rentaboat" element={<RentABoat />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/about" element={<About />}/>
         </Routes>
         <Footer />
       </div>
