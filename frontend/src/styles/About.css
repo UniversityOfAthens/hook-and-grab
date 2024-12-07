@@ -26,12 +26,12 @@
 .box2 {
   position: relative;
   z-index: 2;
-  background:rgba(18, 16, 35, 0.8); /* White box with slight transparency */
+  background:rgba(0, 0, 0, 0.5); 
   border-radius: 100px;
   padding: 30px;
   max-width: 800px;
   text-align: justify;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); /* Add a shadow for a 3D effect */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* Add a shadow for a 3D effect */
 }
 
 .header h1 {
@@ -46,6 +46,11 @@
   font-size: 1.5rem;
   line-height: 1.8;
   color: #f0f0f0;
+}
+
+.aboutText {
+  font-size: 15px;
+  color: white;
 }
 
 @keyframes fadeIn {

@@ -52,7 +52,7 @@ function Forum(){
                             <p>2hr</p>
                         </div>
                         <div className="textOnTheInsideR2">
-                            <div>Renting vs. Owning a Boat: Which is Better for You?</div>
+                            <div>Renting vs. Owning Equipment: Which is Better for You?</div>
                             <p>xarhs</p>
                             <p>0</p>
                             <p>1</p>
