@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import Profile from './pages/Profile'; 
 import Market from './pages/Market';
 import Forum from './pages/Forum';
-import RentEquipment from './pages/RentEquipment';
 import Faq from './pages/Faq';
 import Footer from './components/Footer';
 import About from './pages/About';
@@ -18,7 +17,6 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/market" element={<Market />} />
           <Route path="/forum" element={<Forum />} />
-          <Route path="/rentequipment" element={<RentEquipment />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/about" element={<About />}/>
         </Routes>
