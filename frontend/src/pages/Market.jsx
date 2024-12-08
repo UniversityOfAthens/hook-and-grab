@@ -97,6 +97,19 @@ const Market = () => {
         setFilteredProducts(filtered);
     };
 
+    const handleDeleteProduct = (productId) => {
+        axios.delete(`http://localhost:3482/products/${productId}`, { withCredentials: true })
+            .then(response => {
+                // Remove the deleted product from the state
+                const updatedProducts = products.filter(product => product.id !== productId);
+                setProducts(updatedProducts);
+                setFilteredProducts(updatedProducts);
+            })
+            .catch(error => {
+                console.error('Error deleting product:', error);
+            });
+    };
+    
     const user = JSON.parse(localStorage.getItem('user'));
 
     return (
