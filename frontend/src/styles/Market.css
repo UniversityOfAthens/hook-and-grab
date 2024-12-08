@@ -247,6 +247,18 @@ input[type="range"]::-webkit-slider-thumb {
     text-shadow: 0px 0px;
 }
 
+.delete-button {
+    background-color:rgb(255, 0, 0);
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:medium;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 /* Add Icon */
 #add-icon{
     font-size: 18px;
